@@ -694,7 +694,7 @@ public class DAOUsuario
         return Usuario;
     }
 
-    public DataTable Traer_cupo(int tipo)
+    public DataTable Traer_cupo(int tipo, DateTime F_inicio, DateTime F_fin)
     {
         DataTable Zonas = new DataTable();
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
@@ -704,6 +704,8 @@ public class DAOUsuario
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_cupo", conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_tipo", NpgsqlDbType.Integer).Value = tipo;
+            dataAdapter.SelectCommand.Parameters.Add("_f_inicio", NpgsqlDbType.Timestamp).Value = F_inicio;
+            dataAdapter.SelectCommand.Parameters.Add("_f_final", NpgsqlDbType.Timestamp).Value = F_fin;
 
             conection.Open();
             dataAdapter.Fill(Zonas);

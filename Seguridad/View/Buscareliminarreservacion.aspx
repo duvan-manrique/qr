@@ -51,7 +51,8 @@
                                             <asp:BoundField DataField="vehiculo_id" HeaderText="vehiculo_id" />
                                             <asp:BoundField DataField="descripcion" HeaderText="descripcion" />
                                             <asp:BoundField DataField="qr" HeaderText="qr" />
-                                            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+                                            <asp:CommandField ShowEditButton="True" />
+                                            <asp:CommandField ShowDeleteButton="True" />
                                         </Columns>
                                         <EditRowStyle BackColor="#7C6F57" />
                                         <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
