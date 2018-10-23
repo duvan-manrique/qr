@@ -7,8 +7,9 @@
             width: 230px;
         }
         .auto-style11 {
-            width: 357px;
-            height: 104px;
+            width: 439px;
+            height: 209px;
+            float: left;
         }
         </style>
 </asp:Content>
@@ -17,19 +18,15 @@
         <div>
             <table class="auto-style1" border="0">
                 <tr>
-                    <td class="auto-style8" style="background-color: #D9FFFA">
-                        <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
-                </tr>
-                <tr>
                     <td style="background-color: #D9FFFA">
                         <table class="auto-style1">
                             <tr>
                                 <td>&nbsp;</td>
                                 <td class="auto-style12">&nbsp;</td>
-                                <td>&nbsp;</td>
                             </tr>
                             <tr>
-                                <td>&nbsp;</td>
+                                <td>
+                                <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                                 <td class="auto-style12">
                                     <asp:GridView ID="GV_VerParquedero" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True">
                                         <AlternatingRowStyle BackColor="White" />
@@ -44,12 +41,10 @@
                                         <SortedDescendingHeaderStyle BackColor="#820000" />
                                     </asp:GridView>
                                 </td>
-                                <td>&nbsp;</td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
                                 <td class="auto-style12">&nbsp;</td>
-                                <td>&nbsp;</td>
                             </tr>
                         </table>
                     </td>

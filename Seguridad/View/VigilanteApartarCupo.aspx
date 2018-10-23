@@ -17,14 +17,13 @@
             text-align: right;
             width: 567px;
         }
-        .auto-style15 {
-            width: 503px;
-            height: 213px;
-            float: left;
-            margin-top: 0px;
-        }
         .auto-style17 {
             width: 567px;
+        }
+        .auto-style11 {
+            width: 439px;
+            height: 209px;
+            float: left;
         }
         </style>
 </asp:Content>
@@ -50,7 +49,7 @@
                 <tr>
                     <td class="auto-style16">
                         <br />
-                        <img alt="" class="auto-style15" src="../Imagenes/article.jpg" /></td>
+                                <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                     <td class="auto-style8">
                         <table class="auto-style1">
                             <tr>
@@ -141,7 +140,7 @@
                             <tr>
                                 <td>Descripcion</td>
                                 <td>
-                                    <asp:TextBox ID="TB_Descripcion" runat="server" Height="52px" Width="265px"></asp:TextBox>
+                                    <asp:TextBox ID="TB_Descripcion" runat="server" Height="51px" Width="192px"></asp:TextBox>
                                 </td>
                             </tr>
                         </table>

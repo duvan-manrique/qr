@@ -7,11 +7,11 @@
             width: 555px;
         }
         .auto-style11 {
-            width: 294px;
-            height: 110px;
-            float: right;
+            width: 439px;
+            height: 209px;
+            float: left;
         }
-    </style>
+        </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     
@@ -24,28 +24,8 @@
                             </tr>
                             <tr>
                                 <td class="auto-style12">
-                                    <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
-                                <td>&nbsp;</td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="background-color: #D9FFFA">
-                        <table class="auto-style1">
-                            <tr>
-                                <td>&nbsp;</td>
+                                <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                                 <td>
-                                    <table class="auto-style1">
-                                        <tr>
-                                            <td>Nombre de la zona </td>
-                                            <td>
-                                                <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
-                                                <asp:Button ID="B_BuscarZona" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Buscar" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
                                     <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True" AutoGenerateColumns="False" DataSourceID="ObjectDataSource1" Width="257px" DataKeyNames="id">
                                         <AlternatingRowStyle BackColor="White" />
                                         <Columns>
@@ -66,6 +46,25 @@
                                         <SortedDescendingCellStyle BackColor="#D4DFE1" />
                                         <SortedDescendingHeaderStyle BackColor="#15524A" />
                                     </asp:GridView>
+                                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color: #D9FFFA">
+                        <table class="auto-style1">
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <table class="auto-style1">
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>
+                                                &nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
                                                 <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" DeleteMethod="EliminarZonas" SelectMethod="obtenerzonasTodos" TypeName="DAOUsuario" UpdateMethod="UpdateZonas">
                                                     <DeleteParameters>
                                                         <asp:Parameter Name="id" Type="Int32" />

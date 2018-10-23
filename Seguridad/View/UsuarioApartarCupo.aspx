@@ -3,16 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
 
-        .auto-style13 {
-            text-align: center;
-            height: 30px;
-        }
-        .auto-style15 {
-            width: 540px;
-            height: 202px;
-            float: left;
-            margin-top: 0px;
-        }
         .auto-style16 {
             text-align: right;
             width: 567px;
@@ -23,36 +13,25 @@
         .auto-style18 {
             height: 33px;
         }
-        .auto-style19 {
-            width: 567px;
-            height: 30px;
-        }
         .auto-style22 {
             font-family: Arial;
         }
-        .auto-style23 {
-        text-align: center;
-        width: 212px;
-    }
-    .auto-style24 {
-        text-align: center;
-        height: 30px;
-        width: 212px;
-    }
-    .auto-style25 {
-        width: 212px;
-    }
-    .auto-style26 {
+        .auto-style26 {
         width: 100%;
         height: 415px;
     }
-    </style>
+        .auto-style11 {
+            width: 439px;
+            height: 209px;
+            float: left;
+        }
+        </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     
             <table class="auto-style26" border="0" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
                 <tr>
-                    <td colspan="3" class="auto-style18"><span class="auto-style22"><strong>Usuario:&nbsp;
+                    <td colspan="2" class="auto-style18"><span class="auto-style22"><strong>Usuario:&nbsp;
                         <asp:Label ID="L_Nombre" runat="server"></asp:Label>
                         </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; codigo identificativo del vehiculo<asp:TextBox ID="TB_codigoVe" runat="server"></asp:TextBox>
                         marca<asp:TextBox ID="TB_marca" runat="server"></asp:TextBox>
@@ -69,9 +48,7 @@
                 <tr>
                     <td class="auto-style16">
                         <br />
-                        <img alt="" class="auto-style15" src="../Imagenes/article.jpg" /></td>
-                    <td class="auto-style23">
-                        &nbsp;</td>
+                                <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                     <td class="auto-style8">
                         <table class="auto-style1">
                             <tr>
@@ -160,22 +137,12 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
+                                <td>Descripcion</td>
+                                <td>
+                        <asp:TextBox ID="TB_Descripcion" runat="server" Height="44px" Width="181px"></asp:TextBox>
+                                </td>
                             </tr>
                         </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style19">
-                                    <br />
-                        <br />
-                        &nbsp;&nbsp;<br />
-                    </td>
-                    <td class="auto-style24">
-                    </td>
-                    <td class="auto-style13">
-                        <asp:Button ID="B_Reservar" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Reservar" OnClick="B_Reservar_Click" />
                     </td>
                 </tr>
                 <tr>
@@ -187,9 +154,8 @@
                         <asp:PlaceHolder ID="PHQRCode" runat="server"></asp:PlaceHolder>
                        
                     </td>
-                    <td class="auto-style25">&nbsp;</td>
-                    <td>Descripcion<br />
-                        <asp:TextBox ID="TB_Descripcion" runat="server" Height="46px" Width="337px">breve descripcion</asp:TextBox>
+                    <td><br />
+                        <asp:Button ID="B_Reservar" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Reservar" OnClick="B_Reservar_Click" />
                     </td>
                 </tr>
             </table>

@@ -19,18 +19,18 @@
             width: 525px;
             height: 120px;
         }
-        .auto-style11 {
-            width: 250px;
-            height: 101px;
-            float: right;
-        }
         .auto-style12 {
             width: 200px;
         }
         .auto-style13 {
             text-align: left;
         }
-    </style>
+        .auto-style11 {
+            width: 439px;
+            height: 209px;
+            float: left;
+        }
+        </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -43,39 +43,14 @@
                 </tr>
                 <tr>
                     <td class="auto-style8" style="background-color: #D9FFFA">
-                        <table class="auto-style1">
-                            <tr>
-                                <td>
-                                    <table class="auto-style1">
-                                        <tr>
-                                            <td>codigo de usuario</td>
-                                            <td class="auto-style13">
-                                                <asp:TextBox ID="TB_Usuario" runat="server"></asp:TextBox>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                &nbsp;</td>
-                                            <td class="auto-style13">
-                        <asp:Button ID="B_Buscar" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Buscar" />
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                                <td>
-                        <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
-                            </tr>
-                            <tr>
-                                <td class="auto-style8" colspan="2">&nbsp;</td>
-                            </tr>
-                        </table>
-                    </td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td style="background-color: #D9FFFA">
                         <table class="auto-style1">
                             <tr>
-                                <td>&nbsp;</td>
+                                <td>
+                                <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                                 <td class="auto-style12">
                                     <asp:GridView ID="GV_Usuario" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="ObjectDataSource2" OnSelectedIndexChanged="GV_Usuario_SelectedIndexChanged">
                                         <AlternatingRowStyle BackColor="White" />

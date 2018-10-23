@@ -31,11 +31,12 @@
             height: 120px;
         }
         .auto-style11 {
-            width: 249px;
-            height: 104px;
+            width: 439px;
+            height: 209px;
+            float: left;
         }
         .auto-style12 {
-            height: 30px;
+            text-align: left;
         }
         </style>
 </head>
@@ -50,60 +51,77 @@
                 </tr>
                 <tr>
                     <td class="auto-style9" style="background-color: #D9FFFA">
+                        &nbsp;</td>
+                    <td style="background-color: #D9FFFA">
+                        &nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style10" style="background-color: #D9FFFA; ">administrativo</td>
+                    <td style="background-color: #D9FFFA" class="auto-style8">
+                        &nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style10" style="background-color: #D9FFFA; ">
                         <table class="auto-style1">
+                            <tr>
+                                <td class="auto-style12">zona </td>
+                                <td class="auto-style12">reservacion </td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style12">
+                        <asp:Button ID="B_CrearZona" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Crear zona" OnClick="B_CrearZona_Click" />
+                                </td>
+                                <td class="auto-style12">
+                        <asp:Button ID="B_CreaReservacion" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Crear reservacion" OnClick="B_CreaReservacion_Click" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style12">
+                        <asp:Button ID="B_BuscarZona" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Buscar  editar eliminar zona" OnClick="B_BuscarZona_Click" />
+                                </td>
+                                <td>
+                        <asp:Button ID="B_BuscarReservacion" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Buscar  editar eliminar reservacion" OnClick="B_BuscarReservacion_Click" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style12">usuario</td>
+                                <td>
+                        <table class="auto-style1">
+                            <tr>
+                                <td class="auto-style12">
+                                    parqueadero</td>
+                            </tr>
+                        </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style12">
+                        <asp:Button ID="B_CrearUsuario" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Crear Usuario" OnClick="B_CrearUsuario_Click" />
+                                </td>
+                                <td class="auto-style12">
+                        <asp:Button ID="B_Verparquedero" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Ver parquedero" OnClick="B_Verparquedero_Click" />
+                                </td>
+                            </tr>
                             <tr>
                                 <td class="auto-style12">
                         <asp:Button ID="B_BuscarUsuario" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Buscar editar eliminar  Usuario" OnClick="B_BuscarUsuario_Click" />
                                 </td>
                                 <td class="auto-style12">
-                        <asp:Button ID="B_CrearUsuario" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Crear Usuario" OnClick="B_CrearUsuario_Click" />
+                        <asp:Button ID="B_AdministrarParquedero" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="configuracion" OnClick="B_AdministrarParquedero_Click" />
                                 </td>
-                                <td class="auto-style12">
-                                    </td>
-                                <td class="auto-style12">
-                                    </td>
                             </tr>
                         </table>
                     </td>
-                    <td style="background-color: #D9FFFA">
-                        <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
-                </tr>
-                <tr>
-                    <td class="auto-style10" style="background-color: #D9FFFA; ">administrativo</td>
                     <td style="background-color: #D9FFFA" class="auto-style8">
-                        <asp:Button ID="B_AdministrarParquedero" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Administrar parqueadero" OnClick="B_AdministrarParquedero_Click" />
-                    </td>
+                                <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                 </tr>
                 <tr>
                     <td style="background-color: #D9FFFA" colspan="2">
-                        <table class="auto-style1">
-                            <tr>
-                                <td>
-                                    &nbsp;</td>
-                                <td>
-                        <asp:Button ID="B_CreaReservacion" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Crear reservacion" OnClick="B_CreaReservacion_Click" />
-                                </td>
-                                <td>
-                        <asp:Button ID="B_CrearZona" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Crear zona" OnClick="B_CrearZona_Click" />
-                                </td>
-                                <td>
-                                    &nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>
-                        <asp:Button ID="B_Verparquedero" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Ver parquedero" OnClick="B_Verparquedero_Click" />
-                                </td>
-                                <td>
-                        <asp:Button ID="B_BuscarReservacion" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Buscar  editar eliminar reservacion" OnClick="B_BuscarReservacion_Click" />
-                                </td>
-                                <td>
-                        <asp:Button ID="B_BuscarZona" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Buscar  editar eliminar zona" OnClick="B_BuscarZona_Click" />
-                                </td>
-                                <td>
-                                    &nbsp;</td>
-                            </tr>
-                        </table>
-                    </td>
+                        &nbsp;</td>
                 </tr>
                 </table>
         <div>

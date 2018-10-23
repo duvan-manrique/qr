@@ -2,14 +2,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
-        .auto-style11 {
-            width: 398px;
-            height: 189px;
-        }
         .auto-style12 {
             width: 163px;
         }
-    </style>
+        .auto-style11 {
+            width: 439px;
+            height: 209px;
+            float: left;
+        }
+        </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <table class="auto-style1">
@@ -95,7 +96,7 @@
         </tr>
         <tr>
             <td>
-                <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
+                                <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
             <td>
                 <asp:GridView ID="GridView1" runat="server" CellPadding="4" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False">
                     <AlternatingRowStyle BackColor="White" />

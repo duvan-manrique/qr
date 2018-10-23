@@ -41,8 +41,9 @@
             color: #800000;
         }
         .auto-style11 {
-            width: 249px;
-            height: 104px;
+            width: 439px;
+            height: 209px;
+            float: left;
         }
         </style>
 </head>
@@ -88,7 +89,7 @@
                         </table>
                     </td>
                     <td style="background-color: #D9FFFA">
-                        <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
+                                <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                 </tr>
                 <tr>
                     <td class="auto-style10" style="background-color: #D9FFFA; ">

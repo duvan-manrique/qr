@@ -26,30 +26,25 @@
             text-align: right;
         }
         .auto-style5 {
-            width: 521px;
+            width: 286px;
         }
         .auto-style9 {
-            width: 589px;
+            width: 95%;
+            height: 314px;
         }
-    </style>
+        .auto-style11 {
+            width: 439px;
+            height: 209px;
+            float: left;
+        }
+        </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
             <table class="auto-style1">
                 <tr>
-                    <td class="auto-style3">&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style3">&nbsp;</td>
-                    <td class="auto-style2">
-                        &nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td colspan="2"><table class="auto-style1" border="0">
+                    <td><table class="auto-style9" border="0">
       
                 <tr>
                     <td colspan="2" class="auto-style8">&nbsp;
@@ -59,15 +54,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style5" style="background-color: #D9FFFA">&nbsp;</td>
-                    <td class="auto-style2" style="background-color: #D9FFFA">&nbsp;</td>
-                    <td style="background-color: #D9FFFA">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style8" colspan="2" style="background-color: #D9FFFA; font-family: 'Arial Rounded MT Bold'; color: #800000;">
-                        <img alt="" class="auto-style9" src="../Imagenes/article.jpg" /></td>
-                    <td style="background-color: #D9FFFA">
-                        <asp:Login ID="L_Autenticate" runat="server" BackColor="#F7F6F3" BorderColor="#E6E2D8" BorderPadding="4" BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#333333" OnAuthenticate="L_Autenticate_Authenticate">
+                    <td class="auto-style5" style="background-color: #D9FFFA">
+                                <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
+                    <td class="auto-style2" style="background-color: #D9FFFA">
+                        <asp:Login ID="L_Autenticate" runat="server" BackColor="#F7F6F3" BorderColor="#E6E2D8" BorderPadding="4" BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#333333" OnAuthenticate="L_Autenticate_Authenticate" Height="141px" Width="242px">
                             <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
                             <LayoutTemplate>
                                 <table cellpadding="4" cellspacing="0" style="border-collapse:collapse;">
@@ -123,14 +113,8 @@
                 </tr>
                 <tr>
                     <td class="auto-style5" style="background-color: #D9FFFA">&nbsp;</td>
-                    <td class="auto-style2" style="background-color: #D9FFFA">&nbsp;</td>
-                    <td style="background-color: #D9FFFA">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style5" style="background-color: #D9FFFA">&nbsp;</td>
                     <td class="auto-style4" style="background-color: #D9FFFA">
                         &nbsp;</td>
-                    <td style="background-color: #D9FFFA">&nbsp;</td>
                 </tr>
             </table>
                     </td>

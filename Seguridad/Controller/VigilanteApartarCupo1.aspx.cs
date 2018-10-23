@@ -74,7 +74,7 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
             {
                 cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('lamentablemente no hay cupo para este vehiculo');</script>");
             }
-
+            btnGenerate_Click();
         }
 
 
@@ -172,7 +172,7 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
         
     }
 
-    protected void btnGenerate_Click(object sender, EventArgs e)
+    protected void btnGenerate_Click()
     {
         string Code = txtCode.Text;
         QRCodeGenerator qrGenerator = new QRCodeGenerator();

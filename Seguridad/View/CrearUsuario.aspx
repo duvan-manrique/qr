@@ -15,9 +15,10 @@
         .auto-style13 {
             text-align: left;
         }
-        .auto-style14 {
-            width: 551px;
-            height: 317px;
+        .auto-style11 {
+            width: 439px;
+            height: 209px;
+            float: left;
         }
         </style>
 </asp:Content>
@@ -27,7 +28,7 @@
         <tr>
             <td class="auto-style12" style="background-color: #D9FFFA; font-family: 'Arial Rounded MT Bold'; color: #800000;">
                 <br />
-                <img alt="" class="auto-style14" src="../Imagenes/article.jpg" /></td>
+                                <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
             <td style="background-color: #D9FFFA; color: #009900;" class="auto-style13">
                 <br />Nombre<asp:TextBox ID="TB_Nombre" runat="server"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TB_Nombre" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
@@ -42,8 +43,6 @@
                 <br />
                 <br />Clave<asp:TextBox ID="TB_Clave" runat="server" TextMode="Password"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TB_Clave" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
-                <br />
-                <br />
                 <br />
                 <br />Correo<asp:TextBox ID="TB_Correo" runat="server" TextMode="Email"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TB_Correo" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>

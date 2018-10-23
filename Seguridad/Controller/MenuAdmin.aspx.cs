@@ -87,18 +87,19 @@ public partial class View_MenuAdmin : System.Web.UI.Page
 
     }
 
-    protected void B_AdministrarParquedero_Click(object sender, EventArgs e)
-    {
-
-    }
 
     protected void B_BuscarReservacion_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("ConsultarCupoUsuario.aspx");
     }
 
     protected void B_Verparquedero_Click(object sender, EventArgs e)
     {
+        Response.Redirect("VerParquedero.aspx");
+    }
 
+    protected void B_AdministrarParquedero_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("configuracion.aspx");
     }
 }

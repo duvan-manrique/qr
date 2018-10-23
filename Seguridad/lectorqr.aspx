@@ -17,13 +17,14 @@
         .auto-style5 {
             width: 521px;
         }
-        .auto-style9 {
-            width: 344px;
-            height: 166px;
-        }
         .auto-style1 {
             width: 95%;
             height: 356px;
+        }
+        .auto-style11 {
+            width: 439px;
+            height: 209px;
+            float: left;
         }
         </style>
 </head>
@@ -58,7 +59,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style8" style="background-color: #D9FFFA; font-family: 'Arial Rounded MT Bold'; color: #800000;">
-                        <img alt="" class="auto-style9" src="Imagenes/article.jpg" /></td>
+                                <img alt="" class="auto-style11" src="Imagenes/article.jpg" /></td>
                     <td class="auto-style8" style="background-color: #D9FFFA; font-family: 'Arial Rounded MT Bold'; color: #800000;">
     <div id="reader" style="width:300px; height:250px">
         <p>
