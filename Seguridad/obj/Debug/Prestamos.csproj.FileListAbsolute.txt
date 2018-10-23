@@ -1,0 +1,12 @@
+c:\users\pc\documents\visual studio 2012\Projects\Prestamos\Prestamos\bin\Prestamos.dll
+c:\users\pc\documents\visual studio 2012\Projects\Prestamos\Prestamos\bin\Prestamos.pdb
+c:\users\pc\documents\visual studio 2012\Projects\Prestamos\Prestamos\obj\Debug\Prestamos.csprojResolveAssemblyReference.cache
+c:\users\pc\documents\visual studio 2012\Projects\Prestamos\Prestamos\obj\Debug\Prestamos.dll
+c:\users\pc\documents\visual studio 2012\Projects\Prestamos\Prestamos\obj\Debug\Prestamos.pdb
+G:\Users\home\Downloads\programas\ASESORIAS-gh-pages\Ejercicios\7.-LectorQRCSHARP\Prestamos\Prestamos\bin\Prestamos.dll.config
+G:\Users\home\Downloads\programas\ASESORIAS-gh-pages\Ejercicios\7.-LectorQRCSHARP\Prestamos\Prestamos\bin\Prestamos.dll
+G:\Users\home\Downloads\programas\ASESORIAS-gh-pages\Ejercicios\7.-LectorQRCSHARP\Prestamos\Prestamos\bin\Prestamos.pdb
+G:\Users\home\Downloads\programas\ASESORIAS-gh-pages\Ejercicios\7.-LectorQRCSHARP\Prestamos\Prestamos\obj\Debug\Prestamos.csprojAssemblyReference.cache
+G:\Users\home\Downloads\programas\ASESORIAS-gh-pages\Ejercicios\7.-LectorQRCSHARP\Prestamos\Prestamos\obj\Debug\Prestamos.csproj.CoreCompileInputs.cache
+G:\Users\home\Downloads\programas\ASESORIAS-gh-pages\Ejercicios\7.-LectorQRCSHARP\Prestamos\Prestamos\obj\Debug\Prestamos.dll
+G:\Users\home\Downloads\programas\ASESORIAS-gh-pages\Ejercicios\7.-LectorQRCSHARP\Prestamos\Prestamos\obj\Debug\Prestamos.pdb

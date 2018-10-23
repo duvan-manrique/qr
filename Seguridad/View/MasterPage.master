@@ -1,0 +1,56 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="View_MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style8 {
+            text-align: center;
+            height: 128px;
+        }
+        .auto-style3 {
+            width: 525px;
+            height: 120px;
+        }
+        .auto-style9 {
+            width: 1355px;
+        }
+        .auto-style10 {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <table class="auto-style1">
+            <tr>
+                    <td colspan="3" class="auto-style8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <img alt="" class="auto-style3" src="../Imagenes/LOGO.png" /></td>
+                </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td class="auto-style9">&nbsp;</td>
+                <td class="auto-style10"><asp:Button ID="B_Cierre" runat="server" OnClick="B_Cierre_Click" Text="Cerrar Session" />
+                    </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+    <div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
