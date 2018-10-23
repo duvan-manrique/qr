@@ -149,7 +149,6 @@
                 <tr>
                     <td class="auto-style17">
                         <asp:TextBox ID="txtCode" runat="server"></asp:TextBox>
-                        <asp:Button ID="btnGenerate" runat="server" OnClick="btnGenerate_Click" Text="Generate" />
                         <br />
                         <br />
                         <asp:PlaceHolder ID="PHQRCode" runat="server"></asp:PlaceHolder>

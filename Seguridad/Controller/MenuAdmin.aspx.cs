@@ -90,7 +90,7 @@ public partial class View_MenuAdmin : System.Web.UI.Page
 
     protected void B_BuscarReservacion_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ConsultarCupoUsuario.aspx");
+        Response.Redirect("Buscareliminarreservacion.aspx");
     }
 
     protected void B_Verparquedero_Click(object sender, EventArgs e)

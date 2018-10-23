@@ -14,7 +14,10 @@ public partial class View_configuracion : System.Web.UI.Page
 
     protected void b_crear_fecha_hora_Click(object sender, EventArgs e)
     {
-        Fechas_horas fechas_horas = new Fechas_horas();
+        ClientScriptManager cm = this.ClientScript;
+        if (System.Convert.ToInt32(DDL_HInicio.SelectedValue) < System.Convert.ToInt32(DDL_HFinal.SelectedValue))
+        {
+            Fechas_horas fechas_horas = new Fechas_horas();
         fechas_horas.Fecha = DateTime.Parse(tb_fecha.Text);
         fechas_horas.Hora_inicio =int.Parse(DDL_HInicio.SelectedValue);
         fechas_horas.Hora_fin = int.Parse(DDL_HFinal.SelectedValue);
@@ -22,5 +25,14 @@ public partial class View_configuracion : System.Web.UI.Page
         DAOUsuario crear = new DAOUsuario();
         crear.Insert_fechas_horas(fechas_horas);
         Response.Redirect("configuracion.aspx");
+        }
+        else
+        {
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('la hora inicial debe ser menos al final ');</script>");
+        }
     }
+    
+                   
+
+               
 }

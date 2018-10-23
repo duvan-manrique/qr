@@ -10,9 +10,6 @@
         .auto-style1 {
             width: 100%;
         }
-        .auto-style2 {
-            text-align: center;
-        }
         .auto-style3 {
             width: 50%;
         }
@@ -21,9 +18,6 @@
         }
         .auto-style8 {
             text-align: center;
-        }
-        .auto-style6 {
-            text-align: right;
         }
         .auto-style5 {
             width: 286px;
@@ -37,7 +31,13 @@
             height: 209px;
             float: left;
         }
-        </style>
+        .auto-style12 {
+            text-align: right;
+        }
+        .auto-style13 {
+            width: 385px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -47,16 +47,23 @@
                     <td><table class="auto-style9" border="0">
       
                 <tr>
-                    <td colspan="2" class="auto-style8">&nbsp;
+                    <td colspan="3" class="auto-style8">&nbsp;
+                        <table class="auto-style1">
+                            <tr>
+                                <td>
                         <img alt="" class="auto-style3" src="../Imagenes/LOGO.png" /></td>
-                    <td class="auto-style6">
+                                <td>
                         <asp:Button ID="B_registrarse" runat="server" Text="regitrarse" BackColor="#006600" BorderColor="#009933" ForeColor="White" OnClick="B_registrarse_Click" />
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style5" style="background-color: #D9FFFA">
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
-                    <td class="auto-style2" style="background-color: #D9FFFA">
+                    <td class="auto-style13" style="background-color: #D9FFFA">&nbsp;</td>
+                    <td style="background-color: #D9FFFA">
                         <asp:Login ID="L_Autenticate" runat="server" BackColor="#F7F6F3" BorderColor="#E6E2D8" BorderPadding="4" BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#333333" OnAuthenticate="L_Autenticate_Authenticate" Height="141px" Width="242px">
                             <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
                             <LayoutTemplate>
@@ -86,7 +93,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td colspan="2">
+                                                    <td colspan="2" class="auto-style12">
                                                         <asp:CheckBox ID="RememberMe" runat="server" Text="Recordármelo la próxima vez." />
                                                     </td>
                                                 </tr>
@@ -113,12 +120,12 @@
                 </tr>
                 <tr>
                     <td class="auto-style5" style="background-color: #D9FFFA">&nbsp;</td>
+                    <td class="auto-style13" style="background-color: #D9FFFA">&nbsp;</td>
                     <td class="auto-style4" style="background-color: #D9FFFA">
                         &nbsp;</td>
                 </tr>
             </table>
                     </td>
-                    <td>&nbsp;</td>
                 </tr>
             </table>
         </div>
