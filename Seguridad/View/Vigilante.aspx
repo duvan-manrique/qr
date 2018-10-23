@@ -1,13 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controller/Vigilante1.aspx.cs" Inherits="View_Vigilante" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <style type="text/css">
-        .auto-style11 {
-            width: 514px;
-            height: 222px;
-            float: left;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
@@ -20,9 +13,9 @@
                 <tr>
                     <td class="auto-style10" style="background-color: #D9FFFA; font-family: 'Arial Rounded MT Bold'; color: #800000;">
                         <br />
-                        <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
+                        <img alt="" class="auto-style9" src="../Imagenes/article.jpg" /></td>
                     <td style="background-color: #D9FFFA" class="auto-style8">
-                        <asp:Button ID="B_ApartarCupoVilgilante" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Apartar Cupo Vigilante" OnClick="B_ApartarCupoVilgilante_Click" />
+                        <asp:Button ID="B_ApartarCupoVilgilante" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Apartar Cupo Vigilante" />
                         <br />
                         <br />
                         <asp:Button ID="B_LeerQR" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Leer QR" OnClick="B_LeerQR_Click" />

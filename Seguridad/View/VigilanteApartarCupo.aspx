@@ -3,166 +3,88 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
 
-    .auto-style26 {
-        width: 100%;
-        height: 415px;
-    }
-        .auto-style18 {
-            height: 33px;
+        .auto-style11 {
+            width: 361px;
+            height: 181px;
         }
-        .auto-style22 {
-            font-family: Arial;
+        .auto-style14 {
+            text-align: left;
+            width: 571px;
         }
-        .auto-style16 {
-            text-align: right;
-            width: 567px;
-        }
-        .auto-style15 {
-            width: 503px;
-            height: 213px;
-            float: left;
-            margin-top: 0px;
-        }
-        .auto-style17 {
-            width: 567px;
+        .auto-style13 {
+            text-align: left;
         }
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-  
-              
-            <table class="auto-style26" border="0" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
+    <form id="form2" runat="server">
+        <div>
+            <table class="auto-style1" border="0">
                 <tr>
-                    <td colspan="2" class="auto-style18"><span class="auto-style22"><strong>Usuario:&nbsp;
-                        <asp:Label ID="L_Nombre" runat="server"></asp:Label>
-                        </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; codigo identificativo del vehiculo<asp:TextBox ID="TB_codigoVe" runat="server"></asp:TextBox>
-                        marca<asp:TextBox ID="TB_marca" runat="server"></asp:TextBox>
-                        tipo
-                        <asp:DropDownList ID="DDL_Vehiculo" runat="server" ForeColor="#009900">
-                            <asp:ListItem Value="0">tipo</asp:ListItem>
-                            <asp:ListItem Value="1">moto</asp:ListItem>
-                            <asp:ListItem Value="2">carro</asp:ListItem>
-                            <asp:ListItem Value="3">cicla</asp:ListItem>
-                        </asp:DropDownList>
-                        <asp:Button ID="B_agregar" runat="server" OnClick="B_agregar_Click" Text="Agregar" />
+                    <td class="auto-style9" style="background-color: #D9FFFA">
+                        <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
+                    <td style="background-color: #D9FFFA">
+                        <!-- clock widget start -->
+<script type="text/javascript"> var css_file=document.createElement("link"); css_file.setAttribute("rel","stylesheet"); css_file.setAttribute("type","text/css"); css_file.setAttribute("href","//s.bookcdn.com//css/cl/bw-cl-126el.css"); document.getElementsByTagName("head")[0].appendChild(css_file); </script> 
+                        <div id="tw_7_592195774">
+                            <div style="width:126px; height:82px; margin: 0 auto;">
+                                <a href="http://hotelmix.es/time/bogota-18970">Bogotá</a><br/>
+                            </div>
+                        </div>
+                        <script type="text/javascript"> function setWidgetData_592195774(data){ if(typeof(data) != 'undefined' && data.results.length > 0) { for(var i = 0; i < data.results.length; ++i) { var objMainBlock = ''; var params = data.results[i]; objMainBlock = document.getElementById('tw_'+params.widget_type+'_'+params.widget_id); if(objMainBlock !== null) objMainBlock.innerHTML = params.html_code; } } } var clock_timer_592195774 = -1; </script> <script type="text/javascript" charset="UTF-8" src="https://widgets.booked.net/time/info?ver=2&domid=582&type=7&id=592195774&scode=124&city_id=18970&wlangid=4&mode=1&details=0&background=ffffff&color=08488d&add_background=ffffff&add_color=00faff&head_color=333333&border=0&transparent=0"></script>
+<!-- clock widget end -->
+
                     </td>
-                </tr>
+            <table class="auto-style1" border="0">
                 <tr>
-                    <td class="auto-style16">
+                    <td style="background-color: #D9FFFA; color: #009900;" class="auto-style14">
+                        <br />Nombre<asp:TextBox ID="TB_Nombre" runat="server"></asp:TextBox>
                         <br />
-                        <img alt="" class="auto-style15" src="../Imagenes/article.jpg" /></td>
-                    <td class="auto-style8">
+                        <br />Apellido<asp:TextBox ID="TB_Apellido" runat="server"></asp:TextBox>
+                        <br />
+                        <br />Codigo identificacion universitaria<asp:TextBox ID="TB_CodigoUniversitario" runat="server"></asp:TextBox>
+                        <br />
+                        <br />Celular<asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+                        <br />
+                        <br />Correo<asp:TextBox ID="TextBox7" runat="server"></asp:TextBox>
+                        <br />
+                        <br />Codigo de identificacion<asp:TextBox ID="TextBox8" runat="server"></asp:TextBox>
+                        <br />
+                        <br /></td>
+                    <td style="background-color: #D9FFFA; color: #009900;" class="auto-style13">
                         <table class="auto-style1">
                             <tr>
-                                <td>fecha de resevacion&nbsp;&nbsp; </td>
+                                <td>Tipo de vehiculo</td>
                                 <td>
-                                    <asp:TextBox ID="TB_Calendariocupo" runat="server" ReadOnly="True"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>hora de inicio&nbsp;&nbsp;&nbsp;</td>
-                                <td>
-                                    <asp:DropDownList ID="DDL_HInicio" runat="server" ForeColor="#009900">
-                                        <asp:ListItem Value="1">1:00</asp:ListItem>
-                                        <asp:ListItem Value="2">2:00</asp:ListItem>
-                                        <asp:ListItem Value="3">3:00</asp:ListItem>
-                                        <asp:ListItem Value="4">4:00</asp:ListItem>
-                                        <asp:ListItem Value="5">5:00</asp:ListItem>
-                                        <asp:ListItem Value="6">6:00</asp:ListItem>
-                                        <asp:ListItem Value="7">7:00 </asp:ListItem>
-                                        <asp:ListItem Value="8">8:00</asp:ListItem>
-                                        <asp:ListItem Value="9">9:00</asp:ListItem>
-                                        <asp:ListItem Value="10">10:00</asp:ListItem>
-                                        <asp:ListItem Value="11">11:00</asp:ListItem>
-                                        <asp:ListItem Value="12">12:00</asp:ListItem>
-                                        <asp:ListItem Value="13">13:00</asp:ListItem>
-                                        <asp:ListItem Value="14">14:00</asp:ListItem>
-                                        <asp:ListItem Value="15">15:00</asp:ListItem>
-                                        <asp:ListItem Value="16">16:00</asp:ListItem>
-                                        <asp:ListItem Value="17">17:00</asp:ListItem>
-                                        <asp:ListItem Value="18">18:00</asp:ListItem>
-                                        <asp:ListItem Value="19">19:00</asp:ListItem>
-                                        <asp:ListItem Value="20">20:00</asp:ListItem>
-                                        <asp:ListItem Value="21">21:00</asp:ListItem>
-                                        <asp:ListItem Value="22">22:00</asp:ListItem>
-                                        <asp:ListItem Value="23">23:00</asp:ListItem>
+                                    <asp:DropDownList ID="DropDownList1" runat="server">
                                     </asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
                                 <td>hora final</td>
                                 <td>
-                                    <asp:DropDownList ID="DDL_HFinal" runat="server" ForeColor="#009900">
-                                        <asp:ListItem Value="1">1:00</asp:ListItem>
-                                        <asp:ListItem Value="2">2:00</asp:ListItem>
-                                        <asp:ListItem Value="3">3:00</asp:ListItem>
-                                        <asp:ListItem Value="4">4:00</asp:ListItem>
-                                        <asp:ListItem Value="5">5:00</asp:ListItem>
-                                        <asp:ListItem Value="6">6:00</asp:ListItem>
-                                        <asp:ListItem Value="7">7:00 </asp:ListItem>
-                                        <asp:ListItem Value="8">8:00</asp:ListItem>
-                                        <asp:ListItem Value="9">9:00</asp:ListItem>
-                                        <asp:ListItem Value="10">10:00</asp:ListItem>
-                                        <asp:ListItem Value="11">11:00</asp:ListItem>
-                                        <asp:ListItem Value="12">12:00</asp:ListItem>
-                                        <asp:ListItem Value="13">13:00</asp:ListItem>
-                                        <asp:ListItem Value="14">14:00</asp:ListItem>
-                                        <asp:ListItem Value="15">15:00</asp:ListItem>
-                                        <asp:ListItem Value="16">16:00</asp:ListItem>
-                                        <asp:ListItem Value="17">17:00</asp:ListItem>
-                                        <asp:ListItem Value="18">18:00</asp:ListItem>
-                                        <asp:ListItem Value="19">19:00</asp:ListItem>
-                                        <asp:ListItem Value="20">20:00</asp:ListItem>
-                                        <asp:ListItem Value="21">21:00</asp:ListItem>
-                                        <asp:ListItem Value="22">22:00</asp:ListItem>
-                                        <asp:ListItem Value="23">23:00</asp:ListItem>
+                                    <asp:DropDownList ID="DropDownList2" runat="server">
                                     </asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td rowspan="2">vehiculo
-                        </td>
-                                <td>
-                                    <asp:DropDownList ID="DDL_Tipo" runat="server" ForeColor="#009900" AutoPostBack="True" Enabled="False">
-                                        <asp:ListItem Value="0">tipo</asp:ListItem>
-                                        <asp:ListItem Value="1">moto</asp:ListItem>
-                                        <asp:ListItem Value="2">carro</asp:ListItem>
-                                        <asp:ListItem Value="3">cicla</asp:ListItem>
-                                    </asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <asp:DropDownList ID="DDL_Veicu" runat="server" Enabled="False" AutoPostBack="True">
-                                        <asp:ListItem Value="0">Seleccione</asp:ListItem>
-                                    </asp:DropDownList>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Descripcion</td>
-                                <td>
-                                    <asp:TextBox ID="TB_Descripcion" runat="server" Height="52px" Width="265px"></asp:TextBox>
+                                <td colspan="2">
+                                    <asp:Button ID="B_ApartarCupo" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Asignar cupo e imprimir QR" />
                                 </td>
                             </tr>
                         </table>
                     </td>
                 </tr>
+            </table>
+                        &nbsp;</td>
+                    <td style="background-color: #D9FFFA">&nbsp;</td>
+                </tr>
                 <tr>
-                    <td class="auto-style17">
-                        <asp:TextBox ID="txtCode" runat="server"></asp:TextBox>
-                        <asp:Button ID="btnGenerate" runat="server" OnClick="btnGenerate_Click" Text="Generate" />
-                        <br />
-                        <br />
-                        <asp:PlaceHolder ID="PHQRCode" runat="server"></asp:PlaceHolder>
-                    </td>
-                    <td>
-                        <br />
-                        <asp:Button ID="B_Reservar" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Reservar" OnClick="B_Reservar_Click" />
-                    </td>
+                    <td class="auto-style9" style="background-color: #D9FFFA">&nbsp;</td>
+                    <td style="background-color: #D9FFFA">&nbsp;</td>
                 </tr>
             </table>
-     
-        
-    
+        </div>
+    </form>
 </asp:Content>
 
