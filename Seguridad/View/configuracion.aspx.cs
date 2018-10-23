@@ -21,5 +21,6 @@ public partial class View_configuracion : System.Web.UI.Page
 
         DAOUsuario crear = new DAOUsuario();
         crear.Insert_fechas_horas(fechas_horas);
+        Response.Redirect("configuracion.aspx");
     }
 }

@@ -103,7 +103,6 @@
                         <asp:BoundField DataField="fecha" HeaderText="fecha" />
                         <asp:BoundField DataField="hora_inicio" HeaderText="hora_inicio" />
                         <asp:BoundField DataField="hora_fin" HeaderText="hora_fin" />
-                        <asp:CommandField ShowDeleteButton="True" />
                         <asp:CommandField ShowEditButton="True" />
                     </Columns>
                     <EditRowStyle BackColor="#2461BF" />
@@ -117,7 +116,14 @@
                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
                 </asp:GridView>
-                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="obtenerfechas_horasTodos" TypeName="DAOUsuario" UpdateMethod="Updatefechas_horas">
+                    <UpdateParameters>
+                        <asp:Parameter Name="id" Type="Int32" />
+                        <asp:Parameter Name="Fecha" Type="DateTime" />
+                        <asp:Parameter Name="Hora_inicio" Type="Int32" />
+                        <asp:Parameter Name="Hora_fin" Type="Int32" />
+                    </UpdateParameters>
+                </asp:ObjectDataSource>
             </td>
             <td>&nbsp;</td>
         </tr>
