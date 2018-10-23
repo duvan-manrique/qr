@@ -694,7 +694,7 @@ public class DAOUsuario
         return Usuario;
     }
 
-    public DataTable Traer_cupo(int tipo,DateTime F_inicio,DateTime F_fin)
+    public DataTable Traer_cupo(int tipo)
     {
         DataTable Zonas = new DataTable();
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
@@ -704,8 +704,6 @@ public class DAOUsuario
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_cupo", conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_tipo", NpgsqlDbType.Integer).Value = tipo;
-            dataAdapter.SelectCommand.Parameters.Add("_f_inicio", NpgsqlDbType.Timestamp).Value = F_inicio;
-            dataAdapter.SelectCommand.Parameters.Add("_f_final", NpgsqlDbType.Timestamp).Value = F_fin;
 
             conection.Open();
             dataAdapter.Fill(Zonas);
@@ -723,7 +721,101 @@ public class DAOUsuario
         }
         return Zonas;
     }
+    ///
+   
+    public DataTable obtenereservaTodos()
+    {
+        DataTable Reserva = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
 
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_reserva", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+
+            conection.Open();
+            dataAdapter.Fill(Reserva);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        return Reserva;
+    }
+
+    public void EliminarReserva(int id)
+    {
+        DataTable Reserva = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_eliminar_reserva", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+
+            conection.Open();
+            dataAdapter.Fill(Reserva);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+
+    }
+
+    public void UpdateReserva(int id, int parqueadero_id, DateTime fecha_inicio, DateTime fecha_fin, int estado, int vehiculo_id, string descripcion, int qr)
+    {
+        DataTable Reserva = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_actualizar_reserva", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+            dataAdapter.SelectCommand.Parameters.Add("_parqueadero_id", NpgsqlDbType.Integer).Value = parqueadero_id;
+            dataAdapter.SelectCommand.Parameters.Add("_fecha_inicio", NpgsqlDbType.Date).Value = fecha_inicio;
+            dataAdapter.SelectCommand.Parameters.Add("_fecha_fin", NpgsqlDbType.Date).Value = fecha_fin;
+            dataAdapter.SelectCommand.Parameters.Add("_estado", NpgsqlDbType.Integer).Value = estado;
+            dataAdapter.SelectCommand.Parameters.Add("_vehiculo_id", NpgsqlDbType.Integer).Value = vehiculo_id;
+            dataAdapter.SelectCommand.Parameters.Add("_descripcion", NpgsqlDbType.Text).Value = descripcion;
+            dataAdapter.SelectCommand.Parameters.Add("_qr", NpgsqlDbType.Integer).Value = qr;
+            
+                
+                
+            conection.Open();
+            dataAdapter.Fill(Reserva);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+
+    }
+    ///
 
 
 }

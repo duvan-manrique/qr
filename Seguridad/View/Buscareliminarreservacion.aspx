@@ -41,8 +41,18 @@
                         <table class="auto-style1">
                             <tr>
                                 <td>
-                                    <asp:GridView ID="GV_ConsultarCupo" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                                    <asp:GridView ID="GV_ConsultarCupo" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" DataSourceID="ObjectDataSource1">
                                         <AlternatingRowStyle BackColor="White" />
+                                        <Columns>
+                                            <asp:BoundField DataField="parqueadero_id" HeaderText="parqueadero_id" />
+                                            <asp:BoundField DataField=" fecha_inicio " HeaderText="fecha_inicio " />
+                                            <asp:BoundField DataField="fecha_fin" HeaderText="fecha_fin" />
+                                            <asp:BoundField DataField="estado" HeaderText="estado" />
+                                            <asp:BoundField DataField="vehiculo_id" HeaderText="vehiculo_id" />
+                                            <asp:BoundField DataField="descripcion" HeaderText="descripcion" />
+                                            <asp:BoundField DataField="qr" HeaderText="qr" />
+                                            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+                                        </Columns>
                                         <EditRowStyle BackColor="#7C6F57" />
                                         <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
                                         <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
@@ -54,6 +64,21 @@
                                         <SortedDescendingCellStyle BackColor="#D4DFE1" />
                                         <SortedDescendingHeaderStyle BackColor="#15524A" />
                                     </asp:GridView>
+                                    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" DeleteMethod="EliminarReserva" SelectMethod="obtenereservaTodos" TypeName="DAOUsuario" UpdateMethod="UpdateReserva">
+                                        <DeleteParameters>
+                                            <asp:Parameter Name="id" Type="Int32" />
+                                        </DeleteParameters>
+                                        <UpdateParameters>
+                                            <asp:Parameter Name="id" Type="Int32" />
+                                            <asp:Parameter Name="parqueadero_id" Type="Int32" />
+                                            <asp:Parameter Name="fecha_inicio" Type="DateTime" />
+                                            <asp:Parameter Name="fecha_fin" Type="DateTime" />
+                                            <asp:Parameter Name="estado" Type="Int32" />
+                                            <asp:Parameter Name="vehiculo_id" Type="Int32" />
+                                            <asp:Parameter Name="descripcion" Type="String" />
+                                            <asp:Parameter Name="qr" Type="Int32" />
+                                        </UpdateParameters>
+                                    </asp:ObjectDataSource>
                                 </td>
                                 <td>
                                     &nbsp;</td>

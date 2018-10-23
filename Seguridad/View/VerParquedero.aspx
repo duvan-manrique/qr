@@ -14,7 +14,7 @@
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <form id="form2" runat="server">
+
         <div>
             <table class="auto-style1" border="0">
                 <tr>
@@ -52,6 +52,6 @@
                 </tr>
             </table>
         </div>
-    </form>
+   
 </asp:Content>
 
