@@ -82,7 +82,11 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
     protected int Campos()
     {
         DAOUsuario dAOUsuario = new DAOUsuario();
-        DataTable x = dAOUsuario.Traer_cupo(int.Parse(DDL_Tipo.SelectedValue));
+       DateTime F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
+        DateTime F_fin = DateTime.Parse(TB_Calendariocupo.Text);
+        F_inicio = F_inicio.AddHours(double.Parse(DDL_HInicio.SelectedValue));
+        F_fin = F_fin.AddHours(double.Parse(DDL_HFinal.SelectedValue));
+        DataTable x = dAOUsuario.Traer_cupo(int.Parse(DDL_Tipo.SelectedValue),F_inicio,F_fin);
         return int.Parse(x.Rows[0][0].ToString());
     }
      protected void B_agregar_Click(object sender, EventArgs e)
