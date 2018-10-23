@@ -195,7 +195,7 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
             }
 
             PHQRCode.Controls.Add(imgQRcode);
-            CorreoQR correoqr = new CorreoQR();
+           
 
         }
 

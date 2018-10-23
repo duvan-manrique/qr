@@ -11,14 +11,18 @@ using MessagingToolkit.QRCode.Codec;
 using System.IO;
 using System.Drawing.Imaging;
 using QRCoder;
+using Newtonsoft.Json;
 
 public partial class View_UsuarioApartarCupo : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["user_id"] == null)
+        {
             Response.Redirect("Loggin.aspx");
-        else{
+        }
+        else
+        {
             L_Nombre.Text = Session["nombre"].ToString();
         }
         TB_Calendariocupo_TextChanged();
@@ -51,15 +55,11 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                         reserva.Vehiculo_id = int.Parse(Session["vehiculo_id"].ToString());
                         reserva.Descripcion = TB_Descripcion.Text;
 
-
-                        DAOUsuario dAOUsuario = new DAOUsuario();
-                        dAOUsuario.Insert_Reserva(reserva);
-
-
-
-                        txtCode.Text = ((TB_Calendariocupo.Text) + " " + (TB_Calendariocupo.Text) + " " + (DDL_HInicio.SelectedValue) + " " + (DDL_HFinal.SelectedValue) + " " + Session["vehiculo_id"].ToString() + " " + TB_Descripcion.Text);
-
-                  
+                    String QR = JsonConvert.SerializeObject(reserva);
+                    txtCode.Text = QR;
+                    btnGenerate_Click();
+                    DAOUsuario dAOUsuario = new DAOUsuario();
+                    dAOUsuario.Insert_Reserva(reserva);
 
                 }
                 else
@@ -85,7 +85,6 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
         DataTable x = dAOUsuario.Traer_cupo(int.Parse(DDL_Tipo.SelectedValue));
         return int.Parse(x.Rows[0][0].ToString());
     }
-
      protected void B_agregar_Click(object sender, EventArgs e)
     {
         ClientScriptManager cm = this.ClientScript;
@@ -146,7 +145,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                     break;
 
                 case 3:
-                    DataTable carga2 = dAO.obtenerVehiculosTodos(3, int.Parse(Session["user_id"].ToString()));
+                    DataTable carga2 = dAO.obtenerVehiculosTodos(1, int.Parse(Session["user_id"].ToString()));
                     Session["vehiculo"] = carga2;
                     for (int i = 0; i < carga2.Rows.Count; i++)
                     {
@@ -174,7 +173,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
         }
     }
 
-    protected void btnGenerate_Click(object sender, EventArgs e)
+    protected void btnGenerate_Click()
     {
         string Code = txtCode.Text;
         QRCodeGenerator qrGenerator = new QRCodeGenerator();
@@ -192,15 +191,18 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                 bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 byte[] byteImage = ms.ToArray();
                 imgQRcode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
+                File.WriteAllBytes(Server.MapPath("\\Imagenes\\prueba.jpg"), byteImage);
+                Correo correo = new Correo();
+                correo.enviarCorreoQr("lokus.09@gmail.com", Server.MapPath("\\Imagenes\\prueba.jpg"));
+
                 
             }
 
             PHQRCode.Controls.Add(imgQRcode);
-            CorreoQR correoqr = new CorreoQR();
-            
+         
+
+           
         }
-
-
     }
 
 
