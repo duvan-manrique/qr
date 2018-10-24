@@ -142,6 +142,13 @@
                         <asp:TextBox ID="TB_Descripcion" runat="server" Height="44px" Width="181px"></asp:TextBox>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <asp:TextBox ID="TextBox1" runat="server" TextMode="Time"></asp:TextBox>
+                                </td>
+                                <td>
+                                    &nbsp;</td>
+                            </tr>
                         </table>
                     </td>
                 </tr>

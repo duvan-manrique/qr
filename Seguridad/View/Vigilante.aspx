@@ -33,7 +33,7 @@
                         <asp:Button ID="B_LeerQR" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Leer QR" OnClick="B_LeerQR_Click" />
                         <br />
                         <br />
-                        <asp:Button ID="B_VerParquedero" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Ver Parqueadero" />
+                        <asp:Button ID="B_VerParquedero" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Ver Parqueadero" OnClick="B_VerParquedero_Click" />
                         <br />
                         <br /></td>
                 </tr>

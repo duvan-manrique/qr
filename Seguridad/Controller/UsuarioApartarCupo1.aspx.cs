@@ -25,7 +25,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
         {
             L_Nombre.Text = Session["nombre"].ToString();
         }
-        TB_Calendariocupo_TextChanged();
+        //TB_Calendariocupo_TextChanged();
     }
    
 

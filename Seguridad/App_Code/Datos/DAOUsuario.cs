@@ -314,6 +314,35 @@ public class DAOUsuario
         return Usuario;
     }
 
+    public DataTable obtenerParqueaderoTodos()
+    {
+        DataTable Parqueadero = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_parqueadero", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+
+            conection.Open();
+            dataAdapter.Fill(Parqueadero);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        return Parqueadero;
+    }
+
+
     public void EliminarUsuario(int id)
     {
         DataTable Usuario = new DataTable();

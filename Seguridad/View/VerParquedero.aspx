@@ -28,8 +28,13 @@
                                 <td>
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                                 <td class="auto-style12">
-                                    <asp:GridView ID="GV_VerParquedero" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True">
+                                    <asp:GridView ID="GV_VerParquedero" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True" AutoGenerateColumns="False" DataSourceID="ObjectDataSource1">
                                         <AlternatingRowStyle BackColor="White" />
+                                        <Columns>
+                                            <asp:BoundField DataField="numero" HeaderText="numero" />
+                                            <asp:BoundField DataField="zona_id" HeaderText="zona_id" />
+                                            <asp:BoundField DataField="estado" HeaderText="estado" />
+                                        </Columns>
                                         <EditRowStyle BackColor="#2461BF" />
                                         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
                                         <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -41,6 +46,7 @@
                                         <SortedDescendingCellStyle BackColor="#E9EBEF" />
                                         <SortedDescendingHeaderStyle BackColor="#4870BE" />
                                     </asp:GridView>
+                                    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="obtenerParqueaderoTodos" TypeName="DAOUsuario"></asp:ObjectDataSource>
                                 </td>
                             </tr>
                             <tr>

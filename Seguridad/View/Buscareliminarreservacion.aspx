@@ -41,10 +41,9 @@
                         <table class="auto-style1">
                             <tr>
                                 <td>
-                                    <asp:GridView ID="GV_ConsultarCupo" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" DataSourceID="ObjectDataSource1">
+                                    <asp:GridView ID="GV_ConsultarCupo" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" DataSourceID="ObjectDataSource1" AutoGenerateColumns="False">
                                         <AlternatingRowStyle BackColor="White" />
                                         <Columns>
-                                            <asp:BoundField DataField="parqueadero_id" HeaderText="parqueadero_id" />
                                             <asp:BoundField DataField=" fecha_inicio " HeaderText="fecha_inicio " />
                                             <asp:BoundField DataField="fecha_fin" HeaderText="fecha_fin" />
                                             <asp:BoundField DataField="estado" HeaderText="estado" />

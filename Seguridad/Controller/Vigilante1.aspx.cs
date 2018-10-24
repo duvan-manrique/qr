@@ -38,4 +38,9 @@ public partial class View_Vigilante : System.Web.UI.Page
     {
         Response.Redirect("VigilanteApartarCupo.aspx");
     }
+
+    protected void B_VerParquedero_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("VerParquedero.aspx");
+    }
 }
