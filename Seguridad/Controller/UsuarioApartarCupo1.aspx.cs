@@ -12,6 +12,8 @@ using System.IO;
 using System.Drawing.Imaging;
 using QRCoder;
 using Newtonsoft.Json;
+using System.Drawing.Imaging;
+using Image = System.Web.UI.WebControls.Image;
 
 public partial class View_UsuarioApartarCupo : System.Web.UI.Page
 {
@@ -194,10 +196,14 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
              
                 bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 byte[] byteImage = ms.ToArray();
-                imgQRcode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
-           //     File.WriteAllBytes(Server.MapPath("\\Imagenes\\prueba.jpg"), byteImage);
+            Image prueba = null;
+                //    File.WriteAllBytes(Server.MapPath("\\Imagenes\\prueba.jpg"), byteImage);
+                string destino = @"D:\Users\rojas\Music\qr\Seguridad\Imagenes" + prueba + ".Jpeg";
+               //// picFoto.Image.Save(destino, ImageFormat.Jpeg);
+              //  imgQRcode.Image.Save(destino, ImageFormat.Jpeg);
+
                 Correo correo = new Correo();
-                correo.enviarCorreoQr("lokus.09@gmail.com");
+                correo.enviarCorreoQr("rojasbeltranadrianapatricia@gmail.com");
 
                 
             }

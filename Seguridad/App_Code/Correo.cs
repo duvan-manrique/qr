@@ -83,7 +83,7 @@ public class Correo
             mail.From = new MailAddress("security@security.com", "PARKING");
 
             //Aquí ponemos el asunto del correo
-            mail.Subject = "Recuperación Contraseña";
+            mail.Subject = "codigo QR";
             //Aquí ponemos el mensaje que incluirá el correo
             mail.Body = strBody;
 
@@ -91,7 +91,7 @@ public class Correo
             //Especificamos a quien enviaremos el Email, no es necesario que sea Gmail, puede ser cualquier otro proveedor
             mail.To.Add(correoDestino);
             //Si queremos enviar archivos adjuntos tenemos que especificar la ruta en donde se encuentran
-            mail.Attachments.Add(new Attachment(@"C:\Users\rojas\OneDrive\Imágenes\todo\2.jpg"));
+            mail.Attachments.Add(new Attachment(@"D:\Users\rojas\Music\qr\Seguridad\Imagenes\prueba.jpg"));
             mail.IsBodyHtml = true;
 
             mail.Priority = MailPriority.Normal;
