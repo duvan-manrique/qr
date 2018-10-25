@@ -83,6 +83,9 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
    
     protected int Campos()
     {
+
+        
+
         DAOUsuario dAOUsuario = new DAOUsuario();
        DateTime F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
         DateTime F_fin = DateTime.Parse(TB_Calendariocupo.Text);
@@ -193,19 +196,28 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
 
             using (MemoryStream ms = new MemoryStream())
             {
-             
+                /// uso el del  token por q hay ya tienen el correo
+
+
+                DAOUsuario dao = new DAOUsuario();
+                System.Data.DataTable validez = dao.generarToken(L_Nombre.Text);
+                EUserToken token = new EUserToken();
+                token.Correo = validez.Rows[0]["correo"].ToString();
+
+
                 bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 byte[] byteImage = ms.ToArray();
-            Image prueba = null;
-                //    File.WriteAllBytes(Server.MapPath("\\Imagenes\\prueba.jpg"), byteImage);
-                string destino = @"D:\Users\rojas\Music\qr\Seguridad\Imagenes" + prueba + ".Jpeg";
-               //// picFoto.Image.Save(destino, ImageFormat.Jpeg);
-              //  imgQRcode.Image.Save(destino, ImageFormat.Jpeg);
+                imgQRcode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
+
+               File.WriteAllBytes(Server.MapPath("\\Imagenes\\prueba.jpg"), byteImage);
+                //// picFoto.Image.Save(destino, ImageFormat.Jpeg);
+                //  imgQRcode.Image.Save(destino, ImageFormat.Jpeg);
 
                 Correo correo = new Correo();
-                correo.enviarCorreoQr("rojasbeltranadrianapatricia@gmail.com");
+                //  correo.enviarCorreoQr("lokus.09@gmail.com");
+                correo.enviarCorreoQr(token.Correo);
 
-                
+
             }
 
             PHQRCode.Controls.Add(imgQRcode);
