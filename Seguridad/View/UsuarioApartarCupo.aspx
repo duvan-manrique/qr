@@ -53,7 +53,7 @@
                         <table class="auto-style1">
                             <tr>
                                 <td>fecha de resevacion&nbsp;&nbsp; </td>
-                                <td><asp:TextBox ID="TB_Calendariocupo" runat="server" ReadOnly="True"></asp:TextBox>
+                                <td><asp:TextBox ID="TB_Calendariocupo" runat="server" TextMode="DateTime"></asp:TextBox>
                                     </td>
                             </tr>
                             <tr>

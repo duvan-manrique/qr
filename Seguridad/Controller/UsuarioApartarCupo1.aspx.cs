@@ -25,7 +25,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
         {
             L_Nombre.Text = Session["nombre"].ToString();
         }
-        //TB_Calendariocupo_TextChanged();
+        TB_Calendariocupo_TextChanged();
     }
    
 
@@ -195,9 +195,9 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                 bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 byte[] byteImage = ms.ToArray();
                 imgQRcode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
-                File.WriteAllBytes(Server.MapPath("\\Imagenes\\prueba.jpg"), byteImage);
+           //     File.WriteAllBytes(Server.MapPath("\\Imagenes\\prueba.jpg"), byteImage);
                 Correo correo = new Correo();
-                correo.enviarCorreoQr("lokus.09@gmail.com", Server.MapPath("\\Imagenes\\prueba.jpg"));
+                correo.enviarCorreoQr("lokus.09@gmail.com");
 
                 
             }
@@ -218,7 +218,8 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
         TB_Calendariocupo.Text = mananatDate;
             
     }
-     
+
+
 
 
 

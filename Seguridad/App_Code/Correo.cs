@@ -65,7 +65,7 @@ public class Correo
         }
     }
 
-    public void enviarCorreoQr(String correoDestino, string qr)
+    public void enviarCorreoQr(String correoDestino)
     {
 
         try
@@ -75,7 +75,7 @@ public class Correo
             Emailtemplate.Close(); Emailtemplate.Dispose(); Emailtemplate = null;
 
             strBody = strBody.Replace("#TOKEN#", "hola");
-            strBody = strBody.Replace("[QR]",qr);
+          //  strBody = strBody.Replace("[QR]",qr);
             //Configuración del Mensaje
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
@@ -91,7 +91,7 @@ public class Correo
             //Especificamos a quien enviaremos el Email, no es necesario que sea Gmail, puede ser cualquier otro proveedor
             mail.To.Add(correoDestino);
             //Si queremos enviar archivos adjuntos tenemos que especificar la ruta en donde se encuentran
-            //mail.Attachments.Add(new Attachment(@"C:\Documentos\carta.docx"));
+            mail.Attachments.Add(new Attachment(@"C:\Users\rojas\OneDrive\Imágenes\todo\2.jpg"));
             mail.IsBodyHtml = true;
 
             mail.Priority = MailPriority.Normal;
