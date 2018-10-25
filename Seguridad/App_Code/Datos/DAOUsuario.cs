@@ -730,7 +730,7 @@ public class DAOUsuario
 
         try
         {
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_cupo", conection);
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_cupo1", conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_tipo", NpgsqlDbType.Integer).Value = tipo;
             dataAdapter.SelectCommand.Parameters.Add("_f_inicio", NpgsqlDbType.Timestamp).Value = F_inicio;
