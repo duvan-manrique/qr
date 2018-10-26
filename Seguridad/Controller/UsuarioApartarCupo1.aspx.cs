@@ -199,23 +199,17 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                 /// uso el del  token por q hay ya tienen el correo
 
 
-                DAOUsuario dao = new DAOUsuario();
-                System.Data.DataTable validez = dao.generarToken(L_Nombre.Text);
-                EUserToken token = new EUserToken();
-                token.Correo = validez.Rows[0]["correo"].ToString();
-
 
                 bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 byte[] byteImage = ms.ToArray();
                 imgQRcode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
 
                File.WriteAllBytes(Server.MapPath("\\Imagenes\\prueba.jpg"), byteImage);
-                //// picFoto.Image.Save(destino, ImageFormat.Jpeg);
-                //  imgQRcode.Image.Save(destino, ImageFormat.Jpeg);
-
+                DAOUsuario dAO = new DAOUsuario();
+                DataTable tabla = dAO.obtenerUsuarios(int.Parse(Session["user_id"].ToString()));
                 Correo correo = new Correo();
-                //  correo.enviarCorreoQr("lokus.09@gmail.com");
-                correo.enviarCorreoQr(token.Correo);
+              
+                correo.enviarCorreoQr(tabla.Rows[0]["correo"].ToString());
 
 
             }

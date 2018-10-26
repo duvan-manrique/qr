@@ -137,7 +137,7 @@ public class DAOUsuario
         return Usuario;
     }
 
-    public DataTable obtenerUsuarios(String filtro)
+    public DataTable obtenerUsuarios(int filtro)
     {
         DataTable Usuario = new DataTable();
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
@@ -146,7 +146,7 @@ public class DAOUsuario
         {
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_usuarios", conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-            dataAdapter.SelectCommand.Parameters.Add("_filtro", NpgsqlDbType.Text).Value = filtro;
+            dataAdapter.SelectCommand.Parameters.Add("_filtro", NpgsqlDbType.Integer).Value = filtro;
 
             conection.Open();
             dataAdapter.Fill(Usuario);
