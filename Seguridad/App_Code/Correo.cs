@@ -65,7 +65,7 @@ public class Correo
         }
     }
 
-    public void enviarCorreoQr(String correoDestino)
+    public void enviarCorreoQr(String correoDestino,String ruta)
     {
 
         try
@@ -89,7 +89,7 @@ public class Correo
             //Especificamos a quien enviaremos el Email, no es necesario que sea Gmail, puede ser cualquier otro proveedor
             mail.To.Add(correoDestino);
             //Si queremos enviar archivos adjuntos tenemos que especificar la ruta en donde se encuentran
-            mail.Attachments.Add(new Attachment(@"D:\Users\rojas\Music\qr\Seguridad\Imagenes\prueba.jpg"));
+            mail.Attachments.Add(new Attachment(@ruta));
             mail.IsBodyHtml = true;
 
             mail.Priority = MailPriority.Normal;

@@ -5,10 +5,10 @@
 
         .auto-style16 {
             text-align: right;
-            width: 567px;
+            width: 958px;
         }
         .auto-style17 {
-            width: 567px;
+            width: 958px;
         }
         .auto-style18 {
             height: 33px;
@@ -53,7 +53,8 @@
                         <table class="auto-style1">
                             <tr>
                                 <td>fecha de resevacion&nbsp;&nbsp; </td>
-                                <td><asp:TextBox ID="TB_Calendariocupo" runat="server" TextMode="DateTime"></asp:TextBox>
+                                <td><asp:TextBox ID="TB_Calendariocupo" runat="server" TextMode="Date" AutoPostBack="True" OnTextChanged="TB_Calendariocupo_TextChanged"></asp:TextBox>
+                <asp:Label ID="LB_u_n" runat="server" Text="Fecha fuera de rango" Visible="False"></asp:Label>
                                     </td>
                             </tr>
                             <tr>
