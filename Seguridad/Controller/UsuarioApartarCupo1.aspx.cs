@@ -52,22 +52,72 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                     reserva.F_fin = DateTime.Parse(TB_Calendariocupo.Text);
                     if (System.Convert.ToInt32(DDL_HInicio.SelectedValue) < System.Convert.ToInt32(DDL_HFinal.SelectedValue))
                     {
+                        DAOUsuario dAO1 = new DAOUsuario();
+                        DataTable tabla1= dAO1.obtenereservaTodos(int.Parse(Session["vehiculo_id"].ToString()));
+                        int prue = 0;
+                        DateTime F_inicio = reserva.F_inicio.AddHours(double.Parse(DDL_HInicio.SelectedValue));
+                         F_inicio.AddMinutes(1);
+                        DateTime F_fin = reserva.F_fin.AddHours(double.Parse(DDL_HFinal.SelectedValue));
+                        for (int i=0;i<tabla1.Rows.Count; i++)
+                        {
+                            if (F_inicio == (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin == (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                            {
+                                prue++;
+                            }
+                            if (F_inicio >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin == (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                            {
+                                prue++;
+                            }
+                            if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin == (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                            {
+                                prue++;
+                            }
+                            if (F_inicio == (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                            {
+                                prue++;
+                            }
+                            if (F_inicio == (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                            {
+                                prue++;
+                            }
+                            if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString()))&& F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString()))&& F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                            {
+                                prue++;
+                            }
+                            if (F_inicio >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString()))&& F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())) )
+                            {
+                                prue++;
+                            }
+                            if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) )
+                            {
+                                prue++;
+                            }
 
-                        reserva.F_inicio = reserva.F_inicio.AddHours(double.Parse(DDL_HInicio.SelectedValue));
-                        reserva.F_inicio.AddMinutes(1);
-                        reserva.F_fin = reserva.F_fin.AddHours(double.Parse(DDL_HFinal.SelectedValue));
-                        reserva.Vehiculo_id = int.Parse(Session["vehiculo_id"].ToString());
-                        reserva.Descripcion = TB_Descripcion.Text;
+                        }
+                        if (prue==0)
+                        {
+                            reserva.F_inicio = reserva.F_inicio.AddHours(double.Parse(DDL_HInicio.SelectedValue));
+                            reserva.F_inicio.AddMinutes(1);
+                            reserva.F_fin = reserva.F_fin.AddHours(double.Parse(DDL_HFinal.SelectedValue));
+                            reserva.Vehiculo_id = int.Parse(Session["vehiculo_id"].ToString());
+                            reserva.Descripcion = TB_Descripcion.Text;
 
-                        DAOUsuario dAOUsuario = new DAOUsuario();
+                            DAOUsuario dAOUsuario = new DAOUsuario();
+
+
+                            dAOUsuario.Insert_Reserva(reserva);
+                            String QR = dAOUsuario.obtenerqr().Rows[0]["contenido"].ToString();
+                            txtCode.Text = QR;
+                            btnGenerate_Click();
+                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Su reserva ha sido hecha revise su correo');</script>");
+                            limpar();
+
+                        }
+                        else
+                        {
+                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Su reserva esta cruzada con una ya creada');</script>");
+                        }
                        
-                        
-                        dAOUsuario.Insert_Reserva(reserva);
-                        String QR = dAOUsuario.obtenerqr().Rows[0]["contenido"].ToString();
-                        txtCode.Text = QR;
-                        btnGenerate_Click();
-                        cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Su reserva ha sido hecha revise su correo');</script>");
-                        limpar();
 
                     }
                     else
@@ -81,6 +131,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                 }
             }else
             {
+                
                 cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('varifique la fecha');</script>");
             }
 
