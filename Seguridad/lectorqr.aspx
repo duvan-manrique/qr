@@ -1,6 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="lectorqr.aspx.cs" Inherits="Prestamos.lectorqr" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="lectorqr.aspx.cs" Inherits="Prestamos.lectorqr" CodeFile="~/lectorqr.aspx.cs" %>
 
 <!DOCTYPE html>
+<script runat="server">
+
+
+  
+</script>
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -25,6 +31,21 @@
             width: 439px;
             height: 209px;
             float: left;
+        }
+        .auto-style12 {
+            text-align: center;
+            height: 254px;
+        }
+        .auto-style13 {
+            height: 26px;
+        }
+        .auto-style14 {
+            width: 521px;
+            height: 26px;
+        }
+        .auto-style15 {
+            width: 521px;
+            text-align: right;
         }
         </style>
 </head>
@@ -58,9 +79,9 @@
                     <td class="auto-style5" style="background-color: #D9FFFA">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style8" style="background-color: #D9FFFA; font-family: 'Arial Rounded MT Bold'; color: #800000;">
+                    <td class="auto-style12" style="background-color: #D9FFFA; font-family: 'Arial Rounded MT Bold'; color: #800000;">
                                 <img alt="" class="auto-style11" src="Imagenes/article.jpg" /></td>
-                    <td class="auto-style8" style="background-color: #D9FFFA; font-family: 'Arial Rounded MT Bold'; color: #800000;">
+                    <td class="auto-style12" style="background-color: #D9FFFA; font-family: 'Arial Rounded MT Bold'; color: #800000;">
     <div id="reader" style="width:300px; height:250px">
         <p>
             Datos del Código QR:
@@ -73,12 +94,14 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="background-color: #D9FFFA">&nbsp;</td>
-                    <td class="auto-style5" style="background-color: #D9FFFA">&nbsp;</td>
+                    <td style="background-color: #D9FFFA" class="auto-style13"></td>
+                    <td class="auto-style14" style="background-color: #D9FFFA"></td>
                 </tr>
                 <tr>
                     <td style="background-color: #D9FFFA">&nbsp;</td>
-                    <td class="auto-style5" style="background-color: #D9FFFA">&nbsp;</td>
+                    <td class="auto-style15" style="background-color: #D9FFFA">
+                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="verificar" />
+                    </td>
                 </tr>
             </table>
         
