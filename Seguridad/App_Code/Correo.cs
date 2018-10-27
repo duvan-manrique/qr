@@ -74,10 +74,8 @@ public class Correo
             var strBody = string.Format(Emailtemplate.ReadToEnd(),"");
             Emailtemplate.Close(); Emailtemplate.Dispose(); Emailtemplate = null;
 
-            strBody = strBody.Replace("#TOKEN#", "hola");
-          //  strBody = strBody.Replace("[QR]",qr);
-            //Configuración del Mensaje
             MailMessage mail = new MailMessage();
+            strBody = strBody.Replace("#TOKEN#", "por favor descargar  la imagen QR ♣♣♣♣♣♣♣♣♣♣♣♣");
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
             //Especificamos el correo desde el que se enviará el Email y el nombre de la persona que lo envía
             mail.From = new MailAddress("security@security.com", "PARKING");
