@@ -240,9 +240,12 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                 bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 byte[] byteImage = ms.ToArray();
                 imgQRcode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
-
-               File.WriteAllBytes(Server.MapPath("\\Imagenes\\prueba.jpg"), byteImage);
-                String ruta = Server.MapPath("\\Imagenes\\prueba.jpg");
+                Random num = new Random();
+                int a = num.Next(1,9999);
+               
+                String ruta1 = "\\Imagenes\\prueba" + a + ".jpg";
+               File.WriteAllBytes(Server.MapPath(ruta1), byteImage);
+                String ruta = Server.MapPath(ruta1);
                 DAOUsuario dAO = new DAOUsuario();
                 DataTable tabla = dAO.obtenerUsuarios(int.Parse(Session["user_id"].ToString()));
                 Correo correo = new Correo();
