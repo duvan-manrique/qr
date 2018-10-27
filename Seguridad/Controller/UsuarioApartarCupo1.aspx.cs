@@ -54,6 +54,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                     {
 
                         reserva.F_inicio = reserva.F_inicio.AddHours(double.Parse(DDL_HInicio.SelectedValue));
+                        reserva.F_inicio.AddMinutes(1);
                         reserva.F_fin = reserva.F_fin.AddHours(double.Parse(DDL_HFinal.SelectedValue));
                         reserva.Vehiculo_id = int.Parse(Session["vehiculo_id"].ToString());
                         reserva.Descripcion = TB_Descripcion.Text;
