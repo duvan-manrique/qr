@@ -342,7 +342,6 @@ public class DAOUsuario
         return Parqueadero;
     }
 
-
     public void EliminarUsuario(int id)
     {
         DataTable Usuario = new DataTable();
@@ -406,7 +405,6 @@ public class DAOUsuario
 
     }
 
-    ///////
     public void Insert_Zonas(Zonas zonas1)
     {
         DataTable Zonas = new DataTable();
@@ -583,9 +581,7 @@ public class DAOUsuario
             }
         }
         return Fechas_horas;
-    }
-
-   
+    }   
 
     public void Updatefechas_horas(int id, DateTime Fecha, int Hora_inicio, int Hora_fin)
     {
@@ -618,8 +614,7 @@ public class DAOUsuario
         }
 
     }
-    ///////
-
+   
     public void Insert_Reserva(Reserva reserva)
     {
         DataTable Usuario = new DataTable();
@@ -752,7 +747,6 @@ public class DAOUsuario
         }
         return Zonas;
     }
-    ///
    
     public DataTable obtenereservaTodos()
     {
@@ -780,6 +774,34 @@ public class DAOUsuario
             }
         }
         return Reserva;
+    }
+
+    public DataTable obtenerqr()
+    {
+        DataTable qr = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_qr", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+
+            conection.Open();
+            dataAdapter.Fill(qr);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        return qr;
     }
 
     public void EliminarReserva(int id)
@@ -846,7 +868,5 @@ public class DAOUsuario
         }
 
     }
-    ///
-
-
+  
 }

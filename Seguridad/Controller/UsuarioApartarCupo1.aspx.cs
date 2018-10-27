@@ -41,7 +41,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
         }
         else
         {
-            if (Session["val_date"] == null)
+            if (Session["val_date"] == null && (TB_Calendariocupo.Text!=""))
             {
                 Reserva reserva = new Reserva();
 
@@ -58,11 +58,13 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                         reserva.Vehiculo_id = int.Parse(Session["vehiculo_id"].ToString());
                         reserva.Descripcion = TB_Descripcion.Text;
 
-                        String QR = JsonConvert.SerializeObject(reserva);
+                        DAOUsuario dAOUsuario = new DAOUsuario();
+                       
+                        
+                        dAOUsuario.Insert_Reserva(reserva);
+                        String QR = dAOUsuario.obtenerqr().Rows[0]["contenido"].ToString();
                         txtCode.Text = QR;
                         btnGenerate_Click();
-                        DAOUsuario dAOUsuario = new DAOUsuario();
-                        dAOUsuario.Insert_Reserva(reserva);
                         cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Su reserva ha sido hecha revise su correo');</script>");
                         limpar();
 
@@ -76,6 +78,9 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                 {
                     cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('lamentablemente no hay cupo para este vehiculo');</script>");
                 }
+            }else
+            {
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('varifique la fecha');</script>");
             }
             
         }
@@ -112,13 +117,33 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
         }
         else
         {
-            Vehiculo vehiculo = new Vehiculo();
-            vehiculo.Placa = TB_codigoVe.Text;
-            vehiculo.Tipo = int.Parse(DDL_Vehiculo.SelectedValue);
-            vehiculo.Usuario_id = int.Parse(Session["user_id"].ToString());
-            vehiculo.Nombre = TB_marca.Text;
             DAOUsuario dAO = new DAOUsuario();
-            dAO.Insert_Vehiculo(vehiculo);
+            DataTable carga = dAO.obtenerVehiculosTodos(int.Parse(DDL_Vehiculo.SelectedValue), int.Parse(Session["user_id"].ToString()));
+            int val = 0;
+            for (int i = 0; i < carga.Rows.Count; i++)
+            {
+                if (TB_codigoVe.Text == carga.Rows[i][3].ToString())
+                {
+                    val++;
+                }
+            }
+
+            if (val == 0)
+            {
+                Vehiculo vehiculo = new Vehiculo();
+                vehiculo.Placa = TB_codigoVe.Text;
+                vehiculo.Tipo = int.Parse(DDL_Vehiculo.SelectedValue);
+                vehiculo.Usuario_id = int.Parse(Session["user_id"].ToString());
+                vehiculo.Nombre = TB_marca.Text;
+                dAO.Insert_Vehiculo(vehiculo);
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('vehiculo registrado');</script>");
+
+            }
+            else
+            {
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('vehiculo ya registrado');</script>");
+            }
+           
         
 
         }
