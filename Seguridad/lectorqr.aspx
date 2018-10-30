@@ -57,7 +57,9 @@
     <script>
         $(document).ready(function () {
             $('#reader').html5_qrcode(function (data) {
-                $('#<%=txtCodigo.ClientID%>').val(data);
+                debugger;
+                $('#<%=txtCodigo1.ClientID%>').val(data);
+                document.getElementById('<%=txtCodigo.ClientID%>').innerHTML = " listo";
             },
                 function (error) {
                    
@@ -84,9 +86,10 @@
                     <td class="auto-style12" style="background-color: #D9FFFA; font-family: 'Arial Rounded MT Bold'; color: #800000;">
     <div id="reader" style="width:300px; height:250px">
         <p>
-            Datos del Código QR:
-            <asp:TextBox ID="txtCodigo" runat="server" Width="371px"></asp:TextBox>
-        </p>
+           Datos del Código QR:
+            </p>
+
+                        <asp:Label ID="txtCodigo" runat="server" Text="Esperando"></asp:Label>
 
         <br />
         </div>
@@ -94,11 +97,16 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="background-color: #D9FFFA" class="auto-style13"></td>
-                    <td class="auto-style14" style="background-color: #D9FFFA"></td>
+                    <td style="background-color: #D9FFFA" class="auto-style13">
+                        <br />
+                    </td>
+                    <td class="auto-style14" style="background-color: #D9FFFA">
+            <asp:TextBox ID="txtCodigo1" runat="server" Width="0px" BackColor="#D9FFFA" BorderColor="#D9FFFA" ForeColor="#D9FFFA"></asp:TextBox>
+                    </td>
                 </tr>
                 <tr>
-                    <td style="background-color: #D9FFFA">&nbsp;</td>
+                    <td style="background-color: #D9FFFA">
+                        &nbsp;</td>
                     <td class="auto-style15" style="background-color: #D9FFFA">
                         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="verificar" />
                     </td>

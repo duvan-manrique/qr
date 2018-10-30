@@ -17,9 +17,12 @@ namespace Prestamos
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            String jn = txtCodigo.Text;
-            Reserva reserva = JsonConvert.DeserializeObject(jn) as Reserva;
+            String jn = txtCodigo1.Text;
+            Reserva reserva = JsonConvert.DeserializeObject<Reserva>(jn);
 
         }
+
+
+
     }
 }
