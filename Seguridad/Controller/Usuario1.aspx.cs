@@ -10,7 +10,15 @@ public partial class View_Usuario : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["user_id"] == null)
+        {
             Response.Redirect("Loggin.aspx");
+        }
+        else
+        {
+            L_Nombre.Text = Session["nombre"].ToString();
+        }
+
+        Cache.Remove("Usuario.aspx");
     }
 
 

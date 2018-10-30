@@ -38,7 +38,7 @@
             <tr>
                 <td>&nbsp;</td>
                 <td class="auto-style9">&nbsp;</td>
-                <td class="auto-style10"><asp:Button ID="B_Cierre" runat="server" OnClick="B_Cierre_Click" Text="Cerrar Session" />
+                <td class="auto-style10"><asp:Button ID="B_Cierre" runat="server" OnClick="B_Cierre_Click" Text="Cerrar Session" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
                     </td>
             </tr>
             <tr>

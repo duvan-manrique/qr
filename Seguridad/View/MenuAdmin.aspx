@@ -38,30 +38,47 @@
         .auto-style12 {
             text-align: left;
         }
+        .auto-style13 {
+            text-align: center;
+            height: 128px;
+        }
+        .auto-style22 {
+            font-family: Arial;
+        }
+        .auto-style23 {
+            text-align: right;
+            height: 4px;
+        }
         </style>
 </head>
 <body>
     <form id="form1" runat="server">
-            <table class="auto-style1" border="0">
+            <table class="auto-style1" border="0" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
       
                 <tr>
-                    <td colspan="2" class="auto-style8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <img alt="" class="auto-style3" src="../Imagenes/LOGO.png" /><asp:Button ID="B_Cierre" runat="server" OnClick="B_Cierre_Click" Text="Cerrar Session" />
+                    <td colspan="2" class="auto-style13">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <img alt="" class="auto-style3" src="../Imagenes/LOGO.png" /></td>
+                </tr>
+      
+                <tr>
+                    <td colspan="2" class="auto-style23"><asp:Button ID="B_Cierre" runat="server" OnClick="B_Cierre_Click" Text="Cerrar Session" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style9" style="background-color: #D9FFFA">
-                        &nbsp;</td>
-                    <td style="background-color: #D9FFFA">
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style10" style="background-color: #D9FFFA; ">administrativo</td>
-                    <td style="background-color: #D9FFFA" class="auto-style8">
+                    <td class="auto-style9" style="color: #008000" >
+                        <span class="auto-style22"><strong>Usuario:&nbsp;
+                        <asp:Label ID="L_Nombre" runat="server"></asp:Label>
+                        </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td >
                         &nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style10" style="background-color: #D9FFFA; ">
+                    <td class="auto-style10"  >administrativo</td>
+                    <td class="auto-style8">
+                        &nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style10" >
                         <table class="auto-style1">
                             <tr>
                                 <td class="auto-style12">zona </td>
@@ -116,11 +133,11 @@
                             </tr>
                         </table>
                     </td>
-                    <td style="background-color: #D9FFFA" class="auto-style8">
+                    <td >
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                 </tr>
                 <tr>
-                    <td style="background-color: #D9FFFA" colspan="2">
+                    <td colspan="2">
                         &nbsp;</td>
                 </tr>
                 </table>

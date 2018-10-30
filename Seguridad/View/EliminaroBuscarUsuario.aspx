@@ -22,13 +22,24 @@
         .auto-style12 {
             width: 200px;
         }
-        .auto-style13 {
-            text-align: left;
-        }
         .auto-style11 {
             width: 439px;
             height: 209px;
             float: left;
+        }
+        .auto-style22 {
+            font-family: Arial;
+        }
+        .auto-style23 {
+            text-align: right;
+            width: 871px;
+        }
+        .auto-style24 {
+            width: 871px;
+        }
+        .auto-style25 {
+            text-align: center;
+            width: 871px;
         }
         </style>
 </head>
@@ -38,16 +49,28 @@
             <table class="auto-style1" border="0">
       
                 <tr>
-                    <td class="auto-style8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <img alt="" class="auto-style3" src="../Imagenes/LOGO.png" /></td>
+                    <td class="auto-style25">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <img alt="" class="auto-style3" src="../Imagenes/LOGO.png" />&nbsp; </td>
+                    <td class="auto-style8">&nbsp;</td>
+                </tr>
+      
+                <tr>
+                    <td class="auto-style23"><asp:Button ID="B_Cierre" runat="server" OnClick="B_Cierre_Click" Text="Cerrar Session" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
+                    </td>
+                    <td class="auto-style8">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style8" style="background-color: #D9FFFA">
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="background-color: #D9FFFA">
-                        <table class="auto-style1">
+                    <td style="background-color: #D9FFFA" class="auto-style24">
+                        <table class="auto-style1" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
+                            <tr>
+                                <td>
+                        <span class="auto-style22" style="color: #009900"><strong>Usuario:&nbsp;
+                        <asp:Label ID="L_Nombre" runat="server"></asp:Label>
+                        </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td class="auto-style12">
+                                    &nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
                             <tr>
                                 <td>
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
@@ -105,6 +128,8 @@
                             </tr>
                         </table>
                     </td>
+                    <td style="background-color: #D9FFFA">
+                        &nbsp;</td>
                 </tr>
                 </table>
         </div>

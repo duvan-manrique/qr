@@ -64,4 +64,6 @@ public partial class View_GenerarToken : System.Web.UI.Page
 
         return output.ToString();
     }
+
+   
 }

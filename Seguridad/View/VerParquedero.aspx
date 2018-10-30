@@ -11,17 +11,22 @@
             height: 209px;
             float: left;
         }
+        .auto-style22 {
+            font-family: Arial;
+        }
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-        <div>
+        <div style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
             <table class="auto-style1" border="0">
-                <tr>
-                    <td style="background-color: #D9FFFA">
+                                   
                         <table class="auto-style1">
                             <tr>
-                                <td>&nbsp;</td>
+                                <td style="color: #008000">
+                        <span class="auto-style22"><strong>Usuario:&nbsp;
+                        <asp:Label ID="L_Nombre" runat="server"></asp:Label>
+                        </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td class="auto-style12">&nbsp;</td>
                             </tr>
                             <tr>

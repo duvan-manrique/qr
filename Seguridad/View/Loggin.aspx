@@ -35,19 +35,30 @@
             text-align: right;
         }
         .auto-style13 {
-            width: 385px;
+            height: 23px;
+        }
+        .auto-style14 {
+            width: 375%;
+            height: 163px;
+        }
+        .auto-style15 {
+            height: 23px;
+            width: 784px;
+        }
+        .auto-style16 {
+            width: 784px;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <table class="auto-style1">
+            <table class="auto-style1" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
                 <tr>
                     <td><table class="auto-style9" border="0">
       
                 <tr>
-                    <td colspan="3" class="auto-style8">&nbsp;
+                    <td colspan="2" class="auto-style8">&nbsp;
                         <table class="auto-style1">
                             <tr>
                                 <td>
@@ -60,11 +71,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style5" style="background-color: #D9FFFA">
+                    <td class="auto-style5" ">
+                                <table class="auto-style14">
+                                    <tr>
+                                        <td class="auto-style15"></td>
+                                        <td class="auto-style13"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="auto-style16">
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
-                    <td class="auto-style13" style="background-color: #D9FFFA">&nbsp;</td>
-                    <td style="background-color: #D9FFFA">
-                        <asp:Login ID="L_Autenticate" runat="server" BackColor="#F7F6F3" BorderColor="#E6E2D8" BorderPadding="4" BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#333333" OnAuthenticate="L_Autenticate_Authenticate" Height="141px" Width="242px">
+                                        <td class="auto-style12">
+                        <asp:Login ID="L_Autenticate" runat="server" BackColor="#F7F6F3" BorderColor="#E6E2D8" BorderPadding="4" BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#333333" OnAuthenticate="L_Autenticate_Authenticate" Height="141px" Width="246px">
                             <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
                             <LayoutTemplate>
                                 <table cellpadding="4" cellspacing="0" style="border-collapse:collapse;">
@@ -116,15 +133,14 @@
                             <TextBoxStyle Font-Size="0.8em" />
                             <TitleTextStyle BackColor="#5D7B9D" Font-Bold="True" Font-Size="0.9em" ForeColor="White" />
                         </asp:Login>
+                                        </td>
+                                    </tr>
+                                </table>
                     </td>
-                </tr>
-                <tr>
-                    <td class="auto-style5" style="background-color: #D9FFFA">&nbsp;</td>
-                    <td class="auto-style13" style="background-color: #D9FFFA">&nbsp;</td>
-                    <td class="auto-style4" style="background-color: #D9FFFA">
+                    <td   class="auto-style12">
                         &nbsp;</td>
                 </tr>
-            </table>
+                </table>
                     </td>
                 </tr>
             </table>

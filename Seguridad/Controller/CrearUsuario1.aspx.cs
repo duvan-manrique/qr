@@ -10,7 +10,8 @@ public partial class View_CrearUsuario : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        Button boton = (Button)this.Master.FindControl("B_Cierre");
+        boton.Visible = false;
     }
 
     protected void B_CrearUsuario_Click(object sender, EventArgs e)

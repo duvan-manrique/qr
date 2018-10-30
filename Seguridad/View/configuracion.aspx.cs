@@ -10,6 +10,16 @@ public partial class View_configuracion : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        if (Session["user_id"] == null)
+        {
+            Response.Redirect("Loggin.aspx");
+        }
+        else
+        {
+            L_Nombre.Text = Session["nombre"].ToString();
+        }
+
+        Cache.Remove("configuracion.aspx");
     }
 
     protected void b_crear_fecha_hora_Click(object sender, EventArgs e)

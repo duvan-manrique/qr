@@ -27,7 +27,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
             L_Nombre.Text = Session["nombre"].ToString();
         }
         
-        Cache.Remove("UsuarioApartarCupo1.aspx");
+        Cache.Remove("UsuarioApartarCupo.aspx");
     }
    
     protected void B_Reservar_Click(object sender, EventArgs e)

@@ -20,19 +20,29 @@
             height: 209px;
             float: left;
         }
+        .auto-style23 {
+            text-align: left;
+            width: 533px;
+        }
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-    <table class="auto-style1" border="0">
+    <table class="auto-style1" border="0" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
         <tr>
-            <td class="auto-style12" style="background-color: #D9FFFA; font-family: 'Arial Rounded MT Bold'; color: #800000;">
+            <td class="auto-style23">
+                &nbsp;</td>
+            <td  class="auto-style13">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="auto-style12">
                 <br />
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
-            <td style="background-color: #D9FFFA; color: #009900;" class="auto-style13">
+            <td  class="auto-style22" style="color: #009900"><strong style="font-family: 'Bahnschrift SemiBold'">
                 <br />Nombre<asp:TextBox ID="TB_Nombre" runat="server"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TB_Nombre" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TB_Nombre" ErrorMessage="ingrese solo letras" ValidationExpression="[a-zA-ZñÑáéíóúÁÉÍÓÚ ,.]*" ValidationGroup="insertar"></asp:RegularExpressionValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TB_Nombre" ErrorMessage="ingrese solo letras" ValidationExpression="[a-zA-ZñÑáéíóúÁÉÍÓÚ ,.]*"></asp:RegularExpressionValidator>
                 <br />
                 <br />User Name<asp:TextBox ID="TB_Username" runat="server" OnTextChanged="TB_Username_TextChanged" AutoPostBack="True"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TB_Username" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
