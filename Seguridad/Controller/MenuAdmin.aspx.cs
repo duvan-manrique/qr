@@ -14,6 +14,8 @@ public partial class View_MenuAdmin : System.Web.UI.Page
             Response.Redirect("Loggin.aspx");
         else
         {
+
+            L_Nombre.Text = Session["nombre"].ToString();
             EUsuario user = (EUsuario)Session["user"];
             string url;
             if (user.RolId != 1)
@@ -34,6 +36,7 @@ public partial class View_MenuAdmin : System.Web.UI.Page
             }
 
         }
+        Cache.Remove("MenuAdmin.aspx");
 
     }
 

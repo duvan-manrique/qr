@@ -14,22 +14,28 @@
             height: 209px;
             float: left;
         }
+        .auto-style22 {
+            font-family: Arial;
+        }
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     
-        <table class="auto-style1" border="0">
+        <table class="auto-style1" border="0" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
             <tr>
-                <td class="auto-style8" style="background-color: #D9FFFA">
+                <td class="auto-style8" >
                     <table class="auto-style1">
                         <tr>
-                            <td colspan="2">&nbsp;</td>
+                            <td colspan="2" class="auto-style13">
+                        <span class="auto-style22"><strong>Usuario:&nbsp;
+                        <asp:Label ID="L_Nombre" runat="server"></asp:Label>
+                        </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                         </tr>
                         <tr>
                             <td class="auto-style12">
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                             <td>
-                                <table class="auto-style1">
+                                <table class="auto-style22" style="color: #009900; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><strong>
                                     <tr>
                                         <td>Nombre de la zona </td>
                                         <td class="auto-style13">
@@ -71,30 +77,7 @@
                     </table>
                 </td>
             </tr>
-            <tr>
-                <td style="background-color: #D9FFFA">
-                    <table class="auto-style1">
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>
-                                &nbsp;</td>
-                            <td>
-                                &nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
+            </table>
    
 </asp:Content>
 

@@ -16,6 +16,7 @@
 
         .auto-style8 {
             text-align: center;
+            height: 108px;
         }
         .auto-style3 {
             width: 50%;
@@ -43,16 +44,19 @@
             width: 521px;
             height: 26px;
         }
-        .auto-style15 {
-            width: 521px;
+        .auto-style22 {
+            font-family: Arial;
+        }
+        .auto-style23 {
             text-align: right;
+            height: 11px;
         }
         </style>
 </head>
 <script src="js/jquery-1.9.1.min.js"></script>
 <script src="js/html5-qrcode.min.js"></script>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" style="color: #008000; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
 
     <script>
         $(document).ready(function () {
@@ -70,20 +74,28 @@
         });
     </script>
         
-        <table class="auto-style1" border="0">
+        <table class="auto-style1" border="0" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
       
                 <tr>
                     <td colspan="2" class="auto-style8">&nbsp;
                         <img alt="" class="auto-style3" src="Imagenes/LOGO.png" /></td>
                 </tr>
+      
                 <tr>
-                    <td style="background-color: #D9FFFA">&nbsp;</td>
-                    <td class="auto-style5" style="background-color: #D9FFFA">&nbsp;</td>
+                    <td colspan="2" class="auto-style23"><asp:Button ID="B_Cierre" runat="server" OnClick="B_Cierre_Click" Text="Cerrar Session" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
+                    </td>
                 </tr>
                 <tr>
-                    <td class="auto-style12" style="background-color: #D9FFFA; font-family: 'Arial Rounded MT Bold'; color: #800000;">
+                    <td>
+                        <span class="auto-style22"><strong>Usuario:&nbsp;
+                        <asp:Label ID="L_Nombre" runat="server"></asp:Label>
+                        </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="auto-style5">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style12">
                                 <img alt="" class="auto-style11" src="Imagenes/article.jpg" /></td>
-                    <td class="auto-style12" style="background-color: #D9FFFA; font-family: 'Arial Rounded MT Bold'; color: #800000;">
+                    <td class="auto-style12" font-family: 'Arial Rounded MT Bold'; color: #800000;">
     <div id="reader" style="width:300px; height:250px">
         <p>
            Datos del Código QR:
@@ -97,21 +109,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="background-color: #D9FFFA" class="auto-style13">
-                        <br />
-                    </td>
-                    <td class="auto-style14" style="background-color: #D9FFFA">
-            <asp:TextBox ID="txtCodigo1" runat="server" Width="0px" BackColor="#D9FFFA" BorderColor="#D9FFFA" ForeColor="#D9FFFA"></asp:TextBox>
+                    <td class="auto-style13"></td>
+                    <td class="auto-style14">
+                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="verificar" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
                     </td>
                 </tr>
-                <tr>
-                    <td style="background-color: #D9FFFA">
-                        &nbsp;</td>
-                    <td class="auto-style15" style="background-color: #D9FFFA">
-                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="verificar" />
-                    </td>
-                </tr>
-            </table>
+                </table>
         
     </form>
     </body>

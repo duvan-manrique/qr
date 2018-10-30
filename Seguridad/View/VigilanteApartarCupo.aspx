@@ -30,7 +30,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
   
               
-            <table class="auto-style26" border="0" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
+            <table class="auto-style26" border="0" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit; color: #008000; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
                 <tr>
                     <td colspan="2" class="auto-style18"><span class="auto-style22"><strong>Usuario:&nbsp;
                         <asp:Label ID="L_Nombre" runat="server"></asp:Label>
@@ -43,7 +43,7 @@
                             <asp:ListItem Value="2">carro</asp:ListItem>
                             <asp:ListItem Value="3">cicla</asp:ListItem>
                         </asp:DropDownList>
-                        <asp:Button ID="B_agregar" runat="server" OnClick="B_agregar_Click" Text="Agregar" />
+                        <asp:Button ID="B_agregar" runat="server" OnClick="B_agregar_Click" Text="Agregar" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
                     </td>
                 </tr>
                 <tr>

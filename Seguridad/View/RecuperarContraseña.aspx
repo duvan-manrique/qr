@@ -50,9 +50,9 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <table class="auto-style1">
+            <table class="auto-style1" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
                 <tr>
-                    <td>
+                    <td style="">
                         <br />
                         <br />
         <div>
@@ -66,10 +66,10 @@
                         <img alt="" class="auto-style3" src="../Imagenes/LOGO.png" /></td>
                 </tr>
                 <tr>
-                    <td class="auto-style9" style="background-color: #D9FFFA">
+                    <td class="auto-style9" style="">
                         <table class="auto-style1">
                             <tr>
-                    <td class="auto-style13" style="background-color: #D9FFFA; ">digite su nueva contraseña</td>
+                    <td class="auto-style13">digite su nueva contraseña</td>
                                 <td class="auto-style12">
                                     &nbsp;</td>
                                 <td>
@@ -81,49 +81,31 @@
                         </table>
                         <table class="auto-style1">
                             <tr>
-                    <td class="auto-style14" style="background-color: #D9FFFA; ">repite su nueva contraseña</td>
-                    <td class="auto-style10" style="background-color: #D9FFFA; ">
+                    <td class="auto-style14">repite su nueva contraseña</td>
+                    <td class="auto-style10">
                         <asp:TextBox ID="TB_Repetir" runat="server"></asp:TextBox>
                                 </td>
                             </tr>
                         </table>
                     </td>
-                    <td style="background-color: #D9FFFA">
+                    <td style="">
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                 </tr>
                 <tr>
-                    <td class="auto-style10" style="background-color: #D9FFFA; ">
-                        <asp:Button ID="B_Cambiar" runat="server" OnClick="B_Cambiar_Click" Text="Cambiar" />
+                    <td class="auto-style10">
+                        <asp:Button ID="B_Cambiar" runat="server" OnClick="B_Cambiar_Click" Text="Cambiar" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
                     </td>
-                    <td style="background-color: #D9FFFA" class="auto-style8">
+                    <td class="auto-style10">
                         &nbsp;</td>
                 </tr>
                 <tr>
-                    <td style="background-color: #D9FFFA" colspan="2">
-                        <table class="auto-style1">
-                            <tr>
-                                <td>
-                                    &nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    &nbsp;</td>
-                            </tr>
-                        </table>
-                    </td>
+                    <td colspan="2">
+                        &nbsp;</td>
                 </tr>
                 </table>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-            </table>
+                </table>
         </div>
                     </td>
                 </tr>

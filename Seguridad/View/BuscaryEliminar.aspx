@@ -11,21 +11,28 @@
             height: 209px;
             float: left;
         }
+        .auto-style22 {
+            font-family: Arial;
+        }
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     
-            <table class="auto-style1" border="0">
-                <tr>
-                    <td class="auto-style8" style="background-color: #D9FFFA">
+          
+                             
                         <table class="auto-style1">
                             <tr>
-                                <td colspan="2">&nbsp;</td>
+                                <td colspan="2" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;"><span class="auto-style22"><strong style="color: #009900">Usuario:&nbsp;
+                        <asp:Label ID="L_Nombre" runat="server" ForeColor="#009900"></asp:Label>
+                        </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             </tr>
                             <tr>
-                                <td class="auto-style12">
+                                <td colspan="2" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style12" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
-                                <td>
+                                <td style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
                                     <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True" AutoGenerateColumns="False" DataSourceID="ObjectDataSource1" Width="257px" DataKeyNames="id">
                                         <AlternatingRowStyle BackColor="White" />
                                         <Columns>
@@ -48,23 +55,14 @@
                                     </asp:GridView>
                                                 </td>
                             </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="background-color: #D9FFFA">
-                        <table class="auto-style1">
                             <tr>
-                                <td>&nbsp;</td>
-                                <td>
-                                    <table class="auto-style1">
-                                        <tr>
-                                            <td>&nbsp;</td>
-                                            <td>
-                                                &nbsp;</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
+                                <td class="auto-style12" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
+                                    &nbsp;</td>
+                                <td style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
+                                    &nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style12" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
                                                 <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" DeleteMethod="EliminarZonas" SelectMethod="obtenerzonasTodos" TypeName="DAOUsuario" UpdateMethod="UpdateZonas">
                                                     <DeleteParameters>
                                                         <asp:Parameter Name="id" Type="Int32" />
@@ -77,23 +75,14 @@
                                                     </UpdateParameters>
                                                 </asp:ObjectDataSource>
                                             </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>
+                                <td style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
                                     &nbsp;</td>
                             </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                            </tr>
                         </table>
+                    </td>
+                </tr>
+                <tr>
+                    
                     </td>
                 </tr>
             </table>

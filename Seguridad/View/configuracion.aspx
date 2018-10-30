@@ -10,22 +10,33 @@
             height: 209px;
             float: left;
         }
+        .auto-style22 {
+            font-family: Arial;
+        }
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <table class="auto-style1">
+    <table class="auto-style1" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
+        <tr>
+            <td style="color: #009900"><span class="auto-style22"><strong>Usuario:&nbsp;
+                        <asp:Label ID="L_Nombre" runat="server"></asp:Label>
+                        </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>
+                &nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
         <tr>
             <td>&nbsp;</td>
             <td>
                 <table class="auto-style1">
                     <tr>
-                        <td class="auto-style12">fecha</td>
+                        <td class="auto-style22" style="color: #009900"><strong>fecha</td>
                         <td>
                             <asp:TextBox ID="tb_fecha" runat="server" TextMode="Date"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td class="auto-style12">hora inicio</td>
+                        <td class="auto-style22" style="color: #009900"><strong>hora inicio</td>
                         <td>
                                     <asp:DropDownList ID="DDL_HInicio" runat="server" ForeColor="#009900">
                                         <asp:ListItem Value="1">1:00</asp:ListItem>
@@ -55,7 +66,7 @@
                                 </td>
                     </tr>
                     <tr>
-                        <td class="auto-style12">hora fin</td>
+                        <td class="auto-style22" style="color: #009900"><strong>hora fin</td>
                         <td>
                                     <asp:DropDownList ID="DDL_HFinal" runat="server" ForeColor="#009900">
                                         <asp:ListItem Value="1">1:00</asp:ListItem>
@@ -87,7 +98,7 @@
                     <tr>
                         <td class="auto-style12">&nbsp;</td>
                         <td>
-                            <asp:Button ID="b_crear_fecha_hora" runat="server" OnClick="b_crear_fecha_hora_Click" Text="crear_fecha_hora" />
+                            <asp:Button ID="b_crear_fecha_hora" runat="server" OnClick="b_crear_fecha_hora_Click" Text="crear_fecha_hora" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
                         </td>
                     </tr>
                 </table>

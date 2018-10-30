@@ -10,33 +10,35 @@
         .auto-style13 {
             text-align: left;
         }
-        .auto-style15 {
-            height: 30px;
-        }
-        .auto-style14 {
-            text-align: right;
-            height: 30px;
-        }
         .auto-style11 {
             width: 439px;
             height: 209px;
             float: left;
         }
+        .auto-style22 {
+            font-family: Arial;
+        }
+        .auto-style23 {
+            text-align: left;
+            height: 24px;
+        }
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-        <div>
+        <div style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
             <table class="auto-style1" border="0">
                 <tr>
-                    <td style="background-color: #D9FFFA; color: #009900;" colspan="2" class="auto-style13">
-                        &nbsp;</td>
+                    <td style="color: #009900;" colspan="2" class="auto-style23">
+                        <span class="auto-style22"><strong>Usuario:&nbsp;
+                        <asp:Label ID="L_Nombre" runat="server"></asp:Label>
+                        </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style12" style="background-color: #D9FFFA; font-family: 'Arial Rounded MT Bold'; color: #800000;">
+                    <td class="auto-style12">
                         <br />
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
-                    <td style="background-color: #D9FFFA; color: #009900;" class="auto-style13">
+                    <td class="auto-style13">
                         <br />
                         <table class="auto-style1">
                             <tr>

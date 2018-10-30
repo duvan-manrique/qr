@@ -18,21 +18,27 @@
             text-align: left;
             height: 128px;
         }
-    </style>
+        .auto-style22 {
+            font-family: Arial;
+        }
+        </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
    
-        <div>
+        <div style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
             <table class="auto-style1" border="0">
                 <tr>
-                    <td class="auto-style12" style="background-color: #D9FFFA">&nbsp;</td>
-                    <td style="background-color: #D9FFFA">&nbsp;</td>
+                    <td class="auto-style12" style="color: #008000">
+                        <span class="auto-style22"><strong>Usuario:&nbsp;
+                        <asp:Label ID="L_Nombre" runat="server"></asp:Label>
+                        </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style13" style="background-color: #D9FFFA; font-family: 'Arial Rounded MT Bold'; color: #800000;">
+                    <td class="auto-style13">
                         <br />
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
-                    <td style="background-color: #D9FFFA" class="auto-style14">
+                    <td class="auto-style14">
                         <asp:Button ID="B_ApartarCupo" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Apartar Cupo" OnClick="B_ApartarCupo_Click" />
                         <br />
                         <br />
@@ -46,12 +52,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style12" style="background-color: #D9FFFA">&nbsp;</td>
-                    <td style="background-color: #D9FFFA">&nbsp;</td>
+                    <td class="auto-style12">&nbsp;</td>
+                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style12" style="background-color: #D9FFFA">&nbsp;</td>
-                    <td style="background-color: #D9FFFA">&nbsp;</td>
+                    <td class="auto-style12">&nbsp;</td>
+                    <td>&nbsp;</td>
                 </tr>
             </table>
         </div>

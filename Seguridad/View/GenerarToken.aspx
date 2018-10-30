@@ -45,98 +45,77 @@
             height: 209px;
             float: left;
         }
+        .auto-style15 {
+            width: 100%;
+            height: 340px;
+        }
+        .auto-style16 {
+            height: 392px;
+        }
+        .auto-style17 {
+            text-align: right;
+            height: 23px;
+        }
         </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <table class="auto-style1">
+            <table class="auto-style15">
                 <tr>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td>
-            <table class="auto-style1">
-                <tr>
-                    <td>
+                    <td class="auto-style16">
         <div>
             <table class="auto-style1">
                 <tr>
-                    <td>
+                    <td style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: #008000">
             <table class="auto-style1" border="0">
       
                 <tr>
                     <td colspan="2" class="auto-style8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <img alt="" class="auto-style3" src="../Imagenes/LOGO.png" /></td>
                 </tr>
+      
                 <tr>
-                    <td class="auto-style9" style="background-color: #D9FFFA">
+                    <td colspan="2" class="auto-style17"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style9" style="background-color: #FFFFFF; background-image: url('../Imagenes/facatativa.jpg'); background-repeat: repeat; background-attachment: inherit;">
                         <table class="auto-style1">
                             <tr>
-                    <td class="auto-style13" style="background-color: #D9FFFA; ">
+                    <td class="auto-style13">
                         <asp:Label ID="L_User_Name0" runat="server" Text="Digite su User Name: "></asp:Label>
                         <asp:TextBox ID="TB_User_Name" runat="server"></asp:TextBox>
                                 </td>
                                 <td class="auto-style12">
                                     &nbsp;</td>
                                 <td>
-                                    &nbsp;</td>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TB_User_Name" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TB_User_Name" ErrorMessage="ingrese solo letras" ValidationExpression="[a-zA-ZñÑáéíóúÁÉÍÓÚ ,.]*"></asp:RegularExpressionValidator>
+                                </td>
                                 <td>
                                     &nbsp;</td>
                             </tr>
                         </table>
                         <table class="auto-style1">
                             <tr>
-                    <td class="auto-style14" style="background-color: #D9FFFA; ">
-                        <asp:Button ID="B_Recuperar" runat="server" OnClick="B_Recuperar_Click" Text="Recuperar" />
+                    <td class="auto-style14">
+                        <asp:Button ID="B_Recuperar" runat="server" OnClick="B_Recuperar_Click" Text="Recuperar" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
                         <br />
                         <asp:Label ID="L_Mensaje" runat="server"></asp:Label>
                                 </td>
-                    <td class="auto-style10" style="background-color: #D9FFFA; ">
+                    <td class="auto-style10">
                         &nbsp;</td>
                             </tr>
                         </table>
                     </td>
-                    <td style="background-color: #D9FFFA">
+                    <td style="background-color: #FFFFFF; background-image: url('../Imagenes/facatativa.jpg'); background-repeat: repeat; background-attachment: inherit;">
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
-                </tr>
-                <tr>
-                    <td class="auto-style10" style="background-color: #D9FFFA; ">
-                        &nbsp;</td>
-                    <td style="background-color: #D9FFFA" class="auto-style8">
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="background-color: #D9FFFA" colspan="2">
-                        <table class="auto-style1">
-                            <tr>
-                                <td>
-                                    &nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    &nbsp;</td>
-                            </tr>
-                        </table>
-                    </td>
                 </tr>
                 </table>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-            </table>
+                </table>
         </div>
-                    </td>
-                </tr>
-            </table>
                     </td>
                 </tr>
             </table>

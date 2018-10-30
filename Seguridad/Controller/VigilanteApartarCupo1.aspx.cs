@@ -23,7 +23,7 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
             L_Nombre.Text = Session["nombre"].ToString();
         }
         TB_Calendariocupo_TextChanged();
-       
+        Cache.Remove("VigilanteApartarCupo.aspx");
     }
 
 
