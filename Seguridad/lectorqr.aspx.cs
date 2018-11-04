@@ -29,6 +29,7 @@ namespace Prestamos
             String jn = txtCodigo1.Text;
             Reserva reserva = JsonConvert.DeserializeObject<Reserva>(jn);
 
+
         }
 
         protected void B_Cierre_Click(object sender, EventArgs e)

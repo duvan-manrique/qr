@@ -33,10 +33,10 @@
                 <tr>
                     <td colspan="2" class="auto-style18"><span class="auto-style22"><strong>Usuario:&nbsp;
                         <asp:Label ID="L_Nombre" runat="server"></asp:Label>
-                        </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; codigo identificativo del vehiculo<asp:TextBox ID="TB_codigoVe" runat="server"></asp:TextBox>
+                        </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; codigo identificativo del vehiculo<asp:TextBox ID="TB_codigoVe" runat="server" OnTextChanged="TB_codigoVe_TextChanged"></asp:TextBox>
                         marca<asp:TextBox ID="TB_marca" runat="server"></asp:TextBox>
                         tipo
-                        <asp:DropDownList ID="DDL_Vehiculo" runat="server" ForeColor="#009900" OnSelectedIndexChanged="DDL_Tipo_SelectedIndexChanged">
+                        <asp:DropDownList ID="DDL_Vehiculo" runat="server" ForeColor="#009900">
                             <asp:ListItem Value="0">tipo</asp:ListItem>
                             <asp:ListItem Value="1">moto</asp:ListItem>
                             <asp:ListItem Value="2">carro</asp:ListItem>

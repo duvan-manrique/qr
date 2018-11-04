@@ -163,7 +163,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
     protected void B_agregar_Click(object sender, EventArgs e)
     {
         ClientScriptManager cm = this.ClientScript;
-        if ((int.Parse(DDL_Vehiculo.SelectedValue)) == 0)
+        if (int.Parse(DDL_Vehiculo.SelectedValue) == 0)
         {
             cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Debe seleccionar un tipo de vehiculo');</script>");
         }
@@ -193,7 +193,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
             }
             else
             {
-                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('vehiculo ya registrado');</script>");
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('ya registrado anteriormente');</script>");
             }
            
         
@@ -210,7 +210,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
         {
             DDL_Veicu.Items.Clear();
             Session["vehiculo"] = null;
-            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Debe seleccionar un tipo de vehiculo');</script>");
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Debe seleccionar  un tipo de vehiculo');</script>");
         }
         else
         {
@@ -241,7 +241,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                     break;
 
                 case 3:
-                    DataTable carga2 = dAO.obtenerVehiculosTodos(1, int.Parse(Session["user_id"].ToString()));
+                    DataTable carga2 = dAO.obtenerVehiculosTodos(3, int.Parse(Session["user_id"].ToString()));
                     Session["vehiculo"] = carga2;
                     for (int i = 0; i < carga2.Rows.Count; i++)
                     {
@@ -338,5 +338,12 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
             Session["val_date"] = 1;
             LB_u_n.Visible = true;
         }
+    }
+
+
+
+    protected void TB_codigoVe_TextChanged(object sender, EventArgs e)
+    {
+
     }
 }

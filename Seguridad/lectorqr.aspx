@@ -43,6 +43,7 @@
         .auto-style14 {
             width: 521px;
             height: 26px;
+            text-align: left;
         }
         .auto-style22 {
             font-family: Arial;
@@ -50,6 +51,11 @@
         .auto-style23 {
             text-align: right;
             height: 11px;
+        }
+        .auto-style24 {
+            width: 521px;
+            height: 26px;
+            text-align: right;
         }
         </style>
 </head>
@@ -111,6 +117,12 @@
                 <tr>
                     <td class="auto-style13"></td>
                     <td class="auto-style14">
+                        <asp:TextBox ID="txtCodigo1" runat="server" Width="0px"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style24">
                         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="verificar" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
                     </td>
                 </tr>
