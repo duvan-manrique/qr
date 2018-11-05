@@ -5,8 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class View_Usuario : System.Web.UI.Page
+public partial class View_EditarUsuario : System.Web.UI.Page
 {
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["user_id"] == null)
@@ -16,30 +17,12 @@ public partial class View_Usuario : System.Web.UI.Page
         else
         {
             L_Nombre.Text = Session["nombre"].ToString();
-    
         }
 
-        Cache.Remove("Usuario.aspx");
+        Cache.Remove("EditarUsuario.aspx");
     }
 
-
-
-    protected void B_ApartarCupo_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("UsuarioApartarCupo.aspx");
-    }
-
-    protected void B_EditarPerfil_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("EditarUsuario.aspx");
-    }
-
-    protected void B_CancelarCupo_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("CancelarCupo.aspx");
-    }
-
-    
+ 
 
     protected void B_Cierre_Click(object sender, EventArgs e)
     {
@@ -52,8 +35,16 @@ public partial class View_Usuario : System.Web.UI.Page
         user.cerrarSession(datos);
 
         Response.Redirect("Loggin.aspx");
+    }
+   
 
+    protected void ObjectDataSource1_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+    {
 
+    }
+
+    protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+    {
 
     }
 }

@@ -405,6 +405,70 @@ public class DAOUsuario
 
     }
 
+
+    public DataTable obteneryo(int filtro)
+    {
+        DataTable Usuarioyo = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_usuarioyo", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_filtro", NpgsqlDbType.Integer).Value = filtro;
+
+
+            conection.Open();
+            dataAdapter.Fill(Usuarioyo);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        return Usuarioyo;
+    }
+
+    public void UpdateUsuarioyo(int id, string Nombre, string User_name, string Clave, string Correo)
+    {
+        DataTable Usuarioyo = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_actualizar_usuarioyo", conection);
+
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+            dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlDbType.Text).Value = Nombre;
+            dataAdapter.SelectCommand.Parameters.Add("_user_name", NpgsqlDbType.Text).Value = User_name;
+            dataAdapter.SelectCommand.Parameters.Add("_clave", NpgsqlDbType.Text).Value = Clave;
+            dataAdapter.SelectCommand.Parameters.Add("_correo", NpgsqlDbType.Text).Value = Correo;
+
+
+            conection.Open();
+            dataAdapter.Fill(Usuarioyo);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+
+    }
+
     public void Insert_Zonas(Zonas zonas1)
     {
         DataTable Zonas = new DataTable();
@@ -756,6 +820,35 @@ public class DAOUsuario
         try
         {
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_reserva", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+
+
+            conection.Open();
+            dataAdapter.Fill(Reserva);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        return Reserva;
+    }
+
+    public DataTable obtenereservacionyo(int id)
+    {
+        DataTable Reserva = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_reservaoyo", conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
 

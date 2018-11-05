@@ -48,7 +48,6 @@
                         <asp:Button ID="B_CancelarCupo" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Cancelar Cupo" OnClick="B_CancelarCupo_Click" />
                         <br />
                         <br />
-                        <asp:Button ID="B_BuscarCupo" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Buscar Cupo" OnClick="B_BuscarCupo_Click" style="height: 26px" />
                     </td>
                 </tr>
                 <tr>
