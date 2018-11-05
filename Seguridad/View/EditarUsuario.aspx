@@ -41,40 +41,42 @@
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                     <td class="auto-style14">
                         <br />
+                                    <asp:GridView ID="GV_Usuario" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="ObjectDataSource2" >
+                                        <AlternatingRowStyle BackColor="White" />
+                                        <Columns>
+                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" />
+                                            <asp:BoundField DataField="user_name" HeaderText="User_name" />
+                                            <asp:BoundField DataField="clave" HeaderText="Clave" />
+                                            <asp:BoundField DataField="correo" HeaderText="Correo" />
+                                            <asp:CommandField ShowEditButton="True" />
+                                        </Columns>
+                                        <EditRowStyle BackColor="#7C6F57" />
+                                        <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                                        <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                                        <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+                                        <RowStyle BackColor="#E3EAEB" />
+                                        <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
+                                        <SortedAscendingCellStyle BackColor="#F8FAFA" />
+                                        <SortedAscendingHeaderStyle BackColor="#246B61" />
+                                        <SortedDescendingCellStyle BackColor="#D4DFE1" />
+                                        <SortedDescendingHeaderStyle BackColor="#15524A" />
+                                    </asp:GridView>
+                                    <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" DeleteMethod="EliminarUsuario" SelectMethod="obtenerUsuario" TypeName="DAOUsuario" UpdateMethod="UpdateUsuarioyo">
+                                        <DeleteParameters>
+                                            <asp:Parameter Name="id" Type="Int32" />
+                                        </DeleteParameters>
+                                        <SelectParameters>
+                                            <asp:SessionParameter Name="id" SessionField="user_id" Type="Int32" />
+                                        </SelectParameters>
+                                        <UpdateParameters>
+                                            <asp:Parameter Name="id" Type="Int32" />
+                                            <asp:Parameter Name="Nombre" Type="String" />
+                                            <asp:Parameter Name="User_name" Type="String" />
+                                            <asp:Parameter Name="Clave" Type="String" />
+                                            <asp:Parameter Name="Correo" Type="String" />
+                                        </UpdateParameters>
+                                    </asp:ObjectDataSource>
                         <br />
-                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
-                            <AlternatingRowStyle BackColor="White" />
-                            <Columns>
-                                <asp:BoundField DataField="nombre" HeaderText="Nombre" />
-                                <asp:BoundField DataField="user_name" HeaderText="user_name" />
-                                <asp:BoundField DataField="clave" HeaderText="clave" />
-                                <asp:BoundField DataField="correo" HeaderText="Correo" />
-                                <asp:CommandField ShowEditButton="True" />
-                                <asp:BoundField DataField="id" HeaderText="id" />
-                            </Columns>
-                            <EditRowStyle BackColor="#2461BF" />
-                            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                            <RowStyle BackColor="#EFF3FB" />
-                            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                            <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                            <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                            <SortedDescendingHeaderStyle BackColor="#4870BE" />
-                        </asp:GridView>
-                        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OnSelecting="ObjectDataSource1_Selecting" SelectMethod="obteneryo" TypeName="DAOUsuario" UpdateMethod="UpdateUsuarioyo">
-                            <SelectParameters>
-                                <asp:SessionParameter DefaultValue="" Name="filtro" SessionField="user_id" Type="Int32" />
-                            </SelectParameters>
-                            <UpdateParameters>
-                                <asp:Parameter Name="id" Type="Int32" />
-                                <asp:Parameter Name="Nombre" Type="String" />
-                                <asp:Parameter Name="User_name" Type="String" />
-                                <asp:Parameter Name="Clave" Type="String" />
-                                <asp:Parameter Name="Correo" Type="String" />
-                            </UpdateParameters>
-                        </asp:ObjectDataSource>
                         <br />
                         <br />
                         <br />

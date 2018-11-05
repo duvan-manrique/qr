@@ -284,9 +284,6 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
 
             using (MemoryStream ms = new MemoryStream())
             {
-                /// uso el del  token por q hay ya tienen el correo
-
-
 
                 bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 byte[] byteImage = ms.ToArray();
@@ -298,7 +295,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                File.WriteAllBytes(Server.MapPath(ruta1), byteImage);
                 String ruta = Server.MapPath(ruta1);
                 DAOUsuario dAO = new DAOUsuario();
-                DataTable tabla = dAO.obtenerUsuarios(int.Parse(Session["user_id"].ToString()));
+                DataTable tabla = dAO.obtenerUsuario(int.Parse(Session["user_id"].ToString()));
                 Correo correo = new Correo();
               
                 correo.enviarCorreoQr(tabla.Rows[0]["correo"].ToString(),ruta);
