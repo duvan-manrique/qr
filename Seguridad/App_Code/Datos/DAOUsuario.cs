@@ -6,6 +6,7 @@ using Npgsql;
 using NpgsqlTypes;
 using System.Data;
 using System.Configuration;
+using System.Web.UI;
 
 /// <summary>
 /// Descripción breve de DAOUsuario
@@ -19,6 +20,12 @@ public class DAOUsuario
         //
 
 
+    }
+
+    static ClientScriptManager cm = null;
+    public void vista(ClientScriptManager cm1)
+    {
+        cm = cm1;
     }
 
     public DataTable loggin(String userName, String clave)
@@ -925,36 +932,55 @@ public class DAOUsuario
 
     public void UpdateUsuarioyo(int id, string Nombre, string User_name, string Clave, string Correo)
     {
-        DataTable Usuarioyo = new DataTable();
-        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
 
-        try
+        DataTable users = obtenerUsuariosTodos();
+        int prue = 0;
+        for (int i = 0; i < users.Rows.Count; i++)
         {
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_actualizar_usuarioyo", conection);
-
-            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
-            dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlDbType.Text).Value = Nombre;
-            dataAdapter.SelectCommand.Parameters.Add("_user_name", NpgsqlDbType.Text).Value = User_name;
-            dataAdapter.SelectCommand.Parameters.Add("_clave", NpgsqlDbType.Text).Value = Clave;
-            dataAdapter.SelectCommand.Parameters.Add("_correo", NpgsqlDbType.Text).Value = Correo;
-
-
-            conection.Open();
-            dataAdapter.Fill(Usuarioyo);
-        }
-        catch (Exception Ex)
-        {
-            throw Ex;
-        }
-        finally
-        {
-            if (conection != null)
+            
+            if (User_name.Trim().Equals  ((users.Rows[i]["user_name"].ToString().Trim()))   )
             {
-                conection.Close();
+                prue ++;
             }
         }
+        if (prue >0)
+        {
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('No se puede actalizar user name ya existente');</script>");
 
+        }
+        else
+        {
+            DataTable Usuarioyo = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+            try
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_actualizar_usuarioyo", conection);
+
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+                dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlDbType.Text).Value = Nombre;
+                dataAdapter.SelectCommand.Parameters.Add("_user_name", NpgsqlDbType.Text).Value = User_name;
+                dataAdapter.SelectCommand.Parameters.Add("_clave", NpgsqlDbType.Text).Value = Clave;
+                dataAdapter.SelectCommand.Parameters.Add("_correo", NpgsqlDbType.Text).Value = Correo;
+
+
+                conection.Open();
+                dataAdapter.Fill(Usuarioyo);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+
+        }
     }
 
 }

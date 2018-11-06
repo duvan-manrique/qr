@@ -13,7 +13,9 @@ public partial class View_Loggin : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        ClientScriptManager cm = this.ClientScript;
+        DAOUsuario dAOUsuario1 = new DAOUsuario();
+        dAOUsuario1.vista(cm);
     }
 
     protected void L_Autenticate_Authenticate(object sender, AuthenticateEventArgs e)

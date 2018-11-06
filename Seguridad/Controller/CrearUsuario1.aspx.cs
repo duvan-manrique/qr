@@ -12,6 +12,9 @@ public partial class View_CrearUsuario : System.Web.UI.Page
     {
         Button boton = (Button)this.Master.FindControl("B_Cierre");
         boton.Visible = false;
+        ClientScriptManager cm = this.ClientScript;
+        DAOUsuario dAOUsuario1 = new DAOUsuario();
+        dAOUsuario1.vista(cm);
     }
 
     protected void B_CrearUsuario_Click(object sender, EventArgs e)

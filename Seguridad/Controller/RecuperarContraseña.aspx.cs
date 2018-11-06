@@ -10,8 +10,13 @@ public partial class View_RecuperarContraseña : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
         if (Request.QueryString.Count > 0)
         {
+            ClientScriptManager cm = this.ClientScript;
+            DAOUsuario dAOUsuario1 = new DAOUsuario();
+            dAOUsuario1.vista(cm);
+
             DAOUsuario user = new DAOUsuario();
             DataTable info = user.obtenerUsusarioToken(Request.QueryString[0]);
 

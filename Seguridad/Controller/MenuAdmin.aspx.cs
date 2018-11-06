@@ -14,7 +14,9 @@ public partial class View_MenuAdmin : System.Web.UI.Page
             Response.Redirect("Loggin.aspx");
         else
         {
-
+            ClientScriptManager cm = this.ClientScript;
+            DAOUsuario dAOUsuario1 = new DAOUsuario();
+            dAOUsuario1.vista(cm);
             L_Nombre.Text = Session["nombre"].ToString();
             EUsuario user = (EUsuario)Session["user"];
             string url;

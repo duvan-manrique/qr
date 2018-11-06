@@ -21,6 +21,9 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
         else
         {
             L_Nombre.Text = Session["nombre"].ToString();
+            ClientScriptManager cm = this.ClientScript;
+            DAOUsuario dAOUsuario1 = new DAOUsuario();
+            dAOUsuario1.vista(cm);
         }
         TB_Calendariocupo_TextChanged();
         Cache.Remove("VigilanteApartarCupo.aspx");
