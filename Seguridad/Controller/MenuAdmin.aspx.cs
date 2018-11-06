@@ -105,4 +105,9 @@ public partial class View_MenuAdmin : System.Web.UI.Page
     {
         Response.Redirect("configuracion.aspx");
     }
+
+    protected void B_Multas_Click(object sender, EventArgs e)
+    {
+
+    }
 }

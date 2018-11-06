@@ -45,9 +45,10 @@
                         <asp:Button ID="B_EditarPerfil" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Editar Perfil" OnClick="B_EditarPerfil_Click" />
                         <br />
                         <br />
-                        <asp:Button ID="B_CancelarCupo" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Ver y Cancelar Cupo" OnClick="B_CancelarCupo_Click" />
+                        <asp:Button ID="B_CancelarCupo" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Ver o Cancelar Cupo" OnClick="B_CancelarCupo_Click" />
                         <br />
                         <br />
+                        <asp:Button ID="B_Multas0" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Enviar $ Multas al correo" OnClick="B_Multas_Click" Width="175px" />
                     </td>
                 </tr>
                 <tr>

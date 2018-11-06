@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -55,5 +56,15 @@ public partial class View_Usuario : System.Web.UI.Page
 
 
 
+    }
+
+    protected void B_Multas_Click(object sender, EventArgs e)
+    {
+        DAOUsuario dAO = new DAOUsuario();
+        DataTable tabla = dAO.obtenerUsuario(int.Parse(Session["user_id"].ToString()));
+        Correo correo = new Correo();
+        int valormulta = 2000;
+        String mensaje = valormulta.ToString();
+        correo.enviarCorreoMulta(tabla.Rows[0]["correo"].ToString(), mensaje);
     }
 }
