@@ -39,16 +39,19 @@
                                     <tr>
                                         <td>Nombre de la zona </td>
                                         <td class="auto-style13">
-                                            <asp:TextBox ID="TB_NombreZona" runat="server" Height="22px" Width="128px"></asp:TextBox>
+                                            <asp:TextBox ID="TB_NombreZona" runat="server" Height="22px" Width="128px" OnTextChanged="TB_NombreZona_TextChanged"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TB_NombreZona" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                                            <strong style="font-family: 'Bahnschrift SemiBold'">
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TB_NombreZona" ErrorMessage="ingrese solo letras" ValidationExpression="[a-zA-ZñÑáéíóúÁÉÍÓÚ ,.]*"></asp:RegularExpressionValidator>
+                <asp:Label ID="LB_u_n" runat="server" Text="zona  ya existente" Visible="False"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>numero de campos</td>
                                         <td class="auto-style13">
-                                            <asp:TextBox ID="TB_NumerodeCampos" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="TB_NumerodeCampos" runat="server" TextMode="Number"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TB_NumerodeCampos" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TB_NumerodeCampos" ErrorMessage="ingrese numero" ValidationExpression="^([0-9]{1,90})$"></asp:RegularExpressionValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TB_NumerodeCampos" ErrorMessage="no puede ser mas de 2 digitos" ValidationExpression="^([0-9]{1,2})$"></asp:RegularExpressionValidator>
                                         </td>
                                     </tr>
                                     <tr>

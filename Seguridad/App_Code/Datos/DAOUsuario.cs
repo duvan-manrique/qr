@@ -459,7 +459,7 @@ public class DAOUsuario
 
         try
         {
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_zonas", conection);
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_zonas1", conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
 
 
@@ -802,8 +802,28 @@ public class DAOUsuario
 
     }
           
-    public void UpdateZonas(int id, string Nombre, int Tipo_vehiculo,  int Numero_de_campos)
+    public void UpdateZonas(int id, string Nombre, String Tipo_vehiculo, String tipo,  int Numero_de_campos)
     {
+        int Tipo_vehiculo1=0;
+        switch (tipo)
+        {
+            case "carro":
+                Tipo_vehiculo1 = 2;
+                break;
+
+            case "moto":
+                Tipo_vehiculo1 = 1;
+                break;
+            case "cicla":
+                Tipo_vehiculo1 = 3;
+                break;
+
+            default:
+                Tipo_vehiculo1 = 2;
+                break;
+
+
+        }
         DataTable Zonas = new DataTable();
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
 
@@ -813,7 +833,7 @@ public class DAOUsuario
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
             dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlDbType.Text).Value = Nombre;
-            dataAdapter.SelectCommand.Parameters.Add("_tipo_vehiculo", NpgsqlDbType.Integer).Value = Tipo_vehiculo;
+            dataAdapter.SelectCommand.Parameters.Add("_tipo_vehiculo", NpgsqlDbType.Integer).Value = Tipo_vehiculo1;
             dataAdapter.SelectCommand.Parameters.Add("_numero_de_vehiculo", NpgsqlDbType.Integer).Value = Numero_de_campos;
 
 

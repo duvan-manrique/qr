@@ -41,13 +41,15 @@
                     <br />
                     <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                 <td class="auto-style14">
-                    <asp:GridView ID="GridView1" runat="server" CellPadding="4" CssClass="auto-style23" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" DataSourceID="ObjectDataSource1">
+                    <asp:GridView ID="GridView1" runat="server" CellPadding="4" CssClass="auto-style23" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" DataSourceID="ObjectDataSource1" DataKeyNames="id">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:BoundField DataField="fecha_inicio" HeaderText="fecha_inicio" />
                             <asp:BoundField DataField="fecha_fin" HeaderText="fecha_fin" />
-                            <asp:BoundField DataField="vehiculo_id" HeaderText="vehiculo_id" />
                             <asp:BoundField DataField="descripcion" HeaderText="descripcion" />
+                            <asp:BoundField DataField="marca" HeaderText="marca" />
+                            <asp:BoundField DataField="placa" HeaderText="placa" />
+                            <asp:BoundField DataField="tipo" HeaderText="tipo" />
                             <asp:CommandField ShowDeleteButton="True" />
                         </Columns>
                         <EditRowStyle BackColor="#2461BF" />

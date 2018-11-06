@@ -37,7 +37,18 @@
                                         <AlternatingRowStyle BackColor="White" />
                                         <Columns>
                                             <asp:BoundField DataField="nombre" HeaderText="Nombre" />
-                                            <asp:BoundField DataField="tipo_vehiculo" HeaderText="Tipo_vehiculo" />
+                                            <asp:TemplateField HeaderText="Tipo_vehiculo">
+                                                <EditItemTemplate>
+                                                    <asp:DropDownList ID="DropDownList1" runat="server" SelectedValue='<%# Bind("tipo") %>'>
+                                                        <asp:ListItem Value="moto">moto</asp:ListItem>
+                                                        <asp:ListItem Value="carro">carro</asp:ListItem>
+                                                        <asp:ListItem Value="cicla">cicla</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("tipo") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:BoundField DataField="numero_de_campos" HeaderText="Numero_de_campos" />
                                             <asp:CommandField ShowEditButton="True" />
                                             <asp:CommandField ShowDeleteButton="True" />

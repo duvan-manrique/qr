@@ -53,7 +53,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                     if (System.Convert.ToInt32(DDL_HInicio.SelectedValue) < System.Convert.ToInt32(DDL_HFinal.SelectedValue))
                     {
                         DAOUsuario dAO1 = new DAOUsuario();
-                        DataTable tabla1= dAO1.obtenereservaTodos(int.Parse(Session["vehiculo_id"].ToString()));
+                        DataTable tabla1= dAO1.obtenereservacionyo(int.Parse(Session["user_id"].ToString()));
                         int prue = 0;
                         DateTime F_inicio = reserva.F_inicio.AddHours(double.Parse(DDL_HInicio.SelectedValue));
                          F_inicio.AddMinutes(1);
