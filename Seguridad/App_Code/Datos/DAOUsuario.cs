@@ -23,6 +23,7 @@ public class DAOUsuario
     }
 
     static ClientScriptManager cm = null;
+
     public void vista(ClientScriptManager cm1)
     {
         cm = cm1;
@@ -230,7 +231,7 @@ public class DAOUsuario
         return Usuario;
     }
 
-    public DataTable obtenereservaTodos(int id)
+    public DataTable obtenereservaTodos()
     {
         DataTable Reserva = new DataTable();
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
@@ -239,7 +240,7 @@ public class DAOUsuario
         {
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_reserva", conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+            
 
 
             conection.Open();
@@ -267,6 +268,35 @@ public class DAOUsuario
         try
         {
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_reservaoyo", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+
+
+            conection.Open();
+            dataAdapter.Fill(Reserva);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        return Reserva;
+    }
+
+    public DataTable obtenereserva(int id)
+    {
+        DataTable Reserva = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_reserva", conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
 
@@ -353,7 +383,7 @@ public class DAOUsuario
         {
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_usuarios", conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-           
+
 
             conection.Open();
             dataAdapter.Fill(Usuario);
@@ -400,7 +430,7 @@ public class DAOUsuario
         return Parqueadero;
     }
 
-    public DataTable obtenerVehiculosTodos(int tipo,int usuario_id)
+    public DataTable obtenerVehiculosTodos(int tipo, int usuario_id)
     {
         DataTable Usuario = new DataTable();
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
@@ -516,8 +546,8 @@ public class DAOUsuario
         }
         return Zonas;
     }
-   
-  
+
+
     public void Insert_User(User usuario1)
     {
         DataTable Usuario = new DataTable();
@@ -551,7 +581,7 @@ public class DAOUsuario
                 conection.Close();
             }
         }
-      
+
     }
 
     public void Insert_Zonas(Zonas zonas1)
@@ -633,8 +663,8 @@ public class DAOUsuario
             dataAdapter.SelectCommand.Parameters.Add("_estado", NpgsqlDbType.Integer).Value = 1;
             dataAdapter.SelectCommand.Parameters.Add("_vehiculo_id", NpgsqlDbType.Integer).Value = reserva.Vehiculo_id;
             dataAdapter.SelectCommand.Parameters.Add("_descripcion", NpgsqlDbType.Text).Value = reserva.Descripcion;
-         
- 
+
+
 
             conection.Open();
             dataAdapter.Fill(Usuario);
@@ -668,7 +698,7 @@ public class DAOUsuario
             dataAdapter.SelectCommand.Parameters.Add("_tipo", NpgsqlDbType.Integer).Value = vehiculo.Tipo;
             dataAdapter.SelectCommand.Parameters.Add("_placa", NpgsqlDbType.Text).Value = vehiculo.Placa;
             dataAdapter.SelectCommand.Parameters.Add("_usuario_id", NpgsqlDbType.Integer).Value = vehiculo.Usuario_id;
-            
+
 
 
             conection.Open();
@@ -688,7 +718,7 @@ public class DAOUsuario
 
     }
 
-  
+
     public void EliminarUsuario(int id)
     {
         DataTable Usuario = new DataTable();
@@ -714,7 +744,7 @@ public class DAOUsuario
                 conection.Close();
             }
         }
-   
+
     }
 
     public void EliminarZonas(int id)
@@ -773,94 +803,130 @@ public class DAOUsuario
 
     }
 
- 
-    public void UpdateUsuario(int id,string Nombre,string User_name,string Clave,string Correo,int Rol_id,long  Codigo)
+
+    public void UpdateUsuario(int id, string Nombre, string User_name, string Clave, string Correo, int Rol_id, long Codigo)
     {
-        DataTable Usuario = new DataTable();
-        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
-
-        try
+        DataTable users = obtenerUsuariosTodos();
+        int prue = 0;
+        for (int i = 0; i < users.Rows.Count; i++)
         {
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_actualizar_usuario", conection);
-            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
-            dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlDbType.Text).Value = Nombre;
-            dataAdapter.SelectCommand.Parameters.Add("_user_name", NpgsqlDbType.Text).Value = User_name;
-            dataAdapter.SelectCommand.Parameters.Add("_clave", NpgsqlDbType.Text).Value = Clave;
-            dataAdapter.SelectCommand.Parameters.Add("_correo", NpgsqlDbType.Text).Value = Correo;
-            dataAdapter.SelectCommand.Parameters.Add("_rol_id", NpgsqlDbType.Integer).Value = Rol_id;
-            dataAdapter.SelectCommand.Parameters.Add("_codigo", NpgsqlDbType.Bigint).Value = Codigo;
 
-
-            conection.Open();
-            dataAdapter.Fill(Usuario);
-        }
-        catch (Exception Ex)
-        {
-            throw Ex;
-        }
-        finally
-        {
-            if (conection != null)
+            if (User_name.Trim().Equals((users.Rows[i]["user_name"].ToString().Trim())))
             {
-                conection.Close();
+                prue++;
             }
         }
-
-    }
-          
-    public void UpdateZonas(int id, string Nombre, String Tipo_vehiculo, String tipo,  int Numero_de_campos)
-    {
-        int Tipo_vehiculo1=0;
-        switch (tipo)
+        if (prue > 0)
         {
-            case "carro":
-                Tipo_vehiculo1 = 2;
-                break;
-
-            case "moto":
-                Tipo_vehiculo1 = 1;
-                break;
-            case "cicla":
-                Tipo_vehiculo1 = 3;
-                break;
-
-            default:
-                Tipo_vehiculo1 = 2;
-                break;
-
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('No se puede actualizar user name ya existente');</script>");
 
         }
-        DataTable Zonas = new DataTable();
-        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
-
-        try
+        else
         {
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_actualizar_zonas", conection);
-            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
-            dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlDbType.Text).Value = Nombre;
-            dataAdapter.SelectCommand.Parameters.Add("_tipo_vehiculo", NpgsqlDbType.Integer).Value = Tipo_vehiculo1;
-            dataAdapter.SelectCommand.Parameters.Add("_numero_de_vehiculo", NpgsqlDbType.Integer).Value = Numero_de_campos;
 
+            DataTable Usuario = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
 
-            conection.Open();
-            dataAdapter.Fill(Zonas);
-        }
-        catch (Exception Ex)
-        {
-            throw Ex;
-        }
-        finally
-        {
-            if (conection != null)
+            try
             {
-                conection.Close();
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_actualizar_usuario", conection);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+                dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlDbType.Text).Value = Nombre;
+                dataAdapter.SelectCommand.Parameters.Add("_user_name", NpgsqlDbType.Text).Value = User_name;
+                dataAdapter.SelectCommand.Parameters.Add("_clave", NpgsqlDbType.Text).Value = Clave;
+                dataAdapter.SelectCommand.Parameters.Add("_correo", NpgsqlDbType.Text).Value = Correo;
+                dataAdapter.SelectCommand.Parameters.Add("_rol_id", NpgsqlDbType.Integer).Value = Rol_id;
+                dataAdapter.SelectCommand.Parameters.Add("_codigo", NpgsqlDbType.Bigint).Value = Codigo;
+
+
+                conection.Open();
+                dataAdapter.Fill(Usuario);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
             }
         }
-
     }
-    
+
+    public void UpdateZonas(int id, string Nombre, String Tipo_vehiculo, String tipo, int Numero_de_campos)
+    {
+        DataTable zonas = obtenerzonasTodos();
+        int prue = 0;
+        for (int i = 0; i < zonas.Rows.Count; i++)
+        {
+
+            if (Nombre.Trim().Equals((zonas.Rows[i]["nombre"].ToString().Trim())))
+            {
+                prue++;
+            }
+        }
+        if (prue > 0)
+        {
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('No se puede actualizar nombre de zona ya existente');</script>");
+
+        }
+        else
+        {
+            int Tipo_vehiculo1 = 0;
+            switch (tipo)
+            {
+                case "carro":
+                    Tipo_vehiculo1 = 2;
+                    break;
+
+                case "moto":
+                    Tipo_vehiculo1 = 1;
+                    break;
+                case "cicla":
+                    Tipo_vehiculo1 = 3;
+                    break;
+
+                default:
+                    Tipo_vehiculo1 = 2;
+                    break;
+
+
+            }
+            DataTable Zonas = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+            try
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_actualizar_zonas", conection);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+                dataAdapter.SelectCommand.Parameters.Add("_nombre", NpgsqlDbType.Text).Value = Nombre;
+                dataAdapter.SelectCommand.Parameters.Add("_tipo_vehiculo", NpgsqlDbType.Integer).Value = Tipo_vehiculo1;
+                dataAdapter.SelectCommand.Parameters.Add("_numero_de_vehiculo", NpgsqlDbType.Integer).Value = Numero_de_campos;
+
+
+                conection.Open();
+                dataAdapter.Fill(Zonas);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+
+        }
+    }
+
     public void Updatefechas_horas(int id, DateTime Fecha, int Hora_inicio, int Hora_fin)
     {
         DataTable Fechas_horas = new DataTable();
@@ -910,9 +976,9 @@ public class DAOUsuario
             dataAdapter.SelectCommand.Parameters.Add("_vehiculo_id", NpgsqlDbType.Integer).Value = vehiculo_id;
             dataAdapter.SelectCommand.Parameters.Add("_descripcion", NpgsqlDbType.Text).Value = descripcion;
             dataAdapter.SelectCommand.Parameters.Add("_qr", NpgsqlDbType.Integer).Value = qr;
-            
-                
-                
+
+
+
             conection.Open();
             dataAdapter.Fill(Reserva);
         }
@@ -937,15 +1003,15 @@ public class DAOUsuario
         int prue = 0;
         for (int i = 0; i < users.Rows.Count; i++)
         {
-            
-            if (User_name.Trim().Equals  ((users.Rows[i]["user_name"].ToString().Trim()))   )
+
+            if (User_name.Trim().Equals((users.Rows[i]["user_name"].ToString().Trim())))
             {
-                prue ++;
+                prue++;
             }
         }
-        if (prue >0)
+        if (prue > 0)
         {
-            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('No se puede actalizar user name ya existente');</script>");
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('No se puede actualizar user name ya existente');</script>");
 
         }
         else
@@ -982,5 +1048,5 @@ public class DAOUsuario
 
         }
     }
-
+    
 }

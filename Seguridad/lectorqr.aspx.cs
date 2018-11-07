@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -27,7 +28,24 @@ namespace Prestamos
         protected void Button1_Click(object sender, EventArgs e)
         {
             String jn = txtCodigo1.Text;
+            txtCodigo1.Text = "";
             Reserva reserva = JsonConvert.DeserializeObject<Reserva>(jn);
+            DAOUsuario dAO = new DAOUsuario();
+            DataTable reserva1 = dAO.obtenereserva(reserva.Id) ;
+            switch (reserva1.Rows[0]["estado"].ToString())
+            {
+                case "1":
+
+                    break;
+                case "2":
+
+                    break;
+
+                default:
+
+                    break;
+
+            }
 
 
         }

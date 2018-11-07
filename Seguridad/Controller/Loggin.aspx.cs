@@ -18,7 +18,7 @@ public partial class View_Loggin : System.Web.UI.Page
         dAOUsuario1.vista(cm);
     }
 
-    protected void L_Autenticate_Authenticate(object sender, AuthenticateEventArgs e)
+   /* protected void L_Autenticate_Authenticate(object sender, AuthenticateEventArgs e)
     {  
         DAOUsuario guardarUsuario = new DAOUsuario();
         DataTable data = guardarUsuario.loggin(L_Autenticate.UserName.ToString(), L_Autenticate.Password.ToString());
@@ -32,7 +32,7 @@ public partial class View_Loggin : System.Web.UI.Page
             MAC datosConexion = new MAC();
 
            /* ipAddress = HttpContext.Current.Request.UserHostAddress;
-            mac = Utilidades.Mac.GetMAC(ref ipAddress);*/
+            mac = Utilidades.Mac.GetMAC(ref ipAddress);
 
             datosUsuario.UserId = int.Parse(Session["user_id"].ToString());
             datosUsuario.Ip = datosConexion.ip();
@@ -44,7 +44,7 @@ public partial class View_Loggin : System.Web.UI.Page
             Response.Redirect("MenuAdmin.aspx");
         }
 
-    }
+    } */
 
     protected void LB_Recuperar_Click(object sender, EventArgs e)
     {
