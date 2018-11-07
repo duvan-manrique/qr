@@ -131,6 +131,25 @@
                         <asp:Button ID="B_AdministrarParquedero" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="configuracion" OnClick="B_AdministrarParquedero_Click" />
                                 </td>
                             </tr>
+                            <tr>
+                                <td class="auto-style12">
+                                    &nbsp;</td>
+                                <td class="auto-style12">
+                                    &nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style12">
+                                    multas de usuarios&nbsp;</td>
+                                <td class="auto-style12">
+                                    &nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style12">
+                        <asp:Button ID="B_Multas0" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Multas" OnClick="B_Multas_Click" />
+                                </td>
+                                <td class="auto-style12">
+                                    &nbsp;</td>
+                            </tr>
                         </table>
                     </td>
                     <td >
