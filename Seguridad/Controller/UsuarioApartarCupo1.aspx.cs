@@ -110,7 +110,8 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
 
                             dAOUsuario.Insert_Reserva(reserva);
                             String QR = dAOUsuario.obtenerqr().Rows[0]["contenido"].ToString();
-                            txtCode.Text = QR;
+                            Reserva reserva1 = JsonConvert.DeserializeObject<Reserva>(QR);
+                            txtCode.Text = reserva1.Id.ToString();
                             btnGenerate_Click();
                             cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Su reserva ha sido hecha revise su correo');</script>");
                             limpar();

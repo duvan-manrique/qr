@@ -121,9 +121,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style13">&nbsp;</td>
+                    <td class="auto-style13">
+                        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="ver datos" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
+                        <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="confirmar vehiculo" BackColor="#009900" BorderColor="#009900" ForeColor="White" Enabled="False" />
+                    </td>
                     <td class="auto-style24">
-                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="verificar" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
+                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="verificar" BackColor="#009900" BorderColor="#009900" ForeColor="White" Enabled="False" />
                     </td>
                 </tr>
                 </table>
