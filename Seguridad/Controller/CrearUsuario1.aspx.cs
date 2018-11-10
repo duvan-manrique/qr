@@ -54,4 +54,11 @@ public partial class View_CrearUsuario : System.Web.UI.Page
             }
         }
     }
+
+    protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+    {
+
+            Response.Redirect("Loggin.aspx");
+        
+    }
 }

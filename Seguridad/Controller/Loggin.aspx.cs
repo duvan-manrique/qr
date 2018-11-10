@@ -60,6 +60,7 @@ public partial class View_Loggin : System.Web.UI.Page
         {
             Session["nombre"] = data.Rows[0]["nombre"].ToString();
             Session["user_id"] = data.Rows[0]["user_id"].ToString();
+            Session["rolId"] = data.Rows[0]["rol_id"].ToString();
 
             EUsuario datosUsuario = new EUsuario();
             MAC datosConexion = new MAC();

@@ -22,6 +22,11 @@
                              
                         <table class="auto-style1">
                             <tr>
+                                <td colspan="2" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
+                                <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" Height="31px" ImageUrl="~/Plantilla/images/volver.jpg" OnClick="ImageButton1_Click" Width="30px" />
+                                </td>
+                            </tr>
+                            <tr>
                                 <td colspan="2" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;"><span class="auto-style22"><strong style="color: #009900">Usuario:&nbsp;
                         <asp:Label ID="L_Nombre" runat="server" ForeColor="#009900"></asp:Label>
                         </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>

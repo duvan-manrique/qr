@@ -14,6 +14,8 @@ public partial class View_MenuAdmin : System.Web.UI.Page
             Response.Redirect("Loggin.aspx");
         else
         {
+     
+
             ClientScriptManager cm = this.ClientScript;
             DAOUsuario dAOUsuario1 = new DAOUsuario();
             dAOUsuario1.vista(cm);
@@ -65,7 +67,8 @@ public partial class View_MenuAdmin : System.Web.UI.Page
 
     protected void B_CrearUsuario_Click(object sender, EventArgs e)
     {
-        Response.Redirect("CrearUsuario.aspx");
+        Response.Redirect("CrearUsuarioAdmin.aspx");
+        
     }
 
  
@@ -110,6 +113,31 @@ public partial class View_MenuAdmin : System.Web.UI.Page
 
     protected void B_Multas_Click(object sender, EventArgs e)
     {
+        Response.Redirect("MultasAdmin.aspx");
+    }
 
+    protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+    {
+        if (int.Parse(Session["rolId"].ToString()) == 1)
+        {
+            Response.Redirect("MenuAdmin.aspx");
+        }
+        else if (int.Parse(Session["rolId"].ToString()) == 2)
+        {
+            Response.Redirect("Vigilante.aspx");
+        }
+        else if (int.Parse(Session["rolId"].ToString()) == 3)
+        {
+            Response.Redirect("Usuario.aspx");
+        }
+        else
+        {
+            Response.Redirect("Loggin.aspx");
+        }
+    }
+
+    protected void B_CreaReservacionadministrativo_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("AdminApartarCupo.aspx");
     }
 }

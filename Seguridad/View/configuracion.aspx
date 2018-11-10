@@ -13,10 +13,21 @@
         .auto-style22 {
             font-family: Arial;
         }
+        .auto-style23 {
+            margin-top: 0px;
+        }
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <table class="auto-style1" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
+        <tr>
+            <td style="color: #009900">
+                                <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" Height="31px" ImageUrl="~/Plantilla/images/volver.jpg" OnClick="ImageButton1_Click" Width="30px" />
+                            </td>
+            <td>
+                &nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
         <tr>
             <td style="color: #009900"><span class="auto-style22"><strong>Usuario:&nbsp;
                         <asp:Label ID="L_Nombre" runat="server"></asp:Label>
@@ -109,7 +120,7 @@
             <td>
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
             <td>
-                <asp:GridView ID="GridView1" runat="server" CellPadding="4" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False">
+                <asp:GridView ID="GridView1" runat="server" CellPadding="4" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" CssClass="auto-style23">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField DataField="fecha" HeaderText="fecha" />

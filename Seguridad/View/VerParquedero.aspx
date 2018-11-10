@@ -24,6 +24,12 @@
                         <table class="auto-style1">
                             <tr>
                                 <td style="color: #008000">
+                                <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" Height="31px" ImageUrl="~/Plantilla/images/volver.jpg" OnClick="ImageButton1_Click" Width="30px" />
+                                </td>
+                                <td class="auto-style12">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td style="color: #008000">
                         <span class="auto-style22"><strong>Usuario:&nbsp;
                         <asp:Label ID="L_Nombre" runat="server"></asp:Label>
                         </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>

@@ -517,6 +517,34 @@ public class DAOUsuario
         return Zonas;
     }
 
+    public DataTable obtenerMultasTodos()
+    {
+        DataTable Multas = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_valor_multa", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+
+            conection.Open();
+            dataAdapter.Fill(Multas);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        return Multas;
+    }
+
     public DataTable Traer_cupo(int tipo, DateTime F_inicio, DateTime F_fin)
     {
         DataTable Zonas = new DataTable();
@@ -1048,5 +1076,35 @@ public class DAOUsuario
 
         }
     }
-    
+
+    public void UpdateValorMulta(int id, string Nombre, double   Valor_multa)
+    {
+            DataTable Multa = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+            try
+            {
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_actualizar_Valor_Multa", conection);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+                dataAdapter.SelectCommand.Parameters.Add("_valor_multa", NpgsqlDbType.Double ).Value = Valor_multa;
+            
+                conection.Open();
+                dataAdapter.Fill(Multa);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
+            }
+        
+    }
+
+
 }
