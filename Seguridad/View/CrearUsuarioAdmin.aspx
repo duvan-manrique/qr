@@ -1,33 +1,27 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/MasterPage.master" AutoEventWireup="true" CodeFile="~/Controller/CrearUsuario1.aspx.cs" Inherits="View_CrearUsuario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/MasterPage.master" AutoEventWireup="true" CodeFile="CrearUsuarioAdmin.aspx.cs" Inherits="View_CrearUsuarioAdmin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
 
-        
-
-        .auto-style1 {
-            width: 100%;
-        }
-        .auto-style12 {
-            text-align: center;
+        .auto-style23 {
+            text-align: left;
             width: 533px;
         }
         .auto-style13 {
             text-align: left;
+        }
+        .auto-style12 {
+            text-align: center;
+            width: 533px;
         }
         .auto-style11 {
             width: 439px;
             height: 209px;
             float: left;
         }
-        .auto-style23 {
-            text-align: left;
-            width: 533px;
-        }
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-
     <table class="auto-style1" border="0" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
         <tr>
             <td class="auto-style23">
@@ -41,7 +35,7 @@
                 <br />
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
             <td  class="auto-style22" style="color: #009900"><strong style="font-family: 'Bahnschrift SemiBold'">
-                <br />Nombre<asp:TextBox ID="TB_Nombre" runat="server"></asp:TextBox>
+                <br />Nombre<asp:TextBox ID="TB_Nombre" runat="server" OnTextChanged="TB_Nombre_TextChanged"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TB_Nombre" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TB_Nombre" ErrorMessage="ingrese solo letras" ValidationExpression="[a-zA-ZñÑáéíóúÁÉÍÓÚ ,.]*"></asp:RegularExpressionValidator>
                 <br />
@@ -49,6 +43,11 @@
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TB_Username" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
                 <asp:Label ID="LB_u_n" runat="server" Text="user name ya existente" Visible="False"></asp:Label>
                 <br />
+                Tipo de&nbsp; usuario<asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                    <asp:ListItem Value="1">administrativo</asp:ListItem>
+                    <asp:ListItem Value="3">usuario</asp:ListItem>
+                    <asp:ListItem Value="2">vigilante</asp:ListItem>
+                </asp:DropDownList>
                 <br />Codigo identificacion universitaria<asp:TextBox ID="TB_Codigo" runat="server" TextMode="Number"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TB_Codigo" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TB_Codigo" ErrorMessage="ingrese numero" ValidationExpression="^([0-9]{1,10})$"></asp:RegularExpressionValidator>

@@ -224,5 +224,25 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
 
 
 
-    
+
+
+    protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+    {
+        if (int.Parse(Session["rolId"].ToString()) == 1)
+        {
+            Response.Redirect("MenuAdmin.aspx");
+        }
+        else if (int.Parse(Session["rolId"].ToString()) == 2)
+        {
+            Response.Redirect("Vigilante.aspx");
+        }
+        else if (int.Parse(Session["rolId"].ToString()) == 3)
+        {
+            Response.Redirect("Usuario.aspx");
+        }
+        else
+        {
+            Response.Redirect("Loggin.aspx");
+        }
+    }
 }

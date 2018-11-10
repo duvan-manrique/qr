@@ -9,11 +9,40 @@ public partial class View_MultasUser : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["user_id"] == null)
+        {
+            Response.Redirect("Loggin.aspx");
+        }
+        else
+        {
+            L_Nombre.Text = Session["nombre"].ToString();
+            ClientScriptManager cm = this.ClientScript;
+            DAOUsuario dAOUsuario1 = new DAOUsuario();
+            dAOUsuario1.vista(cm);
+        }
 
+        Cache.Remove("MultasAdmin.aspx");
     }
 
-    protected void B_Multas_Click(object sender, EventArgs e)
-    {
 
+
+    protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+    {
+        if (int.Parse(Session["rolId"].ToString()) == 1)
+        {
+            Response.Redirect("MenuAdmin.aspx");
+        }
+        else if (int.Parse(Session["rolId"].ToString()) == 2)
+        {
+            Response.Redirect("Vigilante.aspx");
+        }
+        else if (int.Parse(Session["rolId"].ToString()) == 3)
+        {
+            Response.Redirect("Usuario.aspx");
+        }
+        else
+        {
+            Response.Redirect("Loggin.aspx");
+        }
     }
 }

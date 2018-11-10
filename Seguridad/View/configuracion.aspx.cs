@@ -44,8 +44,28 @@ public partial class View_configuracion : System.Web.UI.Page
             cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('la hora inicial debe ser menos al final ');</script>");
         }
     }
-    
-                   
 
-               
+
+
+
+
+    protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+    {
+        if (int.Parse(Session["rolId"].ToString()) == 1)
+        {
+            Response.Redirect("MenuAdmin.aspx");
+        }
+        else if (int.Parse(Session["rolId"].ToString()) == 2)
+        {
+            Response.Redirect("Vigilante.aspx");
+        }
+        else if (int.Parse(Session["rolId"].ToString()) == 3)
+        {
+            Response.Redirect("Usuario.aspx");
+        }
+        else
+        {
+            Response.Redirect("Loggin.aspx");
+        }
+    }
 }

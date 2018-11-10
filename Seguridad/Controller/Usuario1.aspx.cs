@@ -8,8 +8,10 @@ using System.Web.UI.WebControls;
 
 public partial class View_Usuario : System.Web.UI.Page
 {
+   
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         if (Session["user_id"] == null)
         {
             Response.Redirect("Loggin.aspx");
@@ -20,7 +22,8 @@ public partial class View_Usuario : System.Web.UI.Page
             ClientScriptManager cm = this.ClientScript;
             DAOUsuario dAOUsuario1 = new DAOUsuario();
             dAOUsuario1.vista(cm);
-
+           
+            
         }
 
         Cache.Remove("Usuario.aspx");
@@ -69,5 +72,27 @@ public partial class View_Usuario : System.Web.UI.Page
         int valormulta = 2000;
         String mensaje = valormulta.ToString();
         correo.enviarCorreoMulta(tabla.Rows[0]["correo"].ToString(), mensaje);
+    }
+
+
+
+    protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+    {
+        if (int.Parse(Session["rolId"].ToString()) == 1)
+        {
+            Response.Redirect("MenuAdmin.aspx");
+        }
+        else if (int.Parse(Session["rolId"].ToString()) == 2)
+        {
+            Response.Redirect("Vigilante.aspx");
+        }
+        else if (int.Parse(Session["rolId"].ToString()) == 3)
+        {
+            Response.Redirect("Usuario.aspx");
+        }
+        else
+        {
+            Response.Redirect("Loggin.aspx");
+        }
     }
 }

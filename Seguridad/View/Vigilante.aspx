@@ -8,10 +8,6 @@
             height: 209px;
             float: left;
         }
-        .auto-style12 {
-            text-align: left;
-            height: 128px;
-        }
         .auto-style22 {
             font-family: Arial;
         }
@@ -21,6 +17,10 @@
 
         <div style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
             <table class="auto-style1" border="0">
+                <tr>
+                    <td class="auto-style9"/td style="color: #008000">
+                        &nbsp;<td>&nbsp;</td>
+                </tr>
                 <tr>
                     <td class="auto-style9"/td style="color: #008000">
                         <span class="auto-style22"><strong>Usuario:&nbsp;

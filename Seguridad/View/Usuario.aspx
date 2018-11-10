@@ -29,6 +29,11 @@
             <table class="auto-style1" border="0">
                 <tr>
                     <td class="auto-style12" style="color: #008000">
+                        &nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style12" style="color: #008000">
                         <span class="auto-style22"><strong>Usuario:&nbsp;
                         <asp:Label ID="L_Nombre" runat="server"></asp:Label>
                         </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>

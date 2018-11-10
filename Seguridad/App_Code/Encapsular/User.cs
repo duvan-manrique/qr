@@ -16,7 +16,7 @@ public class User
     }
     private int id;
     private string nombre;
-    private string user_name;
+    private string user_name; 
     private string clave;
     private string correo;
     private DateTime fecha;
