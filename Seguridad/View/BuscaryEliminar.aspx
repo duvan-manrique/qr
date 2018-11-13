@@ -41,7 +41,18 @@
                                     <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True" AutoGenerateColumns="False" DataSourceID="ObjectDataSource1" Width="257px" DataKeyNames="id">
                                         <AlternatingRowStyle BackColor="White" />
                                         <Columns>
-                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" />
+                                            <asp:TemplateField HeaderText="Nombre">
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("nombre") %>'></asp:TextBox>
+                                                    <strong style="font-family: 'Bahnschrift SemiBold'">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator56" runat="server" ControlToValidate="TextBox1" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator156" runat="server" ControlToValidate="TextBox1" ErrorMessage="ingrese solo letras" ValidationExpression="[a-zA-ZñÑáéíóúÁÉÍÓÚ ,.]*"></asp:RegularExpressionValidator>
+                                                    </strong>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("nombre") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Tipo_vehiculo">
                                                 <EditItemTemplate>
                                                     <asp:DropDownList ID="DropDownList1" runat="server" SelectedValue='<%# Bind("tipo") %>'>
@@ -54,7 +65,17 @@
                                                     <asp:Label ID="Label1" runat="server" Text='<%# Bind("tipo") %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="numero_de_campos" HeaderText="Numero_de_campos" />
+                                            <asp:TemplateField HeaderText="Numero_de_campos">
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("numero_de_campos") %>' TextMode="Number"></asp:TextBox>
+                                                    <strong style="font-family: 'Bahnschrift SemiBold'">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3489" runat="server" ControlToValidate="TextBox2" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                                                    </strong>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("numero_de_campos") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:CommandField ShowEditButton="True" />
                                             <asp:CommandField ShowDeleteButton="True" />
                                         </Columns>
