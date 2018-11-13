@@ -41,6 +41,8 @@ public partial class View_CrearZona : System.Web.UI.Page
             zonas.Numero_de_campos = int.Parse(TB_NumerodeCampos.Text);
             DAOUsuario crear = new DAOUsuario();
             crear.Insert_Zonas(zonas);
+            ClientScriptManager cm = this.ClientScript;
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Zona Registrada exitosamente');</script>");
         }
 
     }

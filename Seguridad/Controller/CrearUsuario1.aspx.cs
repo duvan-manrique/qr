@@ -33,7 +33,10 @@ public partial class View_CrearUsuario : System.Web.UI.Page
             DAOUsuario crear = new DAOUsuario();
             crear.Insert_User(usuario);
             limpiar();
-        }
+
+            ClientScriptManager cm = this.ClientScript;        
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Usuario Registrado exitosamente');</script>");
+            }
         
 
 
