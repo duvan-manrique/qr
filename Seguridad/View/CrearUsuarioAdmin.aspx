@@ -44,7 +44,7 @@
                 <asp:Label ID="LB_u_n" runat="server" Text="user name ya existente" Visible="False"></asp:Label>
                 <br />
                 Tipo de&nbsp; usuario<asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-                    <asp:ListItem Value="1">administrativo</asp:ListItem>
+             
                     <asp:ListItem Value="3">usuario</asp:ListItem>
                     <asp:ListItem Value="2">vigilante</asp:ListItem>
                 </asp:DropDownList>

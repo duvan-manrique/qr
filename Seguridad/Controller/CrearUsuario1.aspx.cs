@@ -32,11 +32,26 @@ public partial class View_CrearUsuario : System.Web.UI.Page
 
             DAOUsuario crear = new DAOUsuario();
             crear.Insert_User(usuario);
+            limpiar();
         }
         
 
 
 
+    }
+
+    private void limpiar()
+    {
+        
+        
+            TB_Nombre.Text = "";
+            TB_Username.Text = "";
+            TB_Codigo.Text = "";
+            TB_Clave.Text = "";
+            TB_Correo.Text = "";
+           
+
+        
     }
 
     protected void TB_Username_TextChanged(object sender, EventArgs e)
