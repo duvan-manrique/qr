@@ -821,7 +821,8 @@ public class DAOUsuario
         }
         catch (Exception Ex)
         {
-            throw Ex;
+            //throw Ex;
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('no se pudo eliminar la zona');</script>");
         }
         finally
         {
@@ -1028,8 +1029,8 @@ public class DAOUsuario
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
             dataAdapter.SelectCommand.Parameters.Add("_parqueadero_id", NpgsqlDbType.Integer).Value = parqueadero_id;
-            dataAdapter.SelectCommand.Parameters.Add("_fecha_inicio", NpgsqlDbType.Date).Value = fecha_inicio;
-            dataAdapter.SelectCommand.Parameters.Add("_fecha_fin", NpgsqlDbType.Date).Value = fecha_fin;
+            dataAdapter.SelectCommand.Parameters.Add("_fecha_inicio", NpgsqlDbType.Timestamp).Value = fecha_inicio;
+            dataAdapter.SelectCommand.Parameters.Add("_fecha_fin", NpgsqlDbType.Timestamp).Value = fecha_fin;
             dataAdapter.SelectCommand.Parameters.Add("_estado", NpgsqlDbType.Integer).Value = estado;
             dataAdapter.SelectCommand.Parameters.Add("_vehiculo_id", NpgsqlDbType.Integer).Value = vehiculo_id;
             dataAdapter.SelectCommand.Parameters.Add("_descripcion", NpgsqlDbType.Text).Value = descripcion;
@@ -1177,7 +1178,7 @@ public class DAOUsuario
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
             dataAdapter.SelectCommand.Parameters.Add("_qr", NpgsqlDbType.Integer).Value = idqr;
-            dataAdapter.SelectCommand.Parameters.Add("_fecha_salida", NpgsqlDbType.Date).Value = salida;
+            dataAdapter.SelectCommand.Parameters.Add("_fecha_salida", NpgsqlDbType.Timestamp).Value = salida;
 
             conection.Open();
             dataAdapter.Fill(tabla);
