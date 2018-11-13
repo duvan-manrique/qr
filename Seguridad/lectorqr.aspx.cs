@@ -20,6 +20,7 @@ namespace Prestamos
             else
             {
                 L_Nombre.Text = Session["nombre"].ToString();
+               
             }
 
             Cache.Remove("lectorqr.aspx");
@@ -33,7 +34,7 @@ namespace Prestamos
                 
                 String jn = txtCodigo1.Text;
                 txtCodigo1.Text = "";
-                Reserva reserva = JsonConvert.DeserializeObject<Reserva>(jn);
+                //Reserva reserva = JsonConvert.DeserializeObject<Reserva>(jn);
                 DAOUsuario dAO = new DAOUsuario();
                 DataTable reserva1 = dAO.obtenereserva(int.Parse(jn));
                 switch (reserva1.Rows[0]["estado"].ToString())
@@ -46,8 +47,9 @@ namespace Prestamos
                             {
                                 if (hoy.Minute == (DateTime.Parse(reserva1.Rows[0]["fecha_inicio"].ToString())).Minute)
                                 {
+                                    dAO.update_entrda(int.Parse(reserva1.Rows[0]["id"].ToString()), int.Parse(reserva1.Rows[0]["qr"].ToString()),hoy);
                                     cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('ingreso registrado');</script>");
-                                    //autorizar cambiar a 2 
+                                    //autorizar cambiar a 2
                                 }
                                 else
                                 {
@@ -55,16 +57,21 @@ namespace Prestamos
                                     int time = x.Minutes;
                                     if (time <= 10 && time >= 0)
                                     {
+                                        dAO.update_entrda(int.Parse(reserva1.Rows[0]["id"].ToString()), int.Parse(reserva1.Rows[0]["qr"].ToString()), hoy);
+                                        cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('ingreso registrado');</script>");
                                         //cambia a autorzada
                                     }
                                     else
                                     {
                                         if (x.Minutes > 10)
                                         {
+                                            dAO.update_salida(int.Parse(reserva1.Rows[0]["id"].ToString()), int.Parse(reserva1.Rows[0]["qr"].ToString()), hoy);
+                                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('reservacion perdida por desface de tiempo');</script>");
                                             //reserva pasada por 10 minutos
                                         }
                                         else
                                         {
+                                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('aun no es tiempo de ingreso de esta reservacion');</script>");
                                             //aun no es hora de su reserva
                                         }
 
@@ -80,16 +87,22 @@ namespace Prestamos
                                     int time = x1.Minutes;
                                     if (time <= 10 && time >= 0)
                                     {
+                                        dAO.update_entrda(int.Parse(reserva1.Rows[0]["id"].ToString()), int.Parse(reserva1.Rows[0]["qr"].ToString()), hoy);
+                                        cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('ingreso registrado');</script>");
                                         //cambia a autorzada
                                     }
                                     else
                                     {
                                         if (x.Minutes > 10)
                                         {
+
+                                            dAO.update_salida(int.Parse(reserva1.Rows[0]["id"].ToString()), int.Parse(reserva1.Rows[0]["qr"].ToString()), hoy);
+                                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('reservacion perdida por desface de tiempo');</script>");
                                             //reserva pasada por 10 minutos
                                         }
                                         else
                                         {
+                                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('aun no es tiempo de ingreso de esta reservacion');</script>");
                                             //aun no es hora de su reserva
                                         }
                                     }
@@ -98,10 +111,13 @@ namespace Prestamos
                                 {
                                     if (x.Hours > 0)
                                     {
+                                        dAO.update_salida(int.Parse(reserva1.Rows[0]["id"].ToString()), int.Parse(reserva1.Rows[0]["qr"].ToString()), hoy);
+                                        cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('reservacion perdida por desface de tiempo');</script>");
                                         //reserva pasada por 1 hora
                                     }
                                     else
                                     {
+                                        cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('aun no es tiempo de ingreso de esta reservacion');</script>");
                                         //aun no es hora de su reserva
                                     }
                                 }
@@ -111,16 +127,34 @@ namespace Prestamos
                         }
                         else
                         {
+                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('lamentablemente la reservacion es para otro dia');</script>");
                             // su reserva no es hoy
                         }
-                        cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('ingreso registrado');</script>");
+                        
                         break;
                     case "2":
+                        DateTime hoy1 = DateTime.Now;
+                        TimeSpan xa = hoy1.Subtract(DateTime.Parse(reserva1.Rows[0]["fecha_fin"].ToString()));
+                        
+                        if (xa.Minutes>10 || xa.Hours>0)
+                        {
+                            //hacer multa falta
+                            dAO.update_salida(int.Parse(reserva1.Rows[0]["id"].ToString()), int.Parse(reserva1.Rows[0]["qr"].ToString()), hoy1);
+                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('salida exitosa pero con multa');</script>");
+
+                        }
+                        else
+                        {
+
+                            dAO.update_salida(int.Parse(reserva1.Rows[0]["id"].ToString()), int.Parse(reserva1.Rows[0]["qr"].ToString()), hoy1);
+                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('salida exitosa');</script>");
+
+                        }
 
                         break;
 
                     default:
-
+                        cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('reservacion no valida');</script>");
                         break;
 
                 }
@@ -129,7 +163,14 @@ namespace Prestamos
             {
                 cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('verifique el automovil');</script>");
             }
-            
+
+            Session["info"] = null;
+            Button1.Enabled = false;
+            Button2.Enabled = true;
+            Button3.Enabled = false;
+            TB_descrip.Text = "";
+            TB_placa.Text = "";
+            Button1.BackColor = System.Drawing.Color.Gray;
 
 
         }
@@ -151,12 +192,50 @@ namespace Prestamos
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-
+           
+            ClientScriptManager cm = this.ClientScript;
+            String jn = txtCodigo1.Text;
+            Button3.Enabled = true;
+            if (jn == "")
+            {
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('debe leer el qr primero');</script>");
+            }
+            else{
+                Button3.BackColor = System.Drawing.Color.Green;
+                try
+                {
+                    int id = int.Parse(jn);
+                    DAOUsuario dAO = new DAOUsuario();
+                    DataTable tabla = dAO.obtenereserva(id);
+                    if (tabla.Rows.Count==0)
+                    {
+                        cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('codigo de reserva no valido');</script>");
+                    }
+                    int id2 = int.Parse(tabla.Rows[0]["vehiculo_id"].ToString());
+                    DataTable tabla1 = dAO.obtenervehiculouno(id2);
+                    TB_descrip.Text = tabla.Rows[0]["descripcion"].ToString();
+                    TB_placa.Text = tabla1.Rows[0][0].ToString();
+                    Button3.Enabled = true;
+                }
+                catch
+                {
+                    cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('a ocurrido un error');</script>");
+                }
+                              
+                    
+           
+            }
         }
 
         protected void Button3_Click(object sender, EventArgs e)
         {
-
+            Button1.BackColor = System.Drawing.Color.Green;
+            Button3.BackColor = System.Drawing.Color.Gray;
+            Session["info"] = null;
+            Session["info"]= 1;
+            Button1.Enabled = true;
+            Button2.Enabled = false;
+            Button3.Enabled = false;
         }
     }
 }

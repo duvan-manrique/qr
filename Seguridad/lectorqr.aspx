@@ -29,7 +29,7 @@
             height: 356px;
         }
         .auto-style11 {
-            width: 439px;
+            width: 410px;
             height: 209px;
             float: left;
         }
@@ -56,6 +56,13 @@
             width: 521px;
             height: 26px;
             text-align: right;
+        }
+        .auto-style25 {
+            text-align: right;
+            height: 254px;
+        }
+        .auto-style26 {
+            margin-left: 49px;
         }
         </style>
 </head>
@@ -99,8 +106,13 @@
                     <td class="auto-style5">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style12">
-                                <img alt="" class="auto-style11" src="Imagenes/article.jpg" /></td>
+                    <td class="auto-style25">
+                                <img alt="" class="auto-style11" src="Imagenes/article.jpg" /><asp:Label ID="Label1" runat="server" Text="placa"></asp:Label>
+                                <asp:TextBox ID="TB_placa" runat="server" ReadOnly="True"></asp:TextBox>
+                                <br />
+                                <asp:Label ID="Label2" runat="server" Text="descripcion"></asp:Label>
+                                <asp:TextBox ID="TB_descrip" runat="server" ReadOnly="True"></asp:TextBox>
+                    </td>
                     <td class="auto-style12" font-family: 'Arial Rounded MT Bold'; color: #800000;">
     <div id="reader" style="width:300px; height:250px">
         <p>
@@ -122,11 +134,17 @@
                 </tr>
                 <tr>
                     <td class="auto-style13">
-                        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="ver datos" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
-                        <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="confirmar vehiculo" BackColor="#009900" BorderColor="#009900" ForeColor="White" Enabled="False" />
-                    </td>
+                        &nbsp;</td>
                     <td class="auto-style24">
-                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="verificar" BackColor="#009900" BorderColor="#009900" ForeColor="White" Enabled="False" />
+                        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="ver datos" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
+                        &nbsp;
+                        <br />
+&nbsp;
+                        <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="confirmar vehiculo" BackColor="Gray" BorderColor="#009900" ForeColor="White" Enabled="False" CssClass="auto-style26" />
+                    &nbsp;
+                        <br />
+&nbsp;
+                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="verificar" BackColor="Gray" BorderColor="#009900" ForeColor="White" Enabled="False" />
                     </td>
                 </tr>
                 </table>
