@@ -1102,7 +1102,7 @@ public class DAOUsuario
         }
     }
 
-    public void Updatefechas_horas(int id, DateTime Fecha, DateTime Hora_inicio, DateTime Hora_fin)
+    public void Updatefechas_horas(int id, DateTime Fecha, TimeSpan Hora_inicio, TimeSpan Hora_fin)
     {
         DataTable Fechas_horas = new DataTable();
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);

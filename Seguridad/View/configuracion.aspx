@@ -142,9 +142,30 @@
                 <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="id" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None" Height="239px" Width="456px">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:BoundField ApplyFormatInEditMode="True" DataField="fecha" DataFormatString="&quot;{0:d}&quot;" HeaderText="fecha" />
-                        <asp:BoundField ApplyFormatInEditMode="True" DataField="hora_inicio" DataFormatString="&quot;{0:t}&quot;" HeaderText="hora_inicio" />
-                        <asp:BoundField ApplyFormatInEditMode="True" DataField="hora_fin" DataFormatString="&quot;{0:t}&quot;" HeaderText="hora_fin" />
+                        <asp:TemplateField HeaderText="fecha">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("fecha", "{0:d}") %>' TextMode="Date"></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("fecha", "{0:d}") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="hora_inicio">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("hora_inicio", "{0:t}") %>' TextMode="Time"></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("hora_inicio", "{0:t}") %>'> </asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="hora_fin">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("hora_fin", "{0:t}") %>' TextMode="Time"></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("hora_fin", "{0:t}") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:CommandField ShowEditButton="True" />
                         <asp:CommandField ShowDeleteButton="True" />
                     </Columns>
@@ -165,9 +186,9 @@
                     </DeleteParameters>
                     <UpdateParameters>
                         <asp:Parameter Name="id" Type="Int32" />
-                        <asp:Parameter Name="Fecha" Type="Object" />
-                        <asp:Parameter DbType="Time" Name="Hora_inicio" />
-                        <asp:Parameter DbType="Time" Name="Hora_fin" />
+                        <asp:Parameter Name="Fecha" Type="DateTime" />
+                        <asp:Parameter Name="Hora_inicio" DbType="Time" />
+                        <asp:Parameter Name="Hora_fin" DbType="Time" />
                     </UpdateParameters>
                 </asp:ObjectDataSource>
             </td>
