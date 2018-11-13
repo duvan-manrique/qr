@@ -88,6 +88,8 @@ public class DAOUsuario
         return Usuario;
     }
 
+ 
+
     public DataTable actualziarContrasena(EUsuario datos)
     {
         DataTable Usuario = new DataTable();
@@ -489,6 +491,34 @@ public class DAOUsuario
         return Fechas_horas;
     }
 
+    public DataTable obtenerfechas_horas_bloqueadasTodos()
+    {
+        DataTable Fechas_horas_bloqueadas = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_fechas_horas_bloqueadas", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+
+            conection.Open();
+            dataAdapter.Fill(Fechas_horas_bloqueadas);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        return Fechas_horas_bloqueadas;
+    }
+
     public DataTable obtenerzonasTodos()
     {
         DataTable Zonas = new DataTable();
@@ -650,15 +680,44 @@ public class DAOUsuario
 
         try
         {
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.insert_fechas_horas", conection);
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.insert_fechas_horas1", conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_fecha", NpgsqlDbType.Date).Value = fechas_horas1.Fecha;
-            dataAdapter.SelectCommand.Parameters.Add("_hora_inicio", NpgsqlDbType.Integer).Value = fechas_horas1.Hora_inicio;
-            dataAdapter.SelectCommand.Parameters.Add("_hora_fin", NpgsqlDbType.Integer).Value = fechas_horas1.Hora_fin;
+            dataAdapter.SelectCommand.Parameters.Add("_hora_inicio", NpgsqlDbType.Time).Value = fechas_horas1.Hora_inicio;
+            dataAdapter.SelectCommand.Parameters.Add("_hora_fin", NpgsqlDbType.Time).Value = fechas_horas1.Hora_fin;
 
 
             conection.Open();
             dataAdapter.Fill(fechas_horas);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+
+    }
+
+    public void Insert_fechas_horas_bloqueadas(fechas_horas_bloqueadas fechas_horas_bloqueadas1)
+    {
+        DataTable fechas_horas_bloqueadas = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.insert_fechas_horas_bloqueadas1", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_fecha", NpgsqlDbType.Date).Value = fechas_horas_bloqueadas1.Fecha; 
+
+
+            conection.Open();
+            dataAdapter.Fill(fechas_horas_bloqueadas);
         }
         catch (Exception Ex)
         {
@@ -755,6 +814,63 @@ public class DAOUsuario
         try
         {
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_eliminar_usuarios", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+
+            conection.Open();
+            dataAdapter.Fill(Usuario);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+
+    }
+
+
+    public void EliminarFecha(int id)
+    {
+        DataTable Usuario = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_eliminar_fecha", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+
+            conection.Open();
+            dataAdapter.Fill(Usuario);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+
+    }
+
+    public void EliminarFecha_bloqueadas(int id)
+    {
+        DataTable Usuario = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_eliminar_fechabloqueada", conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
 
@@ -955,19 +1071,19 @@ public class DAOUsuario
         }
     }
 
-    public void Updatefechas_horas(int id, DateTime Fecha, int Hora_inicio, int Hora_fin)
+    public void Updatefechas_horas(int id, DateTime Fecha, DateTime Hora_inicio, DateTime Hora_fin)
     {
         DataTable Fechas_horas = new DataTable();
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
-
+   
         try
         {
             NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_actualizar_fechas_horas", conection);
             dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
             dataAdapter.SelectCommand.Parameters.Add("_fecha", NpgsqlDbType.Date).Value = Fecha;
-            dataAdapter.SelectCommand.Parameters.Add("_hora_inicio", NpgsqlDbType.Integer).Value = Hora_inicio;
-            dataAdapter.SelectCommand.Parameters.Add("_hora_fin", NpgsqlDbType.Integer).Value = Hora_fin;
+            dataAdapter.SelectCommand.Parameters.Add("_hora_inicio", NpgsqlDbType.Time).Value = Hora_inicio;
+            dataAdapter.SelectCommand.Parameters.Add("_hora_fin", NpgsqlDbType.Time).Value = Hora_fin;
 
 
             conection.Open();

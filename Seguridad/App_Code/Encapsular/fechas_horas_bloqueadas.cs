@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Microsoft.AspNet.SignalR;
 
-public class Fechas_horas 
+/// <summary>
+/// Descripción breve de fechas_horas_bloqueadas
+/// </summary>
+public class fechas_horas_bloqueadas
 {
-    public Fechas_horas()
+    public fechas_horas_bloqueadas()
     {
         //
         // TODO: Agregar aquí la lógica del constructor
@@ -14,11 +16,7 @@ public class Fechas_horas
     }
     private int id;
     private DateTime fecha;
-    private TimeSpan hora_inicio;
-    private TimeSpan hora_fin;
 
     public int Id { get => id; set => id = value; }
     public DateTime Fecha { get => fecha; set => fecha = value; }
-    public TimeSpan Hora_inicio { get => hora_inicio; set => hora_inicio = value; }
-    public TimeSpan Hora_fin { get => hora_fin; set => hora_fin = value; }
 }
