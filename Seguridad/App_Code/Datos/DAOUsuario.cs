@@ -979,18 +979,29 @@ public class DAOUsuario
     }
 
 
-    public void UpdateUsuario(int id, string Nombre, string User_name, string Clave, string Correo, int Rol_id, long Codigo)
+    public void UpdateUsuario(int id, string Nombre, string User_name, string Clave, string Correo, string rol ,string rol_u, long Codigo)
     {
+       
+
+
         DataTable users = obtenerUsuariosTodos();
         int prue = 0;
+        int idprue = 0;
         for (int i = 0; i < users.Rows.Count; i++)
         {
 
             if (User_name.Trim().Equals((users.Rows[i]["user_name"].ToString().Trim())))
             {
                 prue++;
+                idprue = int.Parse(users.Rows[i]["id"].ToString().Trim());
             }
+            
         }
+        if (id==idprue)
+        {
+            prue = 0;
+        }
+
         if (prue > 0)
         {
             cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('No se puede actualizar user name ya existente');</script>");
@@ -998,6 +1009,27 @@ public class DAOUsuario
         }
         else
         {
+
+            int Rol_id = 0;
+            switch (rol)
+            {
+                case "Admin":
+                    Rol_id = 1;
+                    break;
+
+                case "User":
+                    Rol_id = 3;
+                    break;
+                case "Vigilante":
+                    Rol_id = 2;
+                    break;
+
+                default:
+                    Rol_id = 3;
+                    break;
+
+
+            }
 
             DataTable Usuario = new DataTable();
             NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
@@ -1036,14 +1068,23 @@ public class DAOUsuario
     {
         DataTable zonas = obtenerzonasTodos();
         int prue = 0;
+        int idprue = 0;
         for (int i = 0; i < zonas.Rows.Count; i++)
         {
 
             if (Nombre.Trim().Equals((zonas.Rows[i]["nombre"].ToString().Trim())))
             {
                 prue++;
+                idprue = int.Parse(zonas.Rows[i]["id"].ToString().Trim());
             }
         }
+
+       
+        if (id == idprue)
+        {
+            prue = 0;
+        }
+
         if (prue > 0)
         {
             cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('No se puede actualizar nombre de zona ya existente');</script>");
@@ -1176,14 +1217,23 @@ public class DAOUsuario
 
         DataTable users = obtenerUsuariosTodos();
         int prue = 0;
+        int idprue = 0;
         for (int i = 0; i < users.Rows.Count; i++)
         {
 
             if (User_name.Trim().Equals((users.Rows[i]["user_name"].ToString().Trim())))
             {
                 prue++;
+                idprue = int.Parse(users.Rows[i]["id"].ToString().Trim());
             }
         }
+
+        if (id == idprue)
+        {
+            prue = 0;
+        }
+
+
         if (prue > 0)
         {
             cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('No se puede actualizar user name ya existente');</script>");

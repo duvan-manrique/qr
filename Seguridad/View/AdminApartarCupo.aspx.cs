@@ -1,5 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using QRCoder;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,7 +14,22 @@ public partial class View_AdminApartarCupo : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["user_id"] == null)
+        {
+            Response.Redirect("Loggin.aspx");
+        }
+        else
+        {
+           
+            L_Nombre.Text = Session["nombre"].ToString();
+            ClientScriptManager cm = this.ClientScript;
+            DAOUsuario dAOUsuario1 = new DAOUsuario();
+            dAOUsuario1.vista(cm);
+            
 
+        }
+
+        Cache.Remove("UsuarioApartarCupo.aspx");
     }
 
     protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
@@ -32,48 +52,366 @@ public partial class View_AdminApartarCupo : System.Web.UI.Page
         }
     }
 
-    protected void B_agregar_Click(object sender, EventArgs e)
-    {
-
-    }
-
     protected void B_Reservar_Click(object sender, EventArgs e)
     {
+        ClientScriptManager cm = this.ClientScript;
+
+        if ((System.Convert.ToInt32(DDL_Tipo.SelectedValue) == 0) || ((DDL_Veicu.SelectedValue) == "seleccione"))
+        {
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Debe seleccionar un vehiculo');</script>");
+
+        }
+        else
+        {
+            if (Session["val_date"] == null && (TB_Calendariocupo.Text != ""))
+            {
+                Reserva reserva = new Reserva();
+
+                reserva.Parq_id = Campos();
+                if (reserva.Parq_id != -1)
+                {
+                    reserva.F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
+                    reserva.F_fin = DateTime.Parse(TB_Calendariocupo.Text);
+                    if (System.Convert.ToInt32(DDL_HInicio.SelectedValue) < System.Convert.ToInt32(DDL_HFinal.SelectedValue))
+                    {
+                        DAOUsuario dAO1 = new DAOUsuario();
+                        DataTable tabla1 = dAO1.obtenereservacionyo(int.Parse(Session["user_id_control"].ToString()));
+                        int prue = 0;
+                        DateTime F_inicio = reserva.F_inicio.AddHours(double.Parse(DDL_HInicio.SelectedValue));
+                        F_inicio.AddMinutes(1);
+                        DateTime F_fin = reserva.F_fin.AddHours(double.Parse(DDL_HFinal.SelectedValue));
+                        for (int i = 0; i < tabla1.Rows.Count; i++)
+                        {
+                            if (F_inicio == (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin == (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                            {
+                                prue++;
+                            }
+                            if (F_inicio >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin == (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                            {
+                                prue++;
+                            }
+                            if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin == (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                            {
+                                prue++;
+                            }
+                            if (F_inicio == (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                            {
+                                prue++;
+                            }
+                            if (F_inicio == (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                            {
+                                prue++;
+                            }
+                            if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                            {
+                                prue++;
+                            }
+                            if (F_inicio >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                            {
+                                prue++;
+                            }
+                            if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())))
+                            {
+                                prue++;
+                            }
+
+                            if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                            {
+                                prue++;
+                            }
+
+                        }
+                        if (prue == 0)
+                        {
+                            reserva.F_inicio = reserva.F_inicio.AddHours(double.Parse(DDL_HInicio.SelectedValue));
+                            reserva.F_inicio.AddMinutes(1);
+                            reserva.F_fin = reserva.F_fin.AddHours(double.Parse(DDL_HFinal.SelectedValue));
+                            reserva.Vehiculo_id = int.Parse(Session["vehiculo_id"].ToString());
+                            reserva.Descripcion = TB_Descripcion.Text;
+
+                            DAOUsuario dAOUsuario = new DAOUsuario();
+
+
+                            dAOUsuario.Insert_Reserva(reserva);
+                            String QR = dAOUsuario.obtenerqr().Rows[0]["contenido"].ToString();
+                            Reserva reserva1 = JsonConvert.DeserializeObject<Reserva>(QR);
+                            txtCode.Text = reserva1.Id.ToString();
+                            btnGenerate_Click();
+                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Su reserva ha sido hecha revise su correo');</script>");
+                            limpar();
+
+                        }
+                        else
+                        {
+                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Su reserva esta cruzada con una ya creada');</script>");
+                        }
+
+
+                    }
+                    else
+                    {
+                        cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('la hora inicial debe ser menos al final ');</script>");
+                    }
+                }
+                else
+                {
+                    cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('lamentablemente no hay cupo para este vehiculo');</script>");
+                }
+            }
+            else
+            {
+
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('varifique la fecha');</script>");
+            }
+
+        }
 
     }
 
-    protected void DDL_Vehiculo_SelectedIndexChanged(object sender, EventArgs e)
+    private void limpar()
     {
 
     }
 
-    protected void DDL_HInicio_SelectedIndexChanged(object sender, EventArgs e)
+    protected int Campos()
     {
 
+
+
+        DAOUsuario dAOUsuario = new DAOUsuario();
+        DateTime F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
+        DateTime F_fin = DateTime.Parse(TB_Calendariocupo.Text);
+        F_inicio = F_inicio.AddHours(double.Parse(DDL_HInicio.SelectedValue));
+        F_fin = F_fin.AddHours(double.Parse(DDL_HFinal.SelectedValue));
+        DataTable x = dAOUsuario.Traer_cupo(int.Parse(DDL_Tipo.SelectedValue), F_inicio, F_fin);
+        return int.Parse(x.Rows[0][0].ToString());
     }
 
-    protected void DDL_HFinal_SelectedIndexChanged(object sender, EventArgs e)
+    protected void B_agregar_Click(object sender, EventArgs e)
     {
+        ClientScriptManager cm = this.ClientScript;
+        if (Session["user_id_control"] == null)
+        {
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Debe seleccionar un usuario control');</script>");
+        }
+        else {
+           
+            if (int.Parse(DDL_Vehiculo.SelectedValue) == 0)
+            {
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Debe seleccionar un tipo de vehiculo');</script>");
+            }
+            else
+            {
+                DAOUsuario dAO = new DAOUsuario();
+                DataTable carga = dAO.obtenerVehiculosTodos(int.Parse(DDL_Vehiculo.SelectedValue), int.Parse(Session["user_id_control"].ToString()));
+                int val = 0;
+                for (int i = 0; i < carga.Rows.Count; i++)
+                {
+                    if (TB_codigoVe.Text == carga.Rows[i][3].ToString())
+                    {
+                        val++;
+                    }
+                }
 
-    }
+                if (val == 0)
+                {
+                    Vehiculo vehiculo = new Vehiculo();
+                    vehiculo.Placa = TB_codigoVe.Text;
+                    vehiculo.Tipo = int.Parse(DDL_Vehiculo.SelectedValue);
+                    vehiculo.Usuario_id = int.Parse(Session["user_id_control"].ToString());
+                    vehiculo.Nombre = TB_marca.Text;
+                    dAO.Insert_Vehiculo(vehiculo);
+                    cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('vehiculo registrado');</script>");
+
+                }
+                else
+                {
+                    cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('ya registrado anteriormente');</script>");
+                }
+
+
+
+
+            }
+        }
+    }  
 
     protected void DDL_Tipo_SelectedIndexChanged(object sender, EventArgs e)
     {
+        ClientScriptManager cm = this.ClientScript;
+        if (Session["user_id_control"] == null)
+        {
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Debe seleccionar  usuario control');</script>");
+        }
+        else {
+            if ((int.Parse(DDL_Tipo.SelectedValue)) == 0)
+            {
+                DDL_Veicu.Items.Clear();
+                Session["vehiculo"] = null;
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Debe seleccionar  un tipo de vehiculo');</script>");
+            }
+            else
+            {
+                DAOUsuario dAO = new DAOUsuario();
+                DDL_Veicu.Enabled = (true);
+                DDL_Veicu.Items.Clear();
+                DDL_Veicu.Items.Add("seleccione");
+                switch (int.Parse(DDL_Tipo.SelectedValue))
+                {
+                    case 1:
+
+                        DataTable carga = dAO.obtenerVehiculosTodos(1, int.Parse(Session["user_id_control"].ToString()));
+                        Session["vehiculo"] = carga;
+                        for (int i = 0; i < carga.Rows.Count; i++)
+                        {
+                            DDL_Veicu.Items.Add(carga.Rows[i][3].ToString());
+                        }
+
+                        break;
+
+                    case 2:
+                        DataTable carga1 = dAO.obtenerVehiculosTodos(2, int.Parse(Session["user_id_control"].ToString()));
+                        Session["vehiculo"] = carga1;
+                        for (int i = 0; i < carga1.Rows.Count; i++)
+                        {
+                            DDL_Veicu.Items.Add(carga1.Rows[i][3].ToString());
+                        }
+                        break;
+
+                    case 3:
+                        DataTable carga2 = dAO.obtenerVehiculosTodos(3, int.Parse(Session["user_id_control"].ToString()));
+                        Session["vehiculo"] = carga2;
+                        for (int i = 0; i < carga2.Rows.Count; i++)
+                        {
+                            DDL_Veicu.Items.Add(carga2.Rows[i][3].ToString());
+                        }
+                        break;
+
+                    default:
+                        break;
+
+                }
+            }
+        }
 
     }
 
     protected void DDL_Veicu_SelectedIndexChanged(object sender, EventArgs e)
     {
-
+        DataTable vehiculo = (DataTable)Session["vehiculo"];
+        Session["vehiculo_id"] = null;
+        for (int i = 0; i < (vehiculo.Rows.Count); i++)
+        {
+            if (vehiculo.Rows[i][3].ToString().Equals(DDL_Veicu.SelectedValue))
+            {
+                Session["vehiculo_id"] = vehiculo.Rows[i][0].ToString();
+            }
+        }
     }
+
+    protected void btnGenerate_Click()
+    {
+        string Code = txtCode.Text;
+        QRCodeGenerator qrGenerator = new QRCodeGenerator();
+        QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(Code, QRCodeGenerator.ECCLevel.Q);
+
+        System.Web.UI.WebControls.Image imgQRcode = new System.Web.UI.WebControls.Image();
+        imgQRcode.Height = 150;
+        imgQRcode.Width = 150;
+
+        using (Bitmap bitmap = qrCode.GetGraphic(20))
+        {
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+
+                bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                byte[] byteImage = ms.ToArray();
+                imgQRcode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
+                Random num = new Random();
+                int a = num.Next(1, 9999);
+
+                String ruta1 = "\\Imagenes\\prueba" + a + ".jpg";
+                File.WriteAllBytes(Server.MapPath(ruta1), byteImage);
+                String ruta = Server.MapPath(ruta1);
+                DAOUsuario dAO = new DAOUsuario();
+                DataTable tabla = dAO.obtenerUsuario(int.Parse(Session["user_id_control"].ToString()));
+                Correo correo = new Correo();
+
+                correo.enviarCorreoQr(tabla.Rows[0]["correo"].ToString(), ruta);
+
+
+            }
+
+            PHQRCode.Controls.Add(imgQRcode);
+
+
+
+        }
+    }   
 
     protected void TB_Calendariocupo_TextChanged(object sender, EventArgs e)
     {
-
+        DateTime selec = new DateTime();
+        DateTime hoy = DateTime.Today;
+        selec = DateTime.Parse(TB_Calendariocupo.Text);
+        Session["val_date"] = null;
+        LB_u_n.Visible = false;
+        if (selec < hoy)
+        {
+            Session["val_date"] = 1;
+            LB_u_n.Visible = true;
+        }
+        if (selec.Year != hoy.Year)
+        {
+            Session["val_date"] = 1;
+            LB_u_n.Visible = true;
+        }
     }
-
-    protected void TB_codigoVe_TextChanged(object sender, EventArgs e)
+    
+    protected void DDL_usuarios_SelectedIndexChanged(object sender, EventArgs e)
     {
 
+        DDL_Veicu.Items.Clear();
+        DDL_Veicu.Items.Add("seleccione");
+        Session["vehiculo_id"] = null;
+
+
+        String username =DDL_usuarios.SelectedValue;
+        DAOUsuario dAO = new DAOUsuario();
+        DataTable datos = dAO.obtenerUsuariosTodos();
+        Session["user_id_control"] = null;
+        for (int i=0;i<datos.Rows.Count;i++)
+        {
+            if (username==datos.Rows[i]["user_name"].ToString())
+            {
+                Session["user_id_control"] = datos.Rows[i]["id"].ToString();
+                break;
+            }
+        }
+        
     }
+
+    protected void B_Seleccionar_Click(object sender, EventArgs e)
+    {
+        
+        Session["user_id_control"] = null;
+        DDL_usuarios.Items.Clear();
+        DAOUsuario dAOUsuario1 = new DAOUsuario();
+        DDL_usuarios.Items.Add("Seleccione");
+        DataTable usuarios = dAOUsuario1.obtenerUsuariosTodos();
+        for (int i = 0; i < usuarios.Rows.Count; i++)
+        {
+            if (usuarios.Rows[i]["rol_id"].ToString() != "2" && usuarios.Rows[i]["rol_id"].ToString() != "1")
+            {
+                DDL_usuarios.Items.Add(usuarios.Rows[i]["user_name"].ToString());
+
+            }
+
+        }
+    }
+
+
+
+
 }

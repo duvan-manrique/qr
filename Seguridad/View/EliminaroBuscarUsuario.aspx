@@ -90,7 +90,18 @@
                                             <asp:BoundField DataField="user_name" HeaderText="User_name" />
                                             <asp:BoundField DataField="clave" HeaderText="Clave" />
                                             <asp:BoundField DataField="correo" HeaderText="Correo" />
-                                            <asp:BoundField DataField="rol_id" HeaderText="Rol_id" />
+                                            <asp:TemplateField HeaderText="Rol">
+                                                <EditItemTemplate>
+                                                    <asp:DropDownList ID="DropDownList1" runat="server" SelectedValue='<%# Bind("rol") %>'>
+                                                        <asp:ListItem>User</asp:ListItem>
+                                                        <asp:ListItem>Vigilante</asp:ListItem>
+                                                        <asp:ListItem>Admin</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("rol") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:BoundField DataField="codigo" HeaderText="Codigo" />
                                             <asp:CommandField ShowEditButton="True" />
                                             <asp:CommandField ShowDeleteButton="True" />
@@ -116,7 +127,8 @@
                                             <asp:Parameter Name="User_name" Type="String" />
                                             <asp:Parameter Name="Clave" Type="String" />
                                             <asp:Parameter Name="Correo" Type="String" />
-                                            <asp:Parameter Name="Rol_id" Type="Int32" />
+                                            <asp:Parameter Name="rol" Type="String" />
+                                            <asp:Parameter Name="rol_u" Type="String" />
                                             <asp:Parameter Name="Codigo" Type="Int64" />
                                         </UpdateParameters>
                                     </asp:ObjectDataSource>

@@ -38,7 +38,7 @@
                 <tr>
                     <td colspan="2" class="auto-style18"><span class="auto-style22"><strong>Usuario:&nbsp;
                         <asp:Label ID="L_Nombre" runat="server"></asp:Label>
-                        </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; codigo identificativo del vehiculo<asp:TextBox ID="TB_codigoVe" runat="server" OnTextChanged="TB_codigoVe_TextChanged"></asp:TextBox>
+                        </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; codigo identificativo del vehiculo<asp:TextBox ID="TB_codigoVe" runat="server"></asp:TextBox>
                         marca<asp:TextBox ID="TB_marca" runat="server"></asp:TextBox>
                         tipo
                         <asp:DropDownList ID="DDL_Vehiculo" runat="server" ForeColor="#009900">
@@ -64,63 +64,14 @@
                             </tr>
                             <tr>
                                 <td>hora de inicio&nbsp;&nbsp;&nbsp;</td>
-                                <td><asp:DropDownList ID="DDL_HInicio" runat="server" ForeColor="#009900">
-                                  
-                                    <asp:ListItem Value="1">1:00</asp:ListItem>
-                                    <asp:ListItem Value="2">2:00</asp:ListItem>
-                                    <asp:ListItem Value="3">3:00</asp:ListItem>
-                                    <asp:ListItem Value="4">4:00</asp:ListItem>
-                                    <asp:ListItem Value="5">5:00</asp:ListItem>
-                                    <asp:ListItem Value="6">6:00</asp:ListItem>
-                                    <asp:ListItem Value="7">7:00 </asp:ListItem>
-                                    <asp:ListItem Value="8">8:00</asp:ListItem>
-                                    <asp:ListItem Value="9">9:00</asp:ListItem>
-                                    <asp:ListItem Value="10">10:00</asp:ListItem>
-                                    <asp:ListItem Value="11">11:00</asp:ListItem>
-                                    <asp:ListItem Value="12">12:00</asp:ListItem>
-                                    <asp:ListItem Value="13">13:00</asp:ListItem>
-                                    <asp:ListItem Value="14">14:00</asp:ListItem>
-                                    <asp:ListItem Value="15">15:00</asp:ListItem>
-                                    <asp:ListItem Value="16">16:00</asp:ListItem>
-                                    <asp:ListItem Value="17">17:00</asp:ListItem>
-                                    <asp:ListItem Value="18">18:00</asp:ListItem>
-                                    <asp:ListItem Value="19">19:00</asp:ListItem>
-                                    <asp:ListItem Value="20">20:00</asp:ListItem>
-                                    <asp:ListItem Value="21">21:00</asp:ListItem>
-                                    <asp:ListItem Value="22">22:00</asp:ListItem>
-                                    <asp:ListItem Value="23">23:00</asp:ListItem>
-                                    </asp:DropDownList>
+                                <td>
+                                    <asp:TextBox ID="TB_hora_inicio" runat="server" TextMode="Time"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td>hora final</td>
-                                <td><asp:DropDownList ID="DDL_HFinal" runat="server" ForeColor="#009900">
-                          
-                                    <asp:ListItem Value="1">1:00</asp:ListItem>
-                                    <asp:ListItem Value="2">2:00</asp:ListItem>
-                                    <asp:ListItem Value="3">3:00</asp:ListItem>
-                                    <asp:ListItem Value="4">4:00</asp:ListItem>
-                                    <asp:ListItem Value="5">5:00</asp:ListItem>
-                                    <asp:ListItem Value="6">6:00</asp:ListItem>
-                                    <asp:ListItem Value="7">7:00 </asp:ListItem>
-                                    <asp:ListItem Value="8">8:00</asp:ListItem>
-                                    <asp:ListItem Value="9">9:00</asp:ListItem>
-                                    <asp:ListItem Value="10">10:00</asp:ListItem>
-                                    <asp:ListItem Value="11">11:00</asp:ListItem>
-                                    <asp:ListItem Value="12">12:00</asp:ListItem>
-                                    <asp:ListItem Value="13">13:00</asp:ListItem>
-                                    <asp:ListItem Value="14">14:00</asp:ListItem>
-                                    <asp:ListItem Value="15">15:00</asp:ListItem>
-                                    <asp:ListItem Value="16">16:00</asp:ListItem>
-                                    <asp:ListItem Value="17">17:00</asp:ListItem>
-                                    <asp:ListItem Value="18">18:00</asp:ListItem>
-                                    <asp:ListItem Value="19">19:00</asp:ListItem>
-                                    <asp:ListItem Value="20">20:00</asp:ListItem>
-                                    <asp:ListItem Value="21">21:00</asp:ListItem>
-                                    <asp:ListItem Value="22">22:00</asp:ListItem>
-                                    <asp:ListItem Value="23">23:00</asp:ListItem>
-                                    
-                                    </asp:DropDownList>
+                                <td>
+                                    <asp:TextBox ID="TB_hora_fin" runat="server" TextMode="Time"></asp:TextBox>
                                     </td>
                             </tr>
                             <tr>

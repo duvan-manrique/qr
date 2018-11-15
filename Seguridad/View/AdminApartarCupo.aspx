@@ -38,16 +38,20 @@
         <tr>
             <td colspan="2" class="auto-style18"><span class="auto-style22"><strong>Usuario:&nbsp;
                         <asp:Label ID="L_Nombre" runat="server"></asp:Label>
-                </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; codigo identificativo del vehiculo<asp:TextBox ID="TB_codigoVe" runat="server" OnTextChanged="TB_codigoVe_TextChanged"></asp:TextBox>
+                </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; codigo identificativo del vehiculo<asp:TextBox ID="TB_codigoVe" runat="server"></asp:TextBox>
                         marca<asp:TextBox ID="TB_marca" runat="server"></asp:TextBox>
                         tipo
-                        <asp:DropDownList ID="DDL_Vehiculo" runat="server" ForeColor="#009900" OnSelectedIndexChanged="DDL_Vehiculo_SelectedIndexChanged">
+                        <asp:DropDownList ID="DDL_Vehiculo" runat="server" ForeColor="#009900">
                             <asp:ListItem Value="0">tipo</asp:ListItem>
                             <asp:ListItem Value="1">moto</asp:ListItem>
                             <asp:ListItem Value="2">carro</asp:ListItem>
                             <asp:ListItem Value="3">cicla</asp:ListItem>
                 </asp:DropDownList>
                 <asp:Button ID="B_agregar" runat="server" OnClick="B_agregar_Click" Text="Agregar" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
+                <br />
+                <span class="auto-style22"><strong>Usuario control:&nbsp; </strong></span>&nbsp;&nbsp;&nbsp;<asp:DropDownList ID="DDL_usuarios" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DDL_usuarios_SelectedIndexChanged">
+                        </asp:DropDownList>
+                <asp:Button ID="B_cargar" runat="server" OnClick="B_Seleccionar_Click" Text="cargar usuarios" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
             </td>
         </tr>
         <tr>
@@ -57,22 +61,16 @@
             <td class="auto-style8">
                 <table class="auto-style1">
                     <tr>
-                        <td>fecha de inicio de&nbsp; resevacion&nbsp;&nbsp; </td>
+                        <td>fecha de&nbsp; resevacion&nbsp;&nbsp; </td>
                         <td>
                             <asp:TextBox ID="TB_Calendariocupo" runat="server" TextMode="Date" AutoPostBack="True" OnTextChanged="TB_Calendariocupo_TextChanged"></asp:TextBox>
                             <asp:Label ID="LB_u_n" runat="server" Text="Fecha fuera de rango" Visible="False"></asp:Label>
                         </td>
                     </tr>
                     <tr>
-                        <td>fecha de fin de&nbsp; resevacion&nbsp;&nbsp; </td>
-                        <td>
-                            <asp:TextBox ID="TB_Calendariocupofin" runat="server" TextMode="Date" AutoPostBack="True" OnTextChanged="TB_Calendariocupo_TextChanged"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
                         <td>hora de inicio&nbsp;&nbsp;&nbsp;</td>
                         <td>
-                            <asp:DropDownList ID="DDL_HInicio" runat="server" ForeColor="#009900" OnSelectedIndexChanged="DDL_HInicio_SelectedIndexChanged">
+                            <asp:DropDownList ID="DDL_HInicio" runat="server" ForeColor="#009900">
                                 <asp:ListItem Value="1">1:00</asp:ListItem>
                                 <asp:ListItem Value="2">2:00</asp:ListItem>
                                 <asp:ListItem Value="3">3:00</asp:ListItem>
@@ -102,7 +100,7 @@
                     <tr>
                         <td>hora final</td>
                         <td>
-                            <asp:DropDownList ID="DDL_HFinal" runat="server" ForeColor="#009900" OnSelectedIndexChanged="DDL_HFinal_SelectedIndexChanged">
+                            <asp:DropDownList ID="DDL_HFinal" runat="server" ForeColor="#009900">
                                 <asp:ListItem Value="1">1:00</asp:ListItem>
                                 <asp:ListItem Value="2">2:00</asp:ListItem>
                                 <asp:ListItem Value="3">3:00</asp:ListItem>

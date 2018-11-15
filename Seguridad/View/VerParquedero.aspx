@@ -39,12 +39,19 @@
                                 <td>
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                                 <td class="auto-style12">
-                                    <asp:GridView ID="GV_VerParquedero" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True" AutoGenerateColumns="False" DataSourceID="ObjectDataSource1">
+                                    <asp:GridView ID="GV_VerParquedero" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True" AutoGenerateColumns="False" DataSourceID="ObjectDataSource1" AllowPaging="True">
                                         <AlternatingRowStyle BackColor="White" />
                                         <Columns>
                                             <asp:BoundField DataField="numero" HeaderText="numero" />
                                             <asp:BoundField DataField="zona_id" HeaderText="zona_id" />
-                                            <asp:BoundField DataField="estado" HeaderText="estado" />
+                                            <asp:TemplateField HeaderText="estado">
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("estado") %>'></asp:TextBox>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("estado") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                         </Columns>
                                         <EditRowStyle BackColor="#2461BF" />
                                         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
