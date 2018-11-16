@@ -149,7 +149,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                             txtCode.Text = reserva1.Id.ToString();
                             btnGenerate_Click();
                             cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Su reserva ha sido hecha revise su correo');</script>");
-                            limpar();
+                            limpiar();
 
                         }
                         else
@@ -182,10 +182,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
 
     }
 
-    private void limpar()
-    {
-        
-    }
+    
 
     protected int Campos()
     {
@@ -232,7 +229,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                 vehiculo.Nombre = TB_marca.Text;
                 dAO.Insert_Vehiculo(vehiculo);
                 cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('vehiculo registrado');</script>");
-
+                limpiar();
             }
             else
             {
@@ -244,7 +241,19 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
 
         }
     }
+    private void limpiar()
+    {
+        TB_codigoVe.Text = "";
+        TB_marca.Text = "";
+        DDL_Vehiculo.SelectedIndex = 0;
 
+        TB_Calendariocupo.Text = "";
+        TB_hora_inicio.Text = "";
+        TB_hora_fin.Text = "";
+        DDL_Tipo.SelectedIndex = 0;
+        DDL_Veicu.SelectedIndex = 0;
+        TB_Descripcion.Text = "";
+    }
     protected void DDL_Tipo_SelectedIndexChanged(object sender, EventArgs e)
     {
         ClientScriptManager cm = this.ClientScript;

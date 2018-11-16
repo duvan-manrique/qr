@@ -54,6 +54,7 @@ public partial class View_AdminApartarCupo : System.Web.UI.Page
 
     protected void B_Reservar_Click(object sender, EventArgs e)
     {
+
         ClientScriptManager cm = this.ClientScript;
 
         if ((System.Convert.ToInt32(DDL_Tipo.SelectedValue) == 0) || ((DDL_Veicu.SelectedValue) == "seleccione"))
@@ -72,14 +73,16 @@ public partial class View_AdminApartarCupo : System.Web.UI.Page
                 {
                     reserva.F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
                     reserva.F_fin = DateTime.Parse(TB_Calendariocupo.Text);
-                    if (System.Convert.ToInt32(DDL_HInicio.SelectedValue) < System.Convert.ToInt32(DDL_HFinal.SelectedValue))
+                    if (TimeSpan.Parse(TB_hora_inicio.Text) < TimeSpan.Parse(TB_hora_fin.Text))
                     {
                         DAOUsuario dAO1 = new DAOUsuario();
                         DataTable tabla1 = dAO1.obtenereservacionyo(int.Parse(Session["user_id_control"].ToString()));
                         int prue = 0;
-                        DateTime F_inicio = reserva.F_inicio.AddHours(double.Parse(DDL_HInicio.SelectedValue));
+                        DateTime F_inicio = reserva.F_inicio.AddHours(TimeSpan.Parse(TB_hora_inicio.Text).Hours);
+                        F_inicio.AddMinutes(TimeSpan.Parse(TB_hora_inicio.Text).Minutes);
                         F_inicio.AddMinutes(1);
-                        DateTime F_fin = reserva.F_fin.AddHours(double.Parse(DDL_HFinal.SelectedValue));
+                        DateTime F_fin = reserva.F_fin.AddHours(TimeSpan.Parse(TB_hora_fin.Text).Hours);
+                        F_fin.AddMinutes(TimeSpan.Parse(TB_hora_fin.Text).Minutes);
                         for (int i = 0; i < tabla1.Rows.Count; i++)
                         {
                             if (F_inicio == (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin == (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
@@ -120,12 +123,17 @@ public partial class View_AdminApartarCupo : System.Web.UI.Page
                                 prue++;
                             }
 
+
+
+
                         }
                         if (prue == 0)
                         {
-                            reserva.F_inicio = reserva.F_inicio.AddHours(double.Parse(DDL_HInicio.SelectedValue));
+                            reserva.F_inicio = reserva.F_inicio.AddHours(TimeSpan.Parse(TB_hora_inicio.Text).Hours);
+                            reserva.F_inicio.AddMinutes(TimeSpan.Parse(TB_hora_inicio.Text).Minutes);
                             reserva.F_inicio.AddMinutes(1);
-                            reserva.F_fin = reserva.F_fin.AddHours(double.Parse(DDL_HFinal.SelectedValue));
+                            reserva.F_fin = reserva.F_fin.AddHours(TimeSpan.Parse(TB_hora_fin.Text).Hours);
+                            reserva.F_fin.AddMinutes(TimeSpan.Parse(TB_hora_fin.Text).Minutes);
                             reserva.Vehiculo_id = int.Parse(Session["vehiculo_id"].ToString());
                             reserva.Descripcion = TB_Descripcion.Text;
 
@@ -155,16 +163,20 @@ public partial class View_AdminApartarCupo : System.Web.UI.Page
                 }
                 else
                 {
+                    //series
+
                     cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('lamentablemente no hay cupo para este vehiculo');</script>");
                 }
             }
             else
             {
 
-                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('varifique la fecha');</script>");
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('verifique la fecha');</script>");
             }
 
         }
+
+
 
     }
 
@@ -181,8 +193,10 @@ public partial class View_AdminApartarCupo : System.Web.UI.Page
         DAOUsuario dAOUsuario = new DAOUsuario();
         DateTime F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
         DateTime F_fin = DateTime.Parse(TB_Calendariocupo.Text);
-        F_inicio = F_inicio.AddHours(double.Parse(DDL_HInicio.SelectedValue));
-        F_fin = F_fin.AddHours(double.Parse(DDL_HFinal.SelectedValue));
+        F_inicio = F_inicio.AddHours(TimeSpan.Parse(TB_hora_inicio.Text).Hours);
+        F_inicio.AddMinutes(TimeSpan.Parse(TB_hora_inicio.Text).Minutes);
+        F_fin = F_fin.AddHours(TimeSpan.Parse(TB_hora_fin.Text).Hours);
+        F_fin.AddMinutes(TimeSpan.Parse(TB_hora_fin.Text).Minutes);
         DataTable x = dAOUsuario.Traer_cupo(int.Parse(DDL_Tipo.SelectedValue), F_inicio, F_fin);
         return int.Parse(x.Rows[0][0].ToString());
     }

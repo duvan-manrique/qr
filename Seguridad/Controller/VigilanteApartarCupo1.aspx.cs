@@ -75,7 +75,7 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
                             txtCode.Text = reserva1.Id.ToString();
                             btnGenerate_Click();
                             cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('la reservacion ha sido creada imprima el QR');</script>");
-                            limpar();
+                        limpiar();
 
 
 
@@ -102,12 +102,21 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
 
     }
 
-    private void limpar()
+    private void limpiar()
     {
-        
+        TB_codigoVe.Text = "";
+        TB_marca.Text = "";
+        DDL_Vehiculo.SelectedIndex = 0;
+
+        TB_Calendariocupo.Text = "";
+        TB_hora_inicio.Text = "";
+        TB_hora_fin.Text = "";
+        DDL_Tipo.SelectedIndex = 0;
+        DDL_Veicu.SelectedIndex = 0;
+        TB_Descripcion.Text = "";
     }
 
-    
+
     protected int Campos()
     {
         DAOUsuario dAOUsuario = new DAOUsuario();
@@ -153,6 +162,8 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
             Session["tipo"] = vehiculo.Tipo;
             DDL_Tipo.SelectedValue =Session["tipo"].ToString();
             DDL_Veicu_SelectedIndexChanged();
+              cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('vehiculo registrado');</script>");
+              limpiar();
             }
             else
             {

@@ -34,7 +34,7 @@ public partial class View_GenerarToken : System.Web.UI.Page
 
             Correo correo = new Correo();
 
-            String mensaje = "su link de acceso es: " + "http://localhost:52425/View/RecuperarContraseña.aspx?" + userToken;
+            String mensaje = "su link de acceso es: " + "http://localhost:1884/View/RecuperarContraseña.aspx?" + userToken;
             correo.enviarCorreo(token.Correo, userToken, mensaje);
 
             L_Mensaje.Text = "Su nueva contraseña ha sido enviada a su correo";

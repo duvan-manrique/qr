@@ -48,6 +48,10 @@ public partial class View_configuracion : System.Web.UI.Page
                     DAOUsuario crear = new DAOUsuario();
                     crear.Insert_fechas_horas(fechas_horas);
                     Response.Redirect("configuracion.aspx");
+                    ClientScriptManager df = this.ClientScript;
+                    df.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('fecha creada');</script>");
+                    limpiar();
+
                 }
                 else
                 {
@@ -57,7 +61,18 @@ public partial class View_configuracion : System.Web.UI.Page
         }
 
     }
-    
+
+    private void limpiar()
+    {
+        TB_Nombre.Text = "";
+        TB_Username.Text = "";
+        TB_Codigo.Text = "";
+        TB_Clave.Text = "";
+        TB_Correo.Text = "";
+        DropDownList1.SelectedIndex = 0;
+
+    }
+
     protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
     {
         if (int.Parse(Session["rolId"].ToString()) == 1)
@@ -92,6 +107,10 @@ public partial class View_configuracion : System.Web.UI.Page
 
                 DAOUsuario crear = new DAOUsuario();
                 crear.Insert_fechas_horas_bloqueadas(fechas_horas_bloquedas);
+                ClientScriptManager ol = this.ClientScript;
+                ol.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('fecha bloqueada');</script>");
+                limpiar();
+
                 Response.Redirect("configuracion.aspx");
             }
 

@@ -103,7 +103,6 @@
                                                     <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("user_name") %>'></asp:TextBox>
                                                     <strong style="font-family: 'Bahnschrift SemiBold'">
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3338" runat="server" ControlToValidate="TextBox1" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
-                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1338" runat="server" ControlToValidate="TextBox1" ErrorMessage="ingrese solo letras" ValidationExpression="[a-zA-ZñÑáéíóúÁÉÍÓÚ ,.]*"></asp:RegularExpressionValidator>
                                                     </strong>
                                                 </EditItemTemplate>
                                                 <ItemTemplate>
