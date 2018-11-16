@@ -11,6 +11,7 @@ using MessagingToolkit.QRCode.Codec;
 using System.IO;
 using System.Drawing.Imaging;
 using QRCoder;
+using Newtonsoft.Json;
 
 public partial class View_VigilanteApartarCupo : System.Web.UI.Page
 {
@@ -26,6 +27,7 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
             dAOUsuario1.vista(cm);
         }
         TB_Calendariocupo_TextChanged();
+        TB_hora_inicio_TextChanged();
         Cache.Remove("VigilanteApartarCupo.aspx");
     }
 
@@ -33,6 +35,7 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
 
     protected void B_Reservar_Click(object sender, EventArgs e)
     {
+
         ClientScriptManager cm = this.ClientScript;
 
         if ((System.Convert.ToInt32(DDL_Tipo.SelectedValue) == 0) || ((DDL_Veicu.SelectedValue) == "seleccione"))
@@ -42,56 +45,78 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
         }
         else
         {
-            Reserva reserva = new Reserva();
-
-            reserva.Parq_id = Campos();
-            if (reserva.Parq_id != -1)
+            if (Session["val_date"] == null && (TB_Calendariocupo.Text != ""))
             {
-                reserva.F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
-                reserva.F_fin = DateTime.Parse(TB_Calendariocupo.Text);
-                if (System.Convert.ToInt32(DDL_HInicio.SelectedValue) < System.Convert.ToInt32(DDL_HFinal.SelectedValue))
+                Reserva reserva = new Reserva();
+
+                reserva.Parq_id = Campos();
+                if (reserva.Parq_id != -1)
                 {
+                    reserva.F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
+                    reserva.F_fin = DateTime.Parse(TB_Calendariocupo.Text);
+                    if (TimeSpan.Parse(TB_hora_inicio.Text) < TimeSpan.Parse(TB_hora_fin.Text))
+                    {
+                        
+                        
+                            reserva.F_inicio = reserva.F_inicio.AddHours(TimeSpan.Parse(TB_hora_inicio.Text).Hours);
+                            reserva.F_inicio.AddMinutes(TimeSpan.Parse(TB_hora_inicio.Text).Minutes);
+                            reserva.F_inicio.AddMinutes(1);
+                            reserva.F_fin = reserva.F_fin.AddHours(TimeSpan.Parse(TB_hora_fin.Text).Hours);
+                            reserva.F_fin.AddMinutes(TimeSpan.Parse(TB_hora_fin.Text).Minutes);
+                            reserva.Vehiculo_id = int.Parse(Session["vehiculo_id"].ToString());
+                            reserva.Descripcion = TB_Descripcion.Text;
 
-                    reserva.F_inicio = reserva.F_inicio.AddHours(double.Parse(DDL_HInicio.SelectedValue));
-                    reserva.F_fin = reserva.F_fin.AddHours(double.Parse(DDL_HFinal.SelectedValue));
-                    reserva.Vehiculo_id = int.Parse(Session["vehiculo_id"].ToString());
-                    reserva.Descripcion = TB_Descripcion.Text;
+                            DAOUsuario dAOUsuario = new DAOUsuario();
 
 
-                    DAOUsuario dAOUsuario = new DAOUsuario();
-                    dAOUsuario.Insert_Reserva(reserva);
-
-
-
-                    txtCode.Text = ((TB_Calendariocupo.Text) + " " + (TB_Calendariocupo.Text) + " " + (DDL_HInicio.SelectedValue) + " " + (DDL_HFinal.SelectedValue) + " " + Session["vehiculo_id"].ToString() + " " + TB_Descripcion.Text);
+                            dAOUsuario.Insert_Reserva(reserva);
+                            String QR = dAOUsuario.obtenerqr().Rows[0]["contenido"].ToString();
+                            Reserva reserva1 = JsonConvert.DeserializeObject<Reserva>(QR);
+                            txtCode.Text = reserva1.Id.ToString();
+                            btnGenerate_Click();
+                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('la reservacion ha sido creada imprima el QR');</script>");
+                            limpar();
 
 
 
+                    }
+                    else
+                    {
+                        cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('la hora inicial debe ser menos al final ');</script>");
+                    }
                 }
                 else
                 {
-                    cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('la hora inicial debe ser menos al final ');</script>");
+                    cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('lamentablemente no hay cupo para este vehiculo');</script>");
                 }
             }
             else
             {
-                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('lamentablemente no hay cupo para este vehiculo');</script>");
+
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('verifique la fecha');</script>");
             }
-            btnGenerate_Click();
+
         }
 
 
 
     }
 
+    private void limpar()
+    {
+        
+    }
 
+    
     protected int Campos()
     {
         DAOUsuario dAOUsuario = new DAOUsuario();
         DateTime F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
         DateTime F_fin = DateTime.Parse(TB_Calendariocupo.Text);
-        F_inicio = F_inicio.AddHours(double.Parse(DDL_HInicio.SelectedValue));
-        F_fin = F_fin.AddHours(double.Parse(DDL_HFinal.SelectedValue));
+        F_inicio = F_inicio.AddHours(TimeSpan.Parse(TB_hora_inicio.Text).Hours);
+        F_inicio.AddMinutes(TimeSpan.Parse(TB_hora_inicio.Text).Minutes);
+        F_fin = F_fin.AddHours(TimeSpan.Parse(TB_hora_fin.Text).Hours);
+        F_fin.AddMinutes(TimeSpan.Parse(TB_hora_fin.Text).Minutes);
 
         DataTable x = dAOUsuario.Traer_cupo(int.Parse(DDL_Tipo.SelectedValue), F_inicio, F_fin);
         return int.Parse(x.Rows[0][0].ToString());
@@ -106,16 +131,33 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
         }
         else
         {
+
+            DAOUsuario dAO = new DAOUsuario();
+            DataTable carga = dAO.obtenerVehiculosTodos(int.Parse(DDL_Vehiculo.SelectedValue), int.Parse(Session["user_id"].ToString()));
+            int val = 0;
+            for (int i = 0; i < carga.Rows.Count; i++)
+            {
+                if (TB_codigoVe.Text == carga.Rows[i][3].ToString())
+                {
+                    val++;
+                }
+            }
+
+            if (val==0) { 
             Vehiculo vehiculo = new Vehiculo();
             vehiculo.Placa = TB_codigoVe.Text;
             vehiculo.Tipo = int.Parse(DDL_Vehiculo.SelectedValue);
             vehiculo.Usuario_id = int.Parse(Session["user_id"].ToString());
             vehiculo.Nombre = TB_marca.Text;
-            DAOUsuario dAO = new DAOUsuario();
             dAO.Insert_Vehiculo(vehiculo);
             Session["tipo"] = vehiculo.Tipo;
             DDL_Tipo.SelectedValue =Session["tipo"].ToString();
             DDL_Veicu_SelectedIndexChanged();
+            }
+            else
+            {
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('ya registrado anteriormente  COMUNIQUELE QUE DEBE REGISTRARSE EN PLATAFORMA');</script>");
+            }
 
         }
     }
@@ -244,5 +286,26 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
         {
             Response.Redirect("Loggin.aspx");
         }
+    }
+
+
+
+
+
+    protected void TB_Calendariocupo_TextChanged1(object sender, EventArgs e)
+    {
+        DateTime manana = DateTime.Today;
+        string mananatDate = manana.ToString("yyyy-MM-dd");
+        TB_Calendariocupo.Text = mananatDate;
+    }
+
+    protected void TB_hora_inicio_TextChanged()
+    {
+        DateTime hoy = DateTime.Now;
+        TimeSpan hora = new TimeSpan(hoy.Hour,hoy.Minute,0);
+        TB_hora_inicio.Text = hora.ToString();
+        
+        //TB_hora_inicio.Text = 
+
     }
 }

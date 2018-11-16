@@ -138,7 +138,10 @@ namespace Prestamos
                         
                         if (xa.Minutes>10 || xa.Hours>0)
                         {
-                            //hacer multa falta
+                            //hacer multa falta 
+                            //consulta de tipo?vehiculo para traer valor multa 
+                            // insert en tabla de multa
+                            // enviar valor de multa en el correo 
                             dAO.update_salida(int.Parse(reserva1.Rows[0]["id"].ToString()), int.Parse(reserva1.Rows[0]["qr"].ToString()), hoy1);
                             cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('salida exitosa pero con multa');</script>");
 

@@ -154,8 +154,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:TextBox ID="TextBox1" runat="server" TextMode="Time"></asp:TextBox>
-                        </td>
+                            &nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
                 </table>

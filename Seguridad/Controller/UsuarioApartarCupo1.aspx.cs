@@ -166,12 +166,14 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                 }
                 else
                 {
+                    //series
+
                     cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('lamentablemente no hay cupo para este vehiculo');</script>");
                 }
             }else
             {
                 
-                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('varifique la fecha');</script>");
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('verifique la fecha');</script>");
             }
 
         }

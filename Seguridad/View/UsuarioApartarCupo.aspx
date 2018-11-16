@@ -25,6 +25,9 @@
             height: 209px;
             float: left;
         }
+        .auto-style27 {
+            width: 161px;
+        }
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -57,25 +60,25 @@
                     <td class="auto-style8">
                         <table class="auto-style1">
                             <tr>
-                                <td>fecha de resevacion&nbsp;&nbsp; </td>
+                                <td class="auto-style27">fecha de resevacion&nbsp;&nbsp; </td>
                                 <td><asp:TextBox ID="TB_Calendariocupo" runat="server" TextMode="Date" AutoPostBack="True" OnTextChanged="TB_Calendariocupo_TextChanged"></asp:TextBox>
                 <asp:Label ID="LB_u_n" runat="server" Text="Fecha fuera de rango" Visible="False"></asp:Label>
                                     </td>
                             </tr>
                             <tr>
-                                <td>hora de inicio&nbsp;&nbsp;&nbsp;</td>
+                                <td class="auto-style27">hora de inicio&nbsp;&nbsp;&nbsp;</td>
                                 <td>
                                     <asp:TextBox ID="TB_hora_inicio" runat="server" TextMode="Time"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
-                                <td>hora final</td>
+                                <td class="auto-style27">hora final</td>
                                 <td>
                                     <asp:TextBox ID="TB_hora_fin" runat="server" TextMode="Time"></asp:TextBox>
                                     </td>
                             </tr>
                             <tr>
-                                <td rowspan="2">vehiculo
+                                <td rowspan="2" class="auto-style27">vehiculo
                         </td>
                                 <td>
                         <asp:DropDownList ID="DDL_Tipo" runat="server" ForeColor="#009900" OnSelectedIndexChanged="DDL_Tipo_SelectedIndexChanged" AutoPostBack="True">
@@ -94,15 +97,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Descripcion</td>
+                                <td class="auto-style27">Descripcion</td>
                                 <td>
                         <asp:TextBox ID="TB_Descripcion" runat="server" Height="44px" Width="181px"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <asp:TextBox ID="TextBox1" runat="server" TextMode="Time"></asp:TextBox>
-                                </td>
+                                <td class="auto-style27">
+                                    &nbsp;</td>
                                 <td>
                                     &nbsp;</td>
                             </tr>
