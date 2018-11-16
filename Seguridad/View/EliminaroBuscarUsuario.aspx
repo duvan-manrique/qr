@@ -86,23 +86,76 @@
                                     <asp:GridView ID="GV_Usuario" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" ShowFooter="True" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="ObjectDataSource2" OnSelectedIndexChanged="GV_Usuario_SelectedIndexChanged">
                                         <AlternatingRowStyle BackColor="White" />
                                         <Columns>
-                                            <asp:BoundField DataField="nombre" HeaderText="Nombre" />
-                                            <asp:BoundField DataField="user_name" HeaderText="User_name" />
-                                            <asp:BoundField DataField="clave" HeaderText="Clave" />
-                                            <asp:BoundField DataField="correo" HeaderText="Correo" />
+                                            <asp:TemplateField HeaderText="Nombre">
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("nombre") %>'></asp:TextBox>
+                                                    <strong style="font-family: 'Bahnschrift SemiBold'">
+                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1338888" runat="server" ControlToValidate="TextBox1" ErrorMessage="ingrese solo letras" ValidationExpression="[a-zA-ZñÑáéíóúÁÉÍÓÚ ,.]*"></asp:RegularExpressionValidator>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator33388888" runat="server" ControlToValidate="TextBox1" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                                                    </strong>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label6" runat="server" Text='<%# Bind("nombre") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="User_name">
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("user_name") %>'></asp:TextBox>
+                                                    <strong style="font-family: 'Bahnschrift SemiBold'">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3338" runat="server" ControlToValidate="TextBox1" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1338" runat="server" ControlToValidate="TextBox1" ErrorMessage="ingrese solo letras" ValidationExpression="[a-zA-ZñÑáéíóúÁÉÍÓÚ ,.]*"></asp:RegularExpressionValidator>
+                                                    </strong>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("user_name") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Clave">
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("clave") %>' TextMode="Password"></asp:TextBox>
+                                                    <strong style="font-family: 'Bahnschrift SemiBold'">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3488" runat="server" ControlToValidate="TextBox4" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                                                    </strong>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label5" runat="server" Text='<%# Bind("clave") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Correo">
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("correo") %>' TextMode="Email"></asp:TextBox>
+                                                    <strong style="font-family: 'Bahnschrift SemiBold'">
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3695" runat="server" ControlToValidate="TextBox3" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                                                    </strong>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("correo") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Rol">
                                                 <EditItemTemplate>
-                                                    <asp:DropDownList ID="DropDownList1" runat="server" SelectedValue='<%# Bind("rol") %>'>
-                                                        <asp:ListItem>User</asp:ListItem>
-                                                        <asp:ListItem>Vigilante</asp:ListItem>
-                                                        <asp:ListItem>Admin</asp:ListItem>
+                                                    <asp:DropDownList ID="DropDownList1" runat="server" SelectedValue='<%# Bind("rol_id") %>'>
+                                                        <asp:ListItem Value="3">User</asp:ListItem>
+                                                        <asp:ListItem Value="2">Vigilante</asp:ListItem>
+                                                        <asp:ListItem Value="1">Admin</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </EditItemTemplate>
                                                 <ItemTemplate>
-                                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("rol") %>'></asp:Label>
+                                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("rol_id") %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="codigo" HeaderText="Codigo" />
+                                            <asp:TemplateField HeaderText="Codigo">
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("codigo") %>' TextMode="Number"></asp:TextBox>
+                                                    <strong style="font-family: 'Bahnschrift SemiBold'">
+                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3447" runat="server" ControlToValidate="TextBox2" ErrorMessage="no puede ser mayor a 10 digitos" ValidationExpression="^([0-9]{1,10})$"></asp:RegularExpressionValidator>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3447" runat="server" ControlToValidate="TextBox2" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                                                    </strong>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("codigo") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:CommandField ShowEditButton="True" />
                                             <asp:CommandField ShowDeleteButton="True" />
                                         </Columns>
@@ -127,8 +180,7 @@
                                             <asp:Parameter Name="User_name" Type="String" />
                                             <asp:Parameter Name="Clave" Type="String" />
                                             <asp:Parameter Name="Correo" Type="String" />
-                                            <asp:Parameter Name="rol" Type="String" />
-                                            <asp:Parameter Name="rol_u" Type="String" />
+                                            <asp:Parameter Name="rol_id" Type="Int32" />
                                             <asp:Parameter Name="Codigo" Type="Int64" />
                                         </UpdateParameters>
                                     </asp:ObjectDataSource>

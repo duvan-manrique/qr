@@ -5,14 +5,14 @@
 
         .auto-style23 {
             text-align: left;
-            width: 533px;
+            width: 666px;
         }
         .auto-style13 {
             text-align: left;
         }
         .auto-style12 {
             text-align: center;
-            width: 533px;
+            width: 666px;
         }
         .auto-style11 {
             width: 439px;
@@ -25,8 +25,7 @@
     <table class="auto-style1" border="0" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
         <tr>
             <td class="auto-style23">
-                                <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" Height="31px" ImageUrl="~/Plantilla/images/volver.jpg" OnClick="ImageButton1_Click" Width="30px" />
-                            </td>
+                                z</td>
             <td  class="auto-style13">
                 &nbsp;</td>
         </tr>
@@ -50,7 +49,7 @@
                 </asp:DropDownList>
                 <br />Codigo identificacion universitaria<asp:TextBox ID="TB_Codigo" runat="server" TextMode="Number"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TB_Codigo" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TB_Codigo" ErrorMessage="ingrese numero" ValidationExpression="^([0-9]{1,10})$"></asp:RegularExpressionValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TB_Codigo" ErrorMessage="no puede ser mayor a 10 digitos" ValidationExpression="^([0-9]{1,10})$"></asp:RegularExpressionValidator>
                 <br />
                 <br />Clave<asp:TextBox ID="TB_Clave" runat="server" TextMode="Password"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TB_Clave" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>

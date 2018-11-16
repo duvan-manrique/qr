@@ -73,7 +73,7 @@
                                 <td class="auto-style12">
                                     &nbsp;</td>
                                 <td>
-                        <asp:TextBox ID="Tb_Contraseña" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="Tb_Contraseña" runat="server" TextMode="Password"></asp:TextBox>
                                 </td>
                                 <td>
                                     &nbsp;</td>
@@ -83,7 +83,7 @@
                             <tr>
                     <td class="auto-style14">repite su nueva contraseña</td>
                     <td class="auto-style10">
-                        <asp:TextBox ID="TB_Repetir" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="TB_Repetir" runat="server" TextMode="Password"></asp:TextBox>
                                 </td>
                             </tr>
                         </table>
