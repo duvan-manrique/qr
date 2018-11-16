@@ -42,8 +42,8 @@
                             <td>
                                 <table class="auto-style22" style="color: #009900; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><strong>
                                     <tr>
-                                        <td>Nombre de la zona </td>
-                                        <td class="auto-style13">
+                                        <td style="background-color: #FFFFFF">Nombre de la zona </td>
+                                        <td class="auto-style13" style="background-color: #FFFFFF">
                                             <asp:TextBox ID="TB_NombreZona" runat="server" Height="22px" Width="128px" OnTextChanged="TB_NombreZona_TextChanged"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TB_NombreZona" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
                                             <strong style="font-family: 'Bahnschrift SemiBold'">
@@ -52,16 +52,16 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>numero de campos</td>
-                                        <td class="auto-style13">
+                                        <td style="background-color: #FFFFFF">numero de campos</td>
+                                        <td class="auto-style13" style="background-color: #FFFFFF">
                                             <asp:TextBox ID="TB_NumerodeCampos" runat="server" TextMode="Number"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TB_NumerodeCampos" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TB_NumerodeCampos" ErrorMessage="no puede ser mas de 2 digitos" ValidationExpression="^([0-9]{1,2})$"></asp:RegularExpressionValidator>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>tipos de vehiculo</td>
-                                        <td class="auto-style13">
+                                        <td style="background-color: #FFFFFF">tipos de vehiculo</td>
+                                        <td class="auto-style13" style="background-color: #FFFFFF">
                                             <asp:DropDownList ID="DDL_TipodeVehiculo" runat="server">
                                                 <asp:ListItem Value="2">carro</asp:ListItem>
                                                 <asp:ListItem Value="1">moto</asp:ListItem>

@@ -135,6 +135,12 @@
                             <asp:TemplateField HeaderText="valor_multa">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("valor_multa") %>' TextMode="Number"></asp:TextBox>
+                                    <strong style="font-family: 'Bahnschrift SemiBold'">
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3682" runat="server" ControlToValidate="TextBox4" ErrorMessage="ingrese numero" ValidationExpression="^([0-9]{1,8})$"></asp:RegularExpressionValidator>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3682" runat="server" ControlToValidate="TextBox4" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                                    <strong>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TextBox4" ErrorMessage="no puede ser mas de 7 digitos" ValidationExpression="^([0-9]{1,7})$"></asp:RegularExpressionValidator>
+                                    </strong></strong>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="Label4" runat="server" Text='<%# Bind("valor_multa") %>'></asp:Label>

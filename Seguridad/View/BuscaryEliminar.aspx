@@ -45,8 +45,8 @@
                                                 <EditItemTemplate>
                                                     <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("nombre") %>'></asp:TextBox>
                                                     <strong style="font-family: 'Bahnschrift SemiBold'">
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator56" runat="server" ControlToValidate="TextBox1" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
-                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator156" runat="server" ControlToValidate="TextBox1" ErrorMessage="ingrese solo letras" ValidationExpression="[a-zA-ZñÑáéíóúÁÉÍÓÚ ,.]*"></asp:RegularExpressionValidator>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator539" runat="server" ControlToValidate="TextBox1" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator156844" runat="server" ControlToValidate="TextBox1" ErrorMessage="ingrese solo letras" ValidationExpression="[a-zA-ZñÑáéíóúÁÉÍÓÚ ,.]*"></asp:RegularExpressionValidator>
                                                     </strong>
                                                 </EditItemTemplate>
                                                 <ItemTemplate>
@@ -69,7 +69,10 @@
                                                 <EditItemTemplate>
                                                     <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("numero_de_campos") %>' TextMode="Number"></asp:TextBox>
                                                     <strong style="font-family: 'Bahnschrift SemiBold'">
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3489" runat="server" ControlToValidate="TextBox2" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3489611" runat="server" ControlToValidate="TextBox2" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                                                    </strong>
+                                                    <strong>
+                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TextBox2" ErrorMessage="no puede ser mas de 2 digitos" ValidationExpression="^([0-9]{1,2})$"></asp:RegularExpressionValidator>
                                                     </strong>
                                                 </EditItemTemplate>
                                                 <ItemTemplate>
