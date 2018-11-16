@@ -8,9 +8,10 @@ using System.Web.UI.WebControls;
 
 public partial class View_configuracion : System.Web.UI.Page
 {
-    string k = null;
-    string q = null;
-    string a = null;
+    string k = "si";
+    string q = "si";
+    string b = "si";
+    string o = "si";
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -33,9 +34,8 @@ public partial class View_configuracion : System.Web.UI.Page
     {
         if (q == "si")
         {
-            if (a == "si")
+            if (b == "si")
             {
-
                 ClientScriptManager cm = this.ClientScript;
                 if (TimeSpan.Parse(TB_hora_inicio.Text) < TimeSpan.Parse(Tb_hora_Fin.Text))
                 {
@@ -55,6 +55,7 @@ public partial class View_configuracion : System.Web.UI.Page
                 }
             }
         }
+
     }
     
     protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
@@ -81,39 +82,64 @@ public partial class View_configuracion : System.Web.UI.Page
     {
         if (k == "si")
         {
-            ClientScriptManager cm = this.ClientScript;
+            if (o == "si")
+            {
+                ClientScriptManager cm = this.ClientScript;
 
-            fechas_horas_bloqueadas fechas_horas_bloquedas = new fechas_horas_bloqueadas();
-            fechas_horas_bloquedas.Fecha = DateTime.Parse(tb_fecha0.Text);
+                fechas_horas_bloqueadas fechas_horas_bloquedas = new fechas_horas_bloqueadas();
+                fechas_horas_bloquedas.Fecha = DateTime.Parse(tb_fecha0.Text);
 
 
-            DAOUsuario crear = new DAOUsuario();
-            crear.Insert_fechas_horas_bloqueadas(fechas_horas_bloquedas);
-            Response.Redirect("configuracion.aspx");
+                DAOUsuario crear = new DAOUsuario();
+                crear.Insert_fechas_horas_bloqueadas(fechas_horas_bloquedas);
+                Response.Redirect("configuracion.aspx");
+            }
+
         }
     }
 
     protected void tb_fecha0_TextChanged(object sender, EventArgs e)
     {
-        DAOUsuario dao = new DAOUsuario();
-        DataTable users = dao.obtenerfechas_horas_bloqueadasTodos();
-       
-        Session["validar_fecha"] = k;
-        k = "si";
-        LB_u_n.Visible = false;
-        for (int i = 0; i < users.Rows.Count; i++)
-        {
-            string x = (users.Rows[i]["fecha"].ToString());
-        DateTime parsedDate = DateTime.Parse(x);
-        string l = parsedDate.ToString("yyyy-MM-dd");
-        
-            if (tb_fecha0.Text == l)
+            DAOUsuario dao = new DAOUsuario();
+            DataTable users = dao.obtenerfechas_horas_bloqueadasTodos();
+
+            Session["validar_fecha"] = k;
+
+            LB_u_n.Visible = false;
+            for (int i = 0; i < users.Rows.Count; i++)
             {
-               k = "no";
+                string g = (users.Rows[i]["fecha"].ToString());
+                DateTime parsedDate = DateTime.Parse(g);
+                string h = parsedDate.ToString("yyyy-MM-dd");
+
+                if (tb_fecha0.Text == h)
+                {
+                    k = "no";
                 LB_u_n.Visible = true;
+                }
+
             }
-            
+
+            DAOUsuario daoo = new DAOUsuario();
+            DataTable fech = daoo.obtenerfechas_horasTodos();
+
+            Session["validar_fecha_ho"] = o;
+
+        LB_uk.Visible = false;
+        for (int i = 0; i < fech.Rows.Count; i++)
+        {
+            string w = (fech.Rows[i]["fecha"].ToString());
+            DateTime parsedDate = DateTime.Parse(w);
+            string t = parsedDate.ToString("yyyy-MM-dd");
+
+            if (tb_fecha0.Text == t)
+            {
+                o = "no";
+                LB_uk.Visible = true;
+            }
+
         }
+      
     }
 
     protected void tb_fecha_TextChanged(object sender, EventArgs e)
@@ -122,7 +148,7 @@ public partial class View_configuracion : System.Web.UI.Page
         DataTable users = dao.obtenerfechas_horasTodos();
 
         Session["validar_fecha_hora"] = q;
-        q = "si";
+     
         LB_u_nn0.Visible = false;
         for (int i = 0; i < users.Rows.Count; i++)
         {
@@ -137,28 +163,27 @@ public partial class View_configuracion : System.Web.UI.Page
             }
 
         }
-    }
 
-    protected void TB_hora_inicio_TextChanged(object sender, EventArgs e)
-    {
-        DAOUsuario dao = new DAOUsuario();
-        DataTable users = dao.obtenerfechas_horasTodos();
-
-        Session["validar_fecha_hora1"] = a;
-        a = "si";
+        DAOUsuario blo = new DAOUsuario();
+        DataTable fechab = blo.obtenerfechas_horas_bloqueadasTodos();
+        Session["validar_fecha_hora_bloqueada"] = b;
         LB_u_nn1.Visible = false;
-        for (int i = 0; i < users.Rows.Count; i++)
+        for (int i = 0; i < fechab.Rows.Count; i++)
         {
-            string s = (users.Rows[i]["hora_inicio"].ToString());
-            DateTime parsedDate = DateTime.Parse(s);
-            string d = parsedDate.ToString("hh:mm:ss");
+            string j = (fechab.Rows[i]["fecha"].ToString());
+            DateTime parsedDate = DateTime.Parse(j);
+            string c = parsedDate.ToString("yyyy-MM-dd");
 
-            if (TB_hora_inicio.Text == d)
+            if (tb_fecha.Text == c)
             {
-                a = "no";
+                b = "no";
                 LB_u_nn1.Visible = true;
             }
 
         }
+    }
+
+    protected void TB_hora_inicio_TextChanged(object sender, EventArgs e)
+    {
     }
 }

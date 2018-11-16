@@ -141,7 +141,7 @@
                         <asp:Button ID="B_BuscarUsuario" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Buscar editar eliminar  Usuario" OnClick="B_BuscarUsuario_Click" Width="199px" />
                                 </td>
                                 <td class="auto-style12">
-                        <asp:Button ID="B_AdministrarParquedero" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="configuracion horario  parqueadero" OnClick="B_AdministrarParquedero_Click" Width="222px" />
+                        <asp:Button ID="B_AdministrarParquedero" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="configuracion " OnClick="B_AdministrarParquedero_Click" Width="222px" />
                                 </td>
                             </tr>
                             <tr>
@@ -158,7 +158,7 @@
                             </tr>
                             <tr>
                                 <td class="auto-style12">
-                        <asp:Button ID="B_Multas0" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Configurar $ Multas" OnClick="B_Multas_Click" Width="138px" />
+                        <asp:Button ID="B_Multas0" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="administrar pagos" OnClick="B_Multas_Click" Width="138px" />
                                 </td>
                                 <td class="auto-style12">
                                     &nbsp;</td>

@@ -9,40 +9,65 @@
             font-family: Arial;
         }
         .auto-style23 {
-            width: 488px;
+            width: 447px;
         }
         .auto-style24 {
             width: 159px;
+        }
+        .auto-style25 {
+            width: 507px;
+            height: 130px;
+        }
+        .auto-style26 {
+            height: 130px;
+            width: 569px;
+        }
+        .auto-style27 {
+            width: 507px;
+            height: 46px;
+        }
+        .auto-style28 {
+            height: 46px;
+        }
+        .auto-style29 {
+            width: 569px;
+        }
+        .auto-style30 {
+            height: 46px;
+            width: 569px;
+        }
+        .auto-style31 {
+            width: 507px;
         }
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <table class="auto-style1" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
         <tr>
-            <td style="color: #009900" class="auto-style23">
+            <td style="background-color: #FFFFFF;" class="auto-style31">
                                 <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" Height="31px" ImageUrl="~/Plantilla/images/volver.jpg" OnClick="ImageButton1_Click" Width="30px" />
                             </td>
-            <td>
+            <td class="auto-style29" style="background-color: #FFFFFF">
                 &nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td style="color: #009900" class="auto-style23">
-                                <span class="auto-style22"><strong>Usuario:&nbsp;
+            <td style="background-color: #FFFFFF;" class="auto-style31">
+                                <span class="auto-style22"><strong style="color: #009900">Usuario:&nbsp;
                         <asp:Label ID="L_Nombre" runat="server"></asp:Label>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span></td>
-            <td>
+            <td class="auto-style29" style="background-color: #FFFFFF">
                 &nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td style="color: #009900" class="auto-style23"><span class="auto-style22"><strong>Fechas que desea bloquear</strong></span></td>
-            <td style="color: #009900">
-                <span class="auto-style22"><strong>horario de atencion</strong></span>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td style="background-color: #FFFFFF;" class="auto-style27"><span class="auto-style22"><strong style="color: #009900">Fechas que desea bloquear</strong></span></td>
+            <td style="background-color: #FFFFFF;" class="auto-style30">
+                <span class="auto-style22"><strong style="color: #009900">horario de atencion</strong></span>&nbsp;</td>
+            <td class="auto-style28">&nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style23">
+            <td class="auto-style25" style="background-color: #FFFFFF">
                 <table class="auto-style1">
                     <tr>
                         <td class="auto-style22" style="color: #009900"><strong>fecha</td>
@@ -50,6 +75,7 @@
                             <asp:TextBox ID="tb_fecha0" runat="server" TextMode="Date" OnTextChanged="tb_fecha0_TextChanged"></asp:TextBox>
                             <strong style="font-family: 'Bahnschrift SemiBold'">
                 <asp:Label ID="LB_u_n" runat="server" Text="fecha ya bloqueada" Visible="False"></asp:Label>
+                        &nbsp;<asp:Label ID="LB_uk" runat="server" Text="fecha tiene horario de atencion" Visible="False"></asp:Label>
                         </td>
                     </tr>
                     <tr>
@@ -68,26 +94,25 @@
                     </tr>
                 </table>
             </td>
-            <td>
+            <td class="auto-style26" style="background-color: #FFFFFF">
                 <table class="auto-style1">
                     <tr>
-                        <td class="auto-style22" style="color: #009900"><strong>fecha</td>
+                        <td class="auto-style22" style="color: #009900; background-color: #FFFFFF;"><strong>fecha</td>
                         <td>
                             <asp:TextBox ID="tb_fecha" runat="server" TextMode="Date" OnTextChanged="tb_fecha_TextChanged"></asp:TextBox>
                             <strong style="font-family: 'Bahnschrift SemiBold'">
                 <asp:Label ID="LB_u_nn0" runat="server" Text="fecha ya creada" Visible="False"></asp:Label>
+                <asp:Label ID="LB_u_nn1" runat="server" Text="fecha esta bloqueada " Visible="False"></asp:Label>
                         </td>
                     </tr>
                     <tr>
-                        <td class="auto-style22" style="color: #009900"><strong>hora inicio</td>
+                        <td class="auto-style22" style="color: #009900; background-color: #FFFFFF;"><strong>hora inicio</td>
                         <td>
                                     <asp:TextBox ID="TB_hora_inicio" runat="server" TextMode="Time" Height="22px" OnTextChanged="TB_hora_inicio_TextChanged"></asp:TextBox>
-                            <strong style="font-family: 'Bahnschrift SemiBold'">
-                <asp:Label ID="LB_u_nn1" runat="server" Text="hora ya creada" Visible="False"></asp:Label>
                                 </td>
                     </tr>
                     <tr>
-                        <td class="auto-style22" style="color: #009900"><strong>hora fin</td>
+                        <td class="auto-style22" style="color: #009900; background-color: #FFFFFF;"><strong>hora fin</td>
                         <td>
                                     <asp:TextBox ID="Tb_hora_Fin" runat="server" TextMode="Time"></asp:TextBox>
                                 </td>
@@ -95,15 +120,51 @@
                     <tr>
                         <td class="auto-style12">&nbsp;</td>
                         <td>
-                            <asp:Button ID="b_crear_fecha_hora" runat="server" OnClick="b_crear_fecha_hora_Click" Text="crear_fecha_hora" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
+                            <asp:Button ID="b_crear_fecha_hora" runat="server" OnClick="b_crear_fecha_hora_Click" Text="crear_fecha_hora" BackColor="#009900" BorderColor="#009900" ForeColor="White" ValidationGroup="atencion" />
                         </td>
                     </tr>
                 </table>
             </td>
-            <td>&nbsp;</td>
+            <td class="auto-style23" rowspan="2"><span class="auto-style22"><strong style="color: #009900">&nbsp;configuracion de valor de multas<br />
+                <br />
+                </strong></span>
+                    <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="ObjectDataSource3">
+                        <AlternatingRowStyle BackColor="White" />
+                        <Columns>
+                            <asp:BoundField DataField="nombre" HeaderText="nombre" />
+                            <asp:TemplateField HeaderText="valor_multa">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("valor_multa") %>' TextMode="Number"></asp:TextBox>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("valor_multa") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:CommandField ShowEditButton="True" />
+                        </Columns>
+                        <EditRowStyle BackColor="#2461BF" />
+                        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#EFF3FB" />
+                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                        <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                        <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                        <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                    </asp:GridView>
+                    <br />
+                <asp:ObjectDataSource ID="ObjectDataSource3" runat="server" SelectMethod="obtenerMultasTodos" TypeName="DAOUsuario" UpdateMethod="UpdateValorMulta">
+                    <UpdateParameters>
+                        <asp:Parameter Name="id" Type="Int32" />
+                        <asp:Parameter Name="Nombre" Type="String" />
+                        <asp:Parameter Name="Valor_multa" Type="Double" />
+                    </UpdateParameters>
+                </asp:ObjectDataSource>
+            </td>
         </tr>
         <tr>
-            <td class="auto-style23">
+            <td class="auto-style31">
                                 <table class="auto-style1">
                                     <tr>
                                         <td class="auto-style24">&nbsp;</td>
@@ -138,7 +199,7 @@
                                     </DeleteParameters>
                                 </asp:ObjectDataSource>
             </td>
-            <td>
+            <td class="auto-style29">
                 <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="id" DataSourceID="ObjectDataSource1" ForeColor="#333333" GridLines="None" Height="239px" Width="456px">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
@@ -192,11 +253,16 @@
                     </UpdateParameters>
                 </asp:ObjectDataSource>
             </td>
+        </tr>
+        <tr>
+            <td class="auto-style31">&nbsp;</td>
+            <td class="auto-style29">
+                &nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style23">&nbsp;</td>
-            <td>
+            <td class="auto-style31">&nbsp;</td>
+            <td class="auto-style29">
                 &nbsp;</td>
             <td>&nbsp;</td>
         </tr>

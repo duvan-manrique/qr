@@ -87,19 +87,26 @@
                                         <AlternatingRowStyle BackColor="White" />
                                         <Columns>
                                             <asp:BoundField DataField="nombre" HeaderText="Nombre" />
-                                            <asp:BoundField DataField="user_name" HeaderText="User_name" />
+                                            <asp:TemplateField HeaderText="User_name">
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("user_name") %>'></asp:TextBox>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("user_name") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:BoundField DataField="clave" HeaderText="Clave" />
                                             <asp:BoundField DataField="correo" HeaderText="Correo" />
                                             <asp:TemplateField HeaderText="Rol">
                                                 <EditItemTemplate>
-                                                    <asp:DropDownList ID="DropDownList1" runat="server" SelectedValue='<%# Bind("rol") %>'>
-                                                        <asp:ListItem>User</asp:ListItem>
-                                                        <asp:ListItem>Vigilante</asp:ListItem>
-                                                        <asp:ListItem>Admin</asp:ListItem>
+                                                    <asp:DropDownList ID="DropDownList1" runat="server" SelectedValue='<%# Bind("rol_id") %>'>
+                                                        <asp:ListItem Value="3">User</asp:ListItem>
+                                                        <asp:ListItem Value="2">Vigilante</asp:ListItem>
+                                                        <asp:ListItem Value="1">Admin</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </EditItemTemplate>
                                                 <ItemTemplate>
-                                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("rol") %>'></asp:Label>
+                                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("rol_id") %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:BoundField DataField="codigo" HeaderText="Codigo" />
@@ -127,8 +134,7 @@
                                             <asp:Parameter Name="User_name" Type="String" />
                                             <asp:Parameter Name="Clave" Type="String" />
                                             <asp:Parameter Name="Correo" Type="String" />
-                                            <asp:Parameter Name="rol" Type="String" />
-                                            <asp:Parameter Name="rol_u" Type="String" />
+                                            <asp:Parameter Name="rol_id" Type="Int32" />
                                             <asp:Parameter Name="Codigo" Type="Int64" />
                                         </UpdateParameters>
                                     </asp:ObjectDataSource>

@@ -979,9 +979,8 @@ public class DAOUsuario
     }
 
 
-    public void UpdateUsuario(int id, string Nombre, string User_name, string Clave, string Correo, string rol ,string rol_u, long Codigo)
+    public void UpdateUsuario(int id, string Nombre, string User_name, string Clave, string Correo, int rol_id , long Codigo)
     {
-       
 
 
         DataTable users = obtenerUsuariosTodos();
@@ -1010,26 +1009,7 @@ public class DAOUsuario
         else
         {
 
-            int Rol_id = 0;
-            switch (rol)
-            {
-                case "Admin":
-                    Rol_id = 1;
-                    break;
-
-                case "User":
-                    Rol_id = 3;
-                    break;
-                case "Vigilante":
-                    Rol_id = 2;
-                    break;
-
-                default:
-                    Rol_id = 3;
-                    break;
-
-
-            }
+       
 
             DataTable Usuario = new DataTable();
             NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
@@ -1043,7 +1023,7 @@ public class DAOUsuario
                 dataAdapter.SelectCommand.Parameters.Add("_user_name", NpgsqlDbType.Text).Value = User_name;
                 dataAdapter.SelectCommand.Parameters.Add("_clave", NpgsqlDbType.Text).Value = Clave;
                 dataAdapter.SelectCommand.Parameters.Add("_correo", NpgsqlDbType.Text).Value = Correo;
-                dataAdapter.SelectCommand.Parameters.Add("_rol_id", NpgsqlDbType.Integer).Value = Rol_id;
+                dataAdapter.SelectCommand.Parameters.Add("_rol_id", NpgsqlDbType.Integer).Value = rol_id;
                 dataAdapter.SelectCommand.Parameters.Add("_codigo", NpgsqlDbType.Bigint).Value = Codigo;
 
 
