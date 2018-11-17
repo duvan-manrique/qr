@@ -53,7 +53,18 @@
                                         <Columns>
                                             <asp:BoundField DataField="fecha_inicio" HeaderText="fecha_inicio " />
                                             <asp:BoundField DataField="fecha_fin" HeaderText="fecha_fin" />
-                                            <asp:BoundField DataField="estado" HeaderText="estado" />
+                                            <asp:TemplateField HeaderText="estado">
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("estado") %>'></asp:TextBox>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:DropDownList ID="DropDownList1" runat="server" Enabled="False" SelectedValue='<%# Bind("estado") %>'>
+                                                        <asp:ListItem Value="1">en espera</asp:ListItem>
+                                                        <asp:ListItem Value="2">en uso</asp:ListItem>
+                                                        <asp:ListItem Value="3">terminada</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:BoundField DataField="vehiculo_id" HeaderText="vehiculo_id" />
                                             <asp:BoundField DataField="descripcion" HeaderText="descripcion" />
                                             <asp:BoundField DataField="qr" HeaderText="qr" />

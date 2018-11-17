@@ -144,7 +144,9 @@ public partial class View_AdminApartarCupo : System.Web.UI.Page
                             String QR = dAOUsuario.obtenerqr().Rows[0]["contenido"].ToString();
                             Reserva reserva1 = JsonConvert.DeserializeObject<Reserva>(QR);
                             txtCode.Text = reserva1.Id.ToString();
-                            btnGenerate_Click();
+                            string mensaje = "su QR de reservacion del dia: " + reserva.F_inicio + "asta: " + reserva.F_fin + ";  para mas informacion puede revisar desde su plataforma ";
+
+                            btnGenerate_Click(mensaje);
                             cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Su reserva ha sido hecha revise su correo');</script>");
                             limpar();
 
@@ -382,7 +384,7 @@ public partial class View_AdminApartarCupo : System.Web.UI.Page
         }
     }
 
-    protected void btnGenerate_Click()
+    protected void btnGenerate_Click(string mensaje)
     {
         string Code = txtCode.Text;
         QRCodeGenerator qrGenerator = new QRCodeGenerator();
@@ -411,7 +413,7 @@ public partial class View_AdminApartarCupo : System.Web.UI.Page
                 DataTable tabla = dAO.obtenerUsuario(int.Parse(Session["user_id_control"].ToString()));
                 Correo correo = new Correo();
 
-                correo.enviarCorreoQr(tabla.Rows[0]["correo"].ToString(), ruta);
+                correo.enviarCorreoQr(tabla.Rows[0]["correo"].ToString(), ruta,mensaje);
 
 
             }

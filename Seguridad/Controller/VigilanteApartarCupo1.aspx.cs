@@ -73,7 +73,9 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
                             String QR = dAOUsuario.obtenerqr().Rows[0]["contenido"].ToString();
                             Reserva reserva1 = JsonConvert.DeserializeObject<Reserva>(QR);
                             txtCode.Text = reserva1.Id.ToString();
-                            btnGenerate_Click();
+                        string mensaje = "su QR de reservacion del dia: " + reserva.F_inicio + "asta: " + reserva.F_fin + ";  para mas informacion puede revisar desde su plataforma ";
+
+                        btnGenerate_Click(mensaje);
                             cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('la reservacion ha sido creada imprima el QR');</script>");
                         limpiar();
 
@@ -234,7 +236,7 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
         
     }
 
-    protected void btnGenerate_Click()
+    protected void btnGenerate_Click(string mensaje)
     {
         string Code = txtCode.Text;
         QRCodeGenerator qrGenerator = new QRCodeGenerator();
@@ -253,15 +255,26 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
                 bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 byte[] byteImage = ms.ToArray();
                 imgQRcode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
+                Random num = new Random();
+                int a = num.Next(1, 9999);
+
+                String ruta1 = "\\Imagenes\\prueba" + a + ".jpg";
+                File.WriteAllBytes(Server.MapPath(ruta1), byteImage);
+                String ruta = Server.MapPath(ruta1);
+                DAOUsuario dAO = new DAOUsuario();
+                DataTable tabla = dAO.obtenerUsuario(int.Parse(Session["user_id"].ToString()));
+                Correo correo = new Correo();
+
+                correo.enviarCorreoQr(tabla.Rows[0]["correo"].ToString(), ruta, mensaje);
+
 
             }
 
             PHQRCode.Controls.Add(imgQRcode);
-           
+
+
 
         }
-
-
     }
 
 

@@ -1228,7 +1228,8 @@ public class DAOUsuario
             }
             catch (Exception Ex)
             {
-                throw Ex;
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('no puede eliminar esta reservacion');</script>");
+                //throw Ex;
             }
             finally
             {

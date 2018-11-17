@@ -81,7 +81,13 @@ public partial class View_Loggin : System.Web.UI.Page
                 Response.Redirect("Vigilante.aspx");
             else
                 Response.Redirect("Usuario.aspx");
-           
+
+        }
+        else
+        {
+            ClientScriptManager cm = this.ClientScript;
+
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('error al iniciar session verifique los datos');</script>");
         }
     }
 
