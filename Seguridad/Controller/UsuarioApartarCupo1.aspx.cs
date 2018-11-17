@@ -232,7 +232,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
     {
         string mensaje="";
         ClientScriptManager cm = this.ClientScript;
-        if ((TimeSpan.Parse(TB_hora_inicio.Text) < TimeSpan.Parse(TB_hora_fin.Text)) && 15<= (TimeSpan.Parse(TB_hora_inicio.Text).Subtract( TimeSpan.Parse(TB_hora_fin.Text))).TotalMinutes)
+        if ((TimeSpan.Parse(TB_hora_inicio.Text) < TimeSpan.Parse(TB_hora_fin.Text)) && 15<= (TimeSpan.Parse(TB_hora_fin.Text).Subtract(TimeSpan.Parse(TB_hora_inicio.Text))).TotalMinutes)
         { }
         else
         {

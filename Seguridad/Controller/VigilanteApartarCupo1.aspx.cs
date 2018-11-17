@@ -51,7 +51,7 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
                 DAOUsuario dAO = new DAOUsuario();
 
                 
-                if (TimeSpan.Parse(TB_hora_inicio.Text) < TimeSpan.Parse(TB_hora_fin.Text) && 15 <= (TimeSpan.Parse(TB_hora_inicio.Text).Subtract(TimeSpan.Parse(TB_hora_fin.Text))).TotalMinutes)
+                if (TimeSpan.Parse(TB_hora_inicio.Text) < TimeSpan.Parse(TB_hora_fin.Text) && 15 <= (TimeSpan.Parse(TB_hora_fin.Text).Subtract(TimeSpan.Parse(TB_hora_inicio.Text))).TotalMinutes)
                 {
                     DataTable f_horario = dAO.obtenerfechas_horasTodos();
 
