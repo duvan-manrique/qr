@@ -220,30 +220,35 @@ namespace Prestamos
            
             ClientScriptManager cm = this.ClientScript;
             String jn = txtCodigo1.Text;
-            Button3.Enabled = true;
+           
             if (jn == "")
             {
                 cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('debe leer el qr primero');</script>");
             }
             else{
-                Button3.BackColor = System.Drawing.Color.Green;
+              
                 try
                 {
                     int id = int.Parse(jn);
                     DAOUsuario dAO = new DAOUsuario();
                     DataTable tabla = dAO.obtenereserva(id);
-                    if (tabla.Rows.Count==0)
+                    if (tabla.Rows.Count == 0)
                     {
                         cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('codigo de reserva no valido');</script>");
                     }
-                    int id2 = int.Parse(tabla.Rows[0]["vehiculo_id"].ToString());
-                    DataTable tabla1 = dAO.obtenervehiculouno(id2);
-                    TB_descrip.Text = tabla.Rows[0]["descripcion"].ToString();
-                    TB_placa.Text = tabla1.Rows[0][0].ToString();
-                    Button3.Enabled = true;
+                    else
+                    {
+                        int id2 = int.Parse(tabla.Rows[0]["vehiculo_id"].ToString());
+                        DataTable tabla1 = dAO.obtenervehiculouno(id2);
+                        TB_descrip.Text = tabla.Rows[0]["descripcion"].ToString();
+                        TB_placa.Text = tabla1.Rows[0][0].ToString();
+                        Button3.Enabled = true;
+                        Button3.BackColor = System.Drawing.Color.Green;
+                    }
                 }
                 catch
                 {
+                    Button3.Enabled = false;
                     cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('a ocurrido un error');</script>");
                 }
                               

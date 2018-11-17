@@ -48,49 +48,111 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
             if (Session["val_date"] == null && (TB_Calendariocupo.Text != ""))
             {
                 Reserva reserva = new Reserva();
+                DAOUsuario dAO = new DAOUsuario();
 
-                reserva.Parq_id = Campos();
-                if (reserva.Parq_id != -1)
+                
+                if (TimeSpan.Parse(TB_hora_inicio.Text) < TimeSpan.Parse(TB_hora_fin.Text) && 15 <= (TimeSpan.Parse(TB_hora_inicio.Text).Subtract(TimeSpan.Parse(TB_hora_fin.Text))).TotalMinutes)
                 {
-                    reserva.F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
-                    reserva.F_fin = DateTime.Parse(TB_Calendariocupo.Text);
-                    if (TimeSpan.Parse(TB_hora_inicio.Text) < TimeSpan.Parse(TB_hora_fin.Text))
+                    DataTable f_horario = dAO.obtenerfechas_horasTodos();
+
+                    DateTime F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
+                    TimeSpan hi = TimeSpan.Parse(TB_hora_inicio.Text);
+                    TimeSpan hf = TimeSpan.Parse(TB_hora_fin.Text);
+
+                    int val = 0;
+                    string mensaje = "";
+                    for (int i = 0; i < f_horario.Rows.Count; i++)
                     {
-                        
-                        
-                            reserva.F_inicio = reserva.F_inicio.AddHours(TimeSpan.Parse(TB_hora_inicio.Text).Hours);
-                            reserva.F_inicio.AddMinutes((TimeSpan.Parse(TB_hora_inicio.Text)).Minutes);
-                            reserva.F_inicio.AddMinutes(1);
-                            reserva.F_fin = reserva.F_fin.AddHours(TimeSpan.Parse(TB_hora_fin.Text).Hours);
-                            reserva.F_fin.AddMinutes((TimeSpan.Parse(TB_hora_fin.Text)).Minutes);
-                            reserva.Vehiculo_id = int.Parse(Session["vehiculo_id"].ToString());
-                            reserva.Descripcion = TB_Descripcion.Text;
+                        if (DateTime.Parse(f_horario.Rows[i]["fecha"].ToString()) == F_inicio)
+                        {
+                            TimeSpan h1a = (TimeSpan.Parse(((DateTime.Parse(f_horario.Rows[i]["hora_inicio"].ToString())).TimeOfDay).ToString()));
+                            TimeSpan hfa = (TimeSpan.Parse(((DateTime.Parse(f_horario.Rows[i]["hora_fin"].ToString())).TimeOfDay).ToString()));
 
-                            DAOUsuario dAOUsuario = new DAOUsuario();
+                            if (hi >= (TimeSpan.Parse(((DateTime.Parse(f_horario.Rows[i]["hora_inicio"].ToString())).TimeOfDay).ToString())) && hf <= (TimeSpan.Parse((((DateTime.Parse(f_horario.Rows[i]["hora_fin"].ToString())).TimeOfDay).ToString()))))
+                            {
+                                TimeSpan dif = hf.Subtract(hi);
+                                if (dif.TotalSeconds <= (double.Parse(f_horario.Rows[i]["limite_diario"].ToString())))
+                                {
 
+                                }
+                                else
+                                {
+                                    mensaje = "el rango de hora supera el limite diario de: " + double.Parse(f_horario.Rows[i]["limite_diario"].ToString()) + "segundos";
+                                    val++;
+                                }
+                            }
+                            else
+                            {
+                                mensaje = "el rango de hora selecionado esta fuera del horario de atencion que es de: " + (TimeSpan.Parse(((DateTime.Parse(f_horario.Rows[i]["hora_inicio"].ToString())).TimeOfDay).ToString())) + "asta: " + (TimeSpan.Parse((((DateTime.Parse(f_horario.Rows[i]["hora_fin"].ToString())).TimeOfDay).ToString())));
 
-                            dAOUsuario.Insert_Reserva(reserva);
-                            String QR = dAOUsuario.obtenerqr().Rows[0]["contenido"].ToString();
-                            Reserva reserva1 = JsonConvert.DeserializeObject<Reserva>(QR);
-                            txtCode.Text = reserva1.Id.ToString();
-                        string mensaje = "su QR de reservacion del dia: " + reserva.F_inicio + "asta: " + reserva.F_fin + ";  para mas informacion puede revisar desde su plataforma ";
+                                val++;
+                            }
+                        }
+                        else
+                        {
+                           
+                        }
+                    }
 
-                        btnGenerate_Click(mensaje);
-                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('la reservacion ha sido creada imprima el QR');</script>");
-                        limpiar();
-
-
-
+                    if (val > 0)
+                    {
+                        cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('reservacion no valida');</script>");
                     }
                     else
                     {
-                        cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('la hora inicial debe ser menos al final ');</script>");
-                    }
+
+                        reserva.Parq_id = Campos();
+                        if (reserva.Parq_id != -1)
+                        {
+                            reserva.F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
+                            reserva.F_fin = DateTime.Parse(TB_Calendariocupo.Text);
+                            if (TimeSpan.Parse(TB_hora_inicio.Text) < TimeSpan.Parse(TB_hora_fin.Text))
+                            {
+
+
+                                reserva.F_inicio = reserva.F_inicio.AddHours(TimeSpan.Parse(TB_hora_inicio.Text).Hours);
+                                reserva.F_inicio.AddMinutes((TimeSpan.Parse(TB_hora_inicio.Text)).Minutes);
+                                reserva.F_inicio.AddMinutes(1);
+                                reserva.F_fin = reserva.F_fin.AddHours(TimeSpan.Parse(TB_hora_fin.Text).Hours);
+                                reserva.F_fin.AddMinutes((TimeSpan.Parse(TB_hora_fin.Text)).Minutes);
+                                reserva.Vehiculo_id = int.Parse(Session["vehiculo_id"].ToString());
+                                reserva.Descripcion = TB_Descripcion.Text;
+
+                                DAOUsuario dAOUsuario = new DAOUsuario();
+
+
+                                dAOUsuario.Insert_Reserva(reserva);
+                                String QR = dAOUsuario.obtenerqr().Rows[0]["contenido"].ToString();
+                                Reserva reserva1 = JsonConvert.DeserializeObject<Reserva>(QR);
+                                txtCode.Text = reserva1.Id.ToString();
+                                string mensaje1 = "su QR de reservacion del dia: " + reserva.F_inicio + "asta: " + reserva.F_fin + ";  para mas informacion puede revisar desde su plataforma ";
+
+                                btnGenerate_Click(mensaje1);
+                                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('la reservacion ha sido creada imprima el QR');</script>");
+                                limpiar();
+
+
+
+                            }
+                            else
+                            {
+                                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('la hora inicial debe ser menos al final ');</script>");
+                            }
+                        }
+                        else
+                        {
+                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('lamentablemente no hay cupo para este vehiculo');</script>");
+                        }
+                    }//
                 }
                 else
                 {
-                    cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('lamentablemente no hay cupo para este vehiculo');</script>");
+
+                    cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('la hora inicial debe ser menos al final y la reserva debe ser mayor a 15 minutos ');</script>");
+                
+
                 }
+
             }
             else
             {
@@ -113,7 +175,7 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
         TB_Calendariocupo.Text = "";
         TB_hora_inicio.Text = "";
         TB_hora_fin.Text = "";
-        DDL_Tipo.SelectedIndex = 0;
+        //DDL_Tipo.SelectedIndex = 0;
         DDL_Veicu.SelectedIndex = 0;
         TB_Descripcion.Text = "";
     }
