@@ -67,10 +67,15 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
         }
         else
         {
-            if (Session["val_date"] == null && (TB_Calendariocupo.Text!=""))
+            if (Session["val_date"] == null && (TB_Calendariocupo.Text != ""))
             {
-                Reserva reserva = new Reserva();
 
+                Reserva reserva = new Reserva();
+                if (validar()==false)
+                {
+
+                }
+                else { 
                 reserva.Parq_id = Campos();
                 if (reserva.Parq_id != -1)
                 {
@@ -79,14 +84,15 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                     if (TimeSpan.Parse(TB_hora_inicio.Text) < TimeSpan.Parse(TB_hora_fin.Text))
                     {
                         DAOUsuario dAO1 = new DAOUsuario();
-                        DataTable tabla1= dAO1.obtenereservacionyo(int.Parse(Session["user_id"].ToString()));
+                        DataTable tabla1 = dAO1.obtenereservacionyo(int.Parse(Session["user_id"].ToString()));
                         int prue = 0;
                         DateTime F_inicio = reserva.F_inicio.AddHours(TimeSpan.Parse(TB_hora_inicio.Text).Hours);
-                        F_inicio.AddMinutes(TimeSpan.Parse(TB_hora_inicio.Text).Minutes);
-                        F_inicio.AddMinutes(1);
+                        F_inicio = F_inicio.AddMinutes((TimeSpan.Parse(TB_hora_inicio.Text)).Minutes);
+                        F_inicio = F_inicio.AddMinutes(1);
                         DateTime F_fin = reserva.F_fin.AddHours(TimeSpan.Parse(TB_hora_fin.Text).Hours);
-                        F_fin.AddMinutes(TimeSpan.Parse(TB_hora_fin.Text).Minutes);
-                        for (int i=0;i<tabla1.Rows.Count; i++)
+
+                        F_fin = F_fin.AddMinutes((TimeSpan.Parse(TB_hora_fin.Text)).Minutes);
+                        for (int i = 0; i < tabla1.Rows.Count; i++)
                         {
                             if (F_inicio == (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin == (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
                             {
@@ -108,15 +114,15 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                             {
                                 prue++;
                             }
-                            if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString()))&& F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString()))&& F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                            if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
                             {
                                 prue++;
                             }
-                            if (F_inicio >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString()))&& F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString()))  )
+                            if (F_inicio >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
                             {
                                 prue++;
                             }
-                            if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) )
+                            if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())))
                             {
                                 prue++;
                             }
@@ -130,13 +136,13 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
 
 
                         }
-                        if (prue==0)
+                        if (prue == 0)
                         {
                             reserva.F_inicio = reserva.F_inicio.AddHours(TimeSpan.Parse(TB_hora_inicio.Text).Hours);
-                            reserva.F_inicio.AddMinutes(TimeSpan.Parse(TB_hora_inicio.Text).Minutes);
-                            reserva.F_inicio.AddMinutes(1);
+                            reserva.F_inicio = reserva.F_inicio.AddMinutes((TimeSpan.Parse(TB_hora_inicio.Text)).Minutes);
+                            reserva.F_inicio = reserva.F_inicio.AddMinutes(1);
                             reserva.F_fin = reserva.F_fin.AddHours(TimeSpan.Parse(TB_hora_fin.Text).Hours);
-                            reserva.F_fin.AddMinutes(TimeSpan.Parse(TB_hora_fin.Text).Minutes);
+                            reserva.F_fin = reserva.F_fin.AddMinutes((TimeSpan.Parse(TB_hora_fin.Text)).Minutes);
                             reserva.Vehiculo_id = int.Parse(Session["vehiculo_id"].ToString());
                             reserva.Descripcion = TB_Descripcion.Text;
 
@@ -154,9 +160,29 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                         }
                         else
                         {
-                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Su reserva esta cruzada con una ya creada');</script>");
+                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Su reserva esta cruzada con una ya creada puede ver estos otros horarios');</script>");
+                            DAOUsuario dAO = new DAOUsuario();
+
+                            TimeSpan hora_inicial = TimeSpan.Parse(TB_hora_inicio.Text);
+                            TimeSpan hora_final = TimeSpan.Parse(TB_hora_fin.Text);
+                            TimeSpan diferencia = hora_final.Subtract(hora_inicial);
+                            string segundos = diferencia.TotalSeconds.ToString();
+
+                            DateTime fecha_aranque = DateTime.Parse(TB_Calendariocupo.Text);
+                            fecha_aranque = fecha_aranque.AddHours(hora_inicial.Hours);
+                            fecha_aranque = fecha_aranque.AddMinutes(hora_inicial.Minutes);
+                            DateTime fecha_seriesi = DateTime.Parse(TB_Calendariocupo.Text);// desde que hora no importa
+                            fecha_seriesi = fecha_seriesi.AddHours(1);
+                            DateTime fecha_seriesf = DateTime.Parse(TB_Calendariocupo.Text);//asta que hora tampoco importa
+                            fecha_seriesf = fecha_seriesf.AddDays(1);
+                            //fecha_series.AddHours();//agregar desde que hora de tabla de configuracion
+                            //fecha_series.AddMinutes();
+                            DataTable series = obtenerseries(segundos, fecha_aranque, fecha_seriesf, fecha_seriesi);
+                            GV_series.DataSource = series;
+                            GV_series.DataBind();
+
                         }
-                       
+
 
                     }
                     else
@@ -167,9 +193,28 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                 else
                 {
                     //series
+                    cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('lamentablemente no hay cupo para este vehiculo pero puede ver en estos horarios');</script>");
+                    DAOUsuario dAO = new DAOUsuario();
 
-                    cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('lamentablemente no hay cupo para este vehiculo');</script>");
+                    TimeSpan hora_inicial = TimeSpan.Parse(TB_hora_inicio.Text);
+                    TimeSpan hora_final = TimeSpan.Parse(TB_hora_fin.Text);
+                    TimeSpan diferencia = hora_final.Subtract(hora_inicial);
+                    string segundos = diferencia.TotalSeconds.ToString();
+
+                    DateTime fecha_aranque = DateTime.Parse(TB_Calendariocupo.Text);
+                    fecha_aranque = fecha_aranque.AddHours(hora_inicial.Hours);
+                    fecha_aranque = fecha_aranque.AddMinutes(hora_inicial.Minutes);
+                    DateTime fecha_seriesi = DateTime.Parse(TB_Calendariocupo.Text);// desde que hora
+                    fecha_seriesi = fecha_seriesi.AddHours(1);
+                    DateTime fecha_seriesf = DateTime.Parse(TB_Calendariocupo.Text);//asta que hora
+                    fecha_seriesf = fecha_seriesf.AddDays(1);
+                    //fecha_series.AddHours();//agregar desde que hora de tabla de configuracion
+                    //fecha_series.AddMinutes();
+                    DataTable series = obtenerseries(segundos, fecha_aranque, fecha_seriesi, fecha_seriesf);
+                    GV_series.DataSource = series;
+                    GV_series.DataBind();
                 }
+               }
             }else
             {
                 
@@ -182,20 +227,49 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
 
     }
 
-    
+    private bool validar()
+    {
+        DAOUsuario dAOUsuario = new DAOUsuario();
+
+        DateTime F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
+        TimeSpan hi = TimeSpan.Parse(TB_hora_inicio.Text);
+        TimeSpan hf = TimeSpan.Parse(TB_hora_fin.Text);
+
+
+
+        return true;
+
+    }
+
+    private DataTable obtenerseries(string segundos,DateTime fecha_aranque, DateTime fecha_seriesi, DateTime fecha_seriesf)
+    {
+
+        DAOUsuario dAO = new DAOUsuario();
+        DataTable parqueaderos = dAO.obtenerParqueaderoTipo(int.Parse(DDL_Tipo.SelectedValue));
+        int id = 0;
+        DataTable series = new DataTable();
+        for (int i =0;i<parqueaderos.Rows.Count;i++)
+        {
+            id = int.Parse(parqueaderos.Rows[i]["id"].ToString());
+            series = dAO.Traer_series(segundos, id, fecha_aranque, fecha_seriesi, fecha_seriesf, int.Parse(DDL_Tipo.SelectedValue));
+            if (series.Rows.Count!=0)
+            {
+                break;
+            }
+        }
+       
+        return series;
+    }
 
     protected int Campos()
     {
-
-
-
         DAOUsuario dAOUsuario = new DAOUsuario();
         DateTime F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
         DateTime F_fin = DateTime.Parse(TB_Calendariocupo.Text);
         F_inicio = F_inicio.AddHours(TimeSpan.Parse(TB_hora_inicio.Text).Hours);
-        F_inicio.AddMinutes(TimeSpan.Parse(TB_hora_inicio.Text).Minutes);
+        F_inicio = F_inicio.AddMinutes((TimeSpan.Parse(TB_hora_inicio.Text)).Minutes);
         F_fin = F_fin.AddHours(TimeSpan.Parse(TB_hora_fin.Text).Hours);
-        F_fin.AddMinutes(TimeSpan.Parse(TB_hora_fin.Text).Minutes);
+        F_fin = F_fin.AddMinutes((TimeSpan.Parse(TB_hora_fin.Text)).Minutes);
         DataTable x = dAOUsuario.Traer_cupo(int.Parse(DDL_Tipo.SelectedValue), F_inicio, F_fin);
         return int.Parse(x.Rows[0][0].ToString());
     }

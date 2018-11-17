@@ -28,6 +28,8 @@
         }
         .auto-style28 {
             height: 46px;
+            font-family: Arial;
+            text-align: right;
         }
         .auto-style29 {
             width: 569px;
@@ -233,6 +235,7 @@
                                 <asp:Label ID="Label3" runat="server" Text='<%# Bind("hora_fin", "{0:t}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:BoundField DataField="limite_diario" HeaderText="limite en segundos" />
                         <asp:CommandField ShowEditButton="True" />
                         <asp:CommandField ShowDeleteButton="True" />
                     </Columns>
@@ -256,6 +259,7 @@
                         <asp:Parameter Name="Fecha" Type="DateTime" />
                         <asp:Parameter Name="Hora_inicio" DbType="Time" />
                         <asp:Parameter Name="Hora_fin" DbType="Time" />
+                        <asp:Parameter Name="limite_diario" Type="Int64" />
                     </UpdateParameters>
                 </asp:ObjectDataSource>
             </td>

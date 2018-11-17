@@ -60,7 +60,25 @@
         <tr>
             <td class="auto-style16">
                 <br />
-                <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
+                <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /><asp:GridView ID="GV_series" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:BoundField DataField="fecha_inicio" HeaderText="inicio" />
+                        <asp:BoundField DataField="fecha_fin" HeaderText="fin" />
+                        <asp:BoundField DataField="dia" HeaderText="dia" />
+                    </Columns>
+                    <EditRowStyle BackColor="#2461BF" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#EFF3FB" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                    <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                    <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                    <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                </asp:GridView>
+            </td>
             <td class="auto-style8">
                         <table class="auto-style1">
                             <tr>

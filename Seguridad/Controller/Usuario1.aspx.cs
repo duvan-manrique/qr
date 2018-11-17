@@ -22,8 +22,24 @@ public partial class View_Usuario : System.Web.UI.Page
             ClientScriptManager cm = this.ClientScript;
             DAOUsuario dAOUsuario1 = new DAOUsuario();
             dAOUsuario1.vista(cm);
-           
-            
+
+            double multa = 0;
+          
+            try
+            {
+                multa = double.Parse((dAOUsuario1.obtener_multa(int.Parse(Session["user_id"].ToString()))).Rows[0]["multa"].ToString());
+                B_ApartarCupo.Enabled = false;
+                B_CancelarCupo.Enabled = false;
+                LB_multa.Visible = true;
+                B_ApartarCupo.BackColor= System.Drawing.Color.Gray;
+                B_CancelarCupo.BackColor = System.Drawing.Color.Gray;
+            }
+            catch
+            {
+                
+            }
+
+
         }
 
         Cache.Remove("Usuario.aspx");
@@ -69,10 +85,24 @@ public partial class View_Usuario : System.Web.UI.Page
         DAOUsuario dAO = new DAOUsuario();
         DataTable tabla = dAO.obtenerUsuario(int.Parse(Session["user_id"].ToString()));
         Correo correo = new Correo();
-        int valormulta = 2000;
-        String mensaje = valormulta.ToString();
-        correo.enviarCorreoMulta(tabla.Rows[0]["correo"].ToString(), mensaje);
+        double multa = 0;
+        ClientScriptManager cm = this.ClientScript;
+        try
+        {
+             multa = double.Parse((dAO.obtener_multa(int.Parse(Session["user_id"].ToString()))).Rows[0]["multa"].ToString());
+            String mensaje = multa.ToString();
+            correo.enviarCorreoMulta(tabla.Rows[0]["correo"].ToString(), mensaje);
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('multa enviada a su correo');</script>");
+        }
+        catch
+        {
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('no cuenta con multas pendientes');</script>");
+        }
+        
+
+
     }
+
 
 
 

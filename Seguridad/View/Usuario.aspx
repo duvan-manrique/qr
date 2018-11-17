@@ -44,6 +44,8 @@
                         <br />
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                     <td class="auto-style14">
+                        <asp:Label ID="LB_multa" runat="server" Text="apartar cupos bloqueados por multa pendiente" Visible="False"></asp:Label>
+                        <br />
                         <asp:Button ID="B_ApartarCupo" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Apartar Cupo" OnClick="B_ApartarCupo_Click" />
                         <br />
                         <br />

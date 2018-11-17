@@ -59,10 +59,10 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
                         
                         
                             reserva.F_inicio = reserva.F_inicio.AddHours(TimeSpan.Parse(TB_hora_inicio.Text).Hours);
-                            reserva.F_inicio.AddMinutes(TimeSpan.Parse(TB_hora_inicio.Text).Minutes);
+                            reserva.F_inicio.AddMinutes((TimeSpan.Parse(TB_hora_inicio.Text)).Minutes);
                             reserva.F_inicio.AddMinutes(1);
                             reserva.F_fin = reserva.F_fin.AddHours(TimeSpan.Parse(TB_hora_fin.Text).Hours);
-                            reserva.F_fin.AddMinutes(TimeSpan.Parse(TB_hora_fin.Text).Minutes);
+                            reserva.F_fin.AddMinutes((TimeSpan.Parse(TB_hora_fin.Text)).Minutes);
                             reserva.Vehiculo_id = int.Parse(Session["vehiculo_id"].ToString());
                             reserva.Descripcion = TB_Descripcion.Text;
 
@@ -119,13 +119,14 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
 
     protected int Campos()
     {
+       
         DAOUsuario dAOUsuario = new DAOUsuario();
         DateTime F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
         DateTime F_fin = DateTime.Parse(TB_Calendariocupo.Text);
         F_inicio = F_inicio.AddHours(TimeSpan.Parse(TB_hora_inicio.Text).Hours);
-        F_inicio.AddMinutes(TimeSpan.Parse(TB_hora_inicio.Text).Minutes);
+        F_inicio = F_inicio.AddMinutes((TimeSpan.Parse(TB_hora_inicio.Text)).Minutes);
         F_fin = F_fin.AddHours(TimeSpan.Parse(TB_hora_fin.Text).Hours);
-        F_fin.AddMinutes(TimeSpan.Parse(TB_hora_fin.Text).Minutes);
+        F_fin = F_fin.AddMinutes((TimeSpan.Parse(TB_hora_fin.Text)).Minutes);
 
         DataTable x = dAOUsuario.Traer_cupo(int.Parse(DDL_Tipo.SelectedValue), F_inicio, F_fin);
         return int.Parse(x.Rows[0][0].ToString());
@@ -315,8 +316,14 @@ public partial class View_VigilanteApartarCupo : System.Web.UI.Page
         DateTime hoy = DateTime.Now;
         TimeSpan hora = new TimeSpan(hoy.Hour,hoy.Minute,0);
         TB_hora_inicio.Text = hora.ToString();
-        
-        //TB_hora_inicio.Text = 
 
+
+    }
+
+
+
+    protected void TB_hora_inicio_TextChanged(object sender, EventArgs e)
+    {
+        TB_hora_inicio_TextChanged();
     }
 }

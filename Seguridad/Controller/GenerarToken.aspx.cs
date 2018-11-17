@@ -17,7 +17,9 @@ public partial class View_GenerarToken : System.Web.UI.Page
 
     protected void B_Recuperar_Click(object sender, EventArgs e)
     {
+
         DAOUsuario dao = new DAOUsuario();
+      
         System.Data.DataTable validez = dao.generarToken(TB_User_Name.Text);
         if (int.Parse(validez.Rows[0]["id"].ToString()) > 0)
         {

@@ -79,7 +79,6 @@
                                                     <asp:Label ID="Label3" runat="server" Text='<%# Bind("numero_de_campos") %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:CommandField ShowEditButton="True" />
                                             <asp:CommandField ShowDeleteButton="True" />
                                         </Columns>
                                         <EditRowStyle BackColor="#7C6F57" />

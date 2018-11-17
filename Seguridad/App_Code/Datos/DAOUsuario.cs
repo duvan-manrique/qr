@@ -88,8 +88,6 @@ public class DAOUsuario
         return Usuario;
     }
 
- 
-
     public DataTable actualziarContrasena(EUsuario datos)
     {
         DataTable Usuario = new DataTable();
@@ -635,6 +633,232 @@ public class DAOUsuario
         return Zonas;
     }
 
+    public DataTable Traer_series(string segundos,int id, DateTime F_inicio,DateTime f_fin_series, DateTime f_inicio_series,int tipo)
+    {
+        DataTable series = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+   
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.insertar_auxiliar_def", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("minutes", NpgsqlDbType.Text).Value = segundos;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+            dataAdapter.SelectCommand.Parameters.Add("_horai", NpgsqlDbType.Timestamp).Value = F_inicio;
+            dataAdapter.SelectCommand.Parameters.Add("_horaf", NpgsqlDbType.Timestamp).Value = f_fin_series;
+            dataAdapter.SelectCommand.Parameters.Add("_horainicial", NpgsqlDbType.Timestamp).Value = f_inicio_series;
+            dataAdapter.SelectCommand.Parameters.Add("_tipo", NpgsqlDbType.Integer).Value = tipo;
+
+            conection.Open();
+            dataAdapter.Fill(series);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        try
+        {
+
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_series", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            
+
+            conection.Open();
+            dataAdapter.Fill(series);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        DataTable tabla1 = new DataTable();
+        try
+        {
+
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_eliminar_series", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+
+            conection.Open();
+            dataAdapter.Fill(tabla1);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+
+
+
+        return series;
+    }
+
+    public DataTable obtenerParqueaderoTipo(int tipo)
+    {
+        DataTable Parqueadero = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_parqueadero", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_tipo", NpgsqlDbType.Integer).Value = tipo;
+
+
+            conection.Open();
+            dataAdapter.Fill(Parqueadero);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        return Parqueadero;
+    }
+
+    public DataTable obtenerTipo(int id)
+    {
+        DataTable Parqueadero = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_vehiculo_tipo", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+
+
+            conection.Open();
+            dataAdapter.Fill(Parqueadero);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        return Parqueadero;
+    }
+
+    public DataTable obtener_user_vehiculo(int id)
+    {
+        DataTable Parqueadero = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_usuario_vehiculo", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+
+
+            conection.Open();
+            dataAdapter.Fill(Parqueadero);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        return Parqueadero;
+    }
+
+    public DataTable obtener_multa(int id)
+    {
+        DataTable Parqueadero = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_multas", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+
+
+            conection.Open();
+            dataAdapter.Fill(Parqueadero);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        return Parqueadero;
+    }
+
+
+    public DataTable obtener_multa_a(int id)
+    {
+        DataTable Parqueadero = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_obtener_multas_a", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+
+
+            conection.Open();
+            dataAdapter.Fill(Parqueadero);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+        return Parqueadero;
+    }
+
 
     public void Insert_User(User usuario1)
     {
@@ -715,6 +939,7 @@ public class DAOUsuario
             dataAdapter.SelectCommand.Parameters.Add("_fecha", NpgsqlDbType.Date).Value = fechas_horas1.Fecha;
             dataAdapter.SelectCommand.Parameters.Add("_hora_inicio", NpgsqlDbType.Time).Value = fechas_horas1.Hora_inicio;
             dataAdapter.SelectCommand.Parameters.Add("_hora_fin", NpgsqlDbType.Time).Value = fechas_horas1.Hora_fin;
+            dataAdapter.SelectCommand.Parameters.Add("_limite", NpgsqlDbType.Bigint).Value = 28800;
 
 
             conection.Open();
@@ -835,6 +1060,37 @@ public class DAOUsuario
 
     }
 
+    public void Insert_multa(int id_user,int id_reserva,double multa)
+    {
+        DataTable Zonas = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.insert_multa", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id_usuario", NpgsqlDbType.Integer).Value =id_user;
+            dataAdapter.SelectCommand.Parameters.Add("_id_reserva", NpgsqlDbType.Integer).Value = id_reserva;
+            dataAdapter.SelectCommand.Parameters.Add("_multa", NpgsqlDbType.Double).Value = multa;
+
+
+            conection.Open();
+            dataAdapter.Fill(Zonas);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+
+    }
+
 
     public void EliminarUsuario(int id)
     {
@@ -863,7 +1119,6 @@ public class DAOUsuario
         }
 
     }
-
 
     public void EliminarFecha(int id)
     {
@@ -952,27 +1207,35 @@ public class DAOUsuario
 
     public void EliminarReserva(int id)
     {
-        DataTable Reserva = new DataTable();
-        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
-
-        try
+        DataTable t= obtenereserva(id);
+        if (t.Rows[0]["estado"].ToString()=="2")
         {
-            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_eliminar_reserva", conection);
-            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
-            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
-
-            conection.Open();
-            dataAdapter.Fill(Reserva);
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('no puede eliminar esta reservacion');</script>");
         }
-        catch (Exception Ex)
-        {
-            throw Ex;
-        }
-        finally
-        {
-            if (conection != null)
+        else {
+
+            DataTable Reserva = new DataTable();
+            NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+
+            try
             {
-                conection.Close();
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_eliminar_reserva", conection);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+
+                conection.Open();
+                dataAdapter.Fill(Reserva);
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+            finally
+            {
+                if (conection != null)
+                {
+                    conection.Close();
+                }
             }
         }
 
@@ -1123,7 +1386,7 @@ public class DAOUsuario
         }
     }
 
-    public void Updatefechas_horas(int id, DateTime Fecha, TimeSpan Hora_inicio, TimeSpan Hora_fin)
+    public void Updatefechas_horas(int id, DateTime Fecha, TimeSpan Hora_inicio, TimeSpan Hora_fin , long limite_diario)
     {
         DataTable Fechas_horas = new DataTable();
         NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
@@ -1136,6 +1399,8 @@ public class DAOUsuario
             dataAdapter.SelectCommand.Parameters.Add("_fecha", NpgsqlDbType.Date).Value = Fecha;
             dataAdapter.SelectCommand.Parameters.Add("_hora_inicio", NpgsqlDbType.Time).Value = Hora_inicio;
             dataAdapter.SelectCommand.Parameters.Add("_hora_fin", NpgsqlDbType.Time).Value = Hora_fin;
+            dataAdapter.SelectCommand.Parameters.Add("_limite", NpgsqlDbType.Bigint).Value = limite_diario;
+
 
 
             conection.Open();
@@ -1328,6 +1593,37 @@ public class DAOUsuario
 
             conection.Open();
             dataAdapter.Fill(tabla);
+        }
+        catch (Exception Ex)
+        {
+            throw Ex;
+        }
+        finally
+        {
+            if (conection != null)
+            {
+                conection.Close();
+            }
+        }
+
+    }
+
+    public void update_multa(int id)
+    {
+        DataTable Zonas = new DataTable();
+        NpgsqlConnection conection = new NpgsqlConnection(ConfigurationManager.ConnectionStrings["Postgres"].ConnectionString);
+         string estado = "pagado";
+        try
+        {
+            NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter("usuario.f_actualizar_multa", conection);
+            dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            dataAdapter.SelectCommand.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+            dataAdapter.SelectCommand.Parameters.Add("_estado", NpgsqlDbType.Text).Value = estado;
+           
+
+
+            conection.Open();
+            dataAdapter.Fill(Zonas);
         }
         catch (Exception Ex)
         {

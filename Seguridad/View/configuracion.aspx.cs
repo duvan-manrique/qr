@@ -64,12 +64,12 @@ public partial class View_configuracion : System.Web.UI.Page
 
     private void limpiar()
     {
-        TB_Nombre.Text = "";
-        TB_Username.Text = "";
-        TB_Codigo.Text = "";
-        TB_Clave.Text = "";
-        TB_Correo.Text = "";
-        DropDownList1.SelectedIndex = 0;
+        //TB_Nombre.Text = "";
+        //TB_Username.Text = "";
+        //TB_Codigo.Text = "";
+        //TB_Clave.Text = "";
+        //TB_Correo.Text = "";
+        //DropDownList1.SelectedIndex = 0;
 
     }
 

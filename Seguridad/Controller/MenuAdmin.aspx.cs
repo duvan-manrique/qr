@@ -138,6 +138,6 @@ public partial class View_MenuAdmin : System.Web.UI.Page
 
     protected void B_CreaReservacionadministrativo_Click(object sender, EventArgs e)
     {
-        Response.Redirect("AdminApartarCupo.aspx");
+        Response.Redirect("AdminApartarCupo_ad.aspx");
     }
 }

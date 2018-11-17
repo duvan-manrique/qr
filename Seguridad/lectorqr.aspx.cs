@@ -139,10 +139,32 @@ namespace Prestamos
                         if (xa.Minutes>10 || xa.Hours>0)
                         {
                             //hacer multa falta 
-                            //consulta de tipo?vehiculo para traer valor multa 
+                            //consulta de tipo_vehiculo para traer valor multa 
                             // insert en tabla de multa
-                            // enviar valor de multa en el correo 
+                            // enviar valor de multa en el correo
+                            DataTable multas = dAO.obtenerMultasTodos();
+                            double v_multa = 0;
+                            int tipo_v = int.Parse((dAO.obtenerTipo(int.Parse(reserva1.Rows[0]["parqueadero_id"].ToString()))).Rows[0][0].ToString()) ;
+                            
+                            for (int i =0;i<multas.Rows.Count;i++)
+                            {
+                                if (multas.Rows[i]["id"].ToString()== tipo_v.ToString() )
+                                {
+                                    v_multa = double.Parse(multas.Rows[i]["valor_multa"].ToString());
+                                    break;
+                                }
+                            }
+                            double multa = ((xa.TotalSeconds / 60) / 60) * (v_multa);
+                            int id_user = int.Parse((dAO.obtener_user_vehiculo(int.Parse(reserva1.Rows[0]["vehiculo_id"].ToString()))).Rows[0][0].ToString());
                             dAO.update_salida(int.Parse(reserva1.Rows[0]["id"].ToString()), int.Parse(reserva1.Rows[0]["qr"].ToString()), hoy1);
+                            dAO.Insert_multa( id_user, int.Parse(reserva1.Rows[0]["id"].ToString()),multa);
+
+                            DataTable tabla = dAO.obtenerUsuario(int.Parse(Session["user_id"].ToString()));
+                            Correo correo = new Correo();
+                            
+                            String mensaje = multa.ToString();
+                            correo.enviarCorreoMulta(tabla.Rows[0]["correo"].ToString(), mensaje);
+
                             cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('salida exitosa pero con multa');</script>");
 
                         }

@@ -70,7 +70,7 @@
                             <tr>
                                 <td class="auto-style27">hora de inicio&nbsp;&nbsp;&nbsp;</td>
                                 <td>
-                                    <asp:TextBox ID="TB_hora_inicio" runat="server" TextMode="Time"></asp:TextBox>
+                                    <asp:TextBox ID="TB_hora_inicio" runat="server" TextMode="Time" AutoPostBack="True" OnTextChanged="TB_hora_inicio_TextChanged"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
