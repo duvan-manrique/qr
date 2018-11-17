@@ -122,7 +122,7 @@
                     </td>
                     <td>
                         <br />
-                        <asp:Button ID="B_Reservar" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Reservar" OnClick="B_Reservar_Click" />
+                        <asp:Button ID="B_Reservar" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Reservar" OnClick="B_Reservar_Click" style="height: 29px" />
                     </td>
                 </tr>
             </table>
