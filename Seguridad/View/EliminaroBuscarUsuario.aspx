@@ -140,7 +140,11 @@
                                                     </asp:DropDownList>
                                                 </EditItemTemplate>
                                                 <ItemTemplate>
-                                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("rol_id") %>'></asp:Label>
+                                                    <asp:DropDownList ID="DropDownList2" runat="server" AutoPostBack="True" Enabled="False" SelectedValue='<%# Bind("rol_id") %>'>
+                                                        <asp:ListItem Value="3">User</asp:ListItem>
+                                                        <asp:ListItem Value="1">Admin</asp:ListItem>
+                                                        <asp:ListItem Value="2">Vigilante</asp:ListItem>
+                                                    </asp:DropDownList>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Codigo">
