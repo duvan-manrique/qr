@@ -49,6 +49,10 @@
             text-align: right;
             height: 4px;
         }
+        .auto-style24 {
+            text-align: left;
+            height: 22px;
+        }
         </style>
 </head>
 <body>
@@ -87,8 +91,8 @@
                     <td class="auto-style10" >
                         <table class="auto-style1">
                             <tr>
-                                <td class="auto-style12">zona </td>
-                                <td class="auto-style12">reservacion </td>
+                                <td class="auto-style12" style="background-color: #FFFFFF">zona </td>
+                                <td class="auto-style12" style="background-color: #FFFFFF">reservacion </td>
                             </tr>
                             <tr>
                                 <td class="auto-style12">
@@ -100,7 +104,7 @@
                             </tr>
                             <tr>
                                 <td class="auto-style12">
-                        <asp:Button ID="B_BuscarZona" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Buscar  editar eliminar zona" OnClick="B_BuscarZona_Click" Width="183px" />
+                        <asp:Button ID="B_BuscarZona" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Buscar   eliminar zona" OnClick="B_BuscarZona_Click" Width="183px" />
                                 </td>
                                 <td class="auto-style12">
                         <asp:Button ID="B_BuscarReservacion" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="eliminar reservacion" OnClick="B_BuscarReservacion_Click" Width="199px" />
@@ -117,7 +121,7 @@
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
                             </tr>
-                            <tr>
+                            <tr style="background-color: #FFFFFF">
                                 <td class="auto-style12">usuario</td>
                                 <td>
                         <table class="auto-style1">
@@ -144,13 +148,13 @@
                                     &nbsp;</td>
                             </tr>
                             <tr>
-                                <td class="auto-style12">
-                                    &nbsp;</td>
-                                <td class="auto-style12">
-                                    &nbsp;</td>
+                                <td class="auto-style24">
+                                    </td>
+                                <td class="auto-style24">
+                                    </td>
                             </tr>
                             <tr>
-                                <td class="auto-style12">
+                                <td class="auto-style12" style="background-color: #FFFFFF">
                                     multas de usuarios&nbsp;</td>
                                 <td class="auto-style12">
                                     &nbsp;</td>

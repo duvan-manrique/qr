@@ -67,5 +67,10 @@ public partial class View_GenerarToken : System.Web.UI.Page
         return output.ToString();
     }
 
-   
+
+
+    protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+    {
+        Response.Redirect("Loggin.aspx");
+    }
 }

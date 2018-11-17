@@ -74,11 +74,12 @@
                     <tr>
                         <td class="auto-style22" style="color: #009900"><strong>fecha</td>
                         <td>
-                            <asp:TextBox ID="tb_fecha0" runat="server" TextMode="Date" OnTextChanged="tb_fecha0_TextChanged"></asp:TextBox>
+                            <asp:TextBox ID="tb_fecha0" runat="server" TextMode="Date" OnTextChanged="tb_fecha0_TextChanged" ValidationGroup="blo"></asp:TextBox>
                             <strong style="font-family: 'Bahnschrift SemiBold'">
                 <asp:Label ID="LB_u_n" runat="server" Text="fecha ya bloqueada" Visible="False"></asp:Label>
                         &nbsp;<asp:Label ID="LB_uk" runat="server" Text="fecha tiene horario de atencion" Visible="False"></asp:Label>
-                        </td>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator425747" runat="server" ControlToValidate="tb_fecha0" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="blo"></asp:RequiredFieldValidator>
+                                </td>
                     </tr>
                     <tr>
                         <td>
@@ -91,7 +92,7 @@
                     <tr>
                         <td class="auto-style12">&nbsp;</td>
                         <td>
-                            <asp:Button ID="b_crear_fecha_hora0" runat="server" OnClick="b_bloquear_fecha_hora_Click" Text="bloquear_fecha_hora" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
+                            <asp:Button ID="b_crear_fecha_hora0" runat="server" OnClick="b_bloquear_fecha_hora_Click" Text="bloquear_fecha_hora" BackColor="#009900" BorderColor="#009900" ForeColor="White" ValidationGroup="blo" />
                         </td>
                     </tr>
                 </table>
@@ -101,28 +102,31 @@
                     <tr>
                         <td class="auto-style22" style="color: #009900; background-color: #FFFFFF;"><strong>fecha</td>
                         <td>
-                            <asp:TextBox ID="tb_fecha" runat="server" TextMode="Date" OnTextChanged="tb_fecha_TextChanged"></asp:TextBox>
+                            <asp:TextBox ID="tb_fecha" runat="server" TextMode="Date" OnTextChanged="tb_fecha_TextChanged" ValidationGroup="a"></asp:TextBox>
                             <strong style="font-family: 'Bahnschrift SemiBold'">
                 <asp:Label ID="LB_u_nn0" runat="server" Text="fecha ya creada" Visible="False"></asp:Label>
                 <asp:Label ID="LB_u_nn1" runat="server" Text="fecha esta bloqueada " Visible="False"></asp:Label>
-                        </td>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator368324521" runat="server" ControlToValidate="tb_fecha" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="a"></asp:RequiredFieldValidator>
+                                </td>
                     </tr>
                     <tr>
                         <td class="auto-style22" style="color: #009900; background-color: #FFFFFF;"><strong>hora inicio</td>
                         <td>
-                                    <asp:TextBox ID="TB_hora_inicio" runat="server" TextMode="Time" Height="22px" OnTextChanged="TB_hora_inicio_TextChanged"></asp:TextBox>
+                                    <asp:TextBox ID="TB_hora_inicio" runat="server" TextMode="Time" Height="22px" OnTextChanged="TB_hora_inicio_TextChanged" ValidationGroup="a"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3684754712" runat="server" ControlToValidate="TB_hora_inicio" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="a"></asp:RequiredFieldValidator>
                                 </td>
                     </tr>
                     <tr>
                         <td class="auto-style22" style="color: #009900; background-color: #FFFFFF;"><strong>hora fin</td>
                         <td>
-                                    <asp:TextBox ID="Tb_hora_Fin" runat="server" TextMode="Time"></asp:TextBox>
+                                    <asp:TextBox ID="Tb_hora_Fin" runat="server" TextMode="Time" ValidationGroup="a"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3685121045" runat="server" ControlToValidate="Tb_hora_Fin" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="a"></asp:RequiredFieldValidator>
                                 </td>
                     </tr>
                     <tr>
                         <td class="auto-style12">&nbsp;</td>
                         <td>
-                            <asp:Button ID="b_crear_fecha_hora" runat="server" OnClick="b_crear_fecha_hora_Click" Text="crear_fecha_hora" BackColor="#009900" BorderColor="#009900" ForeColor="White" ValidationGroup="atencion" />
+                            <asp:Button ID="b_crear_fecha_hora" runat="server" OnClick="b_crear_fecha_hora_Click" Text="crear_fecha_hora" BackColor="#009900" BorderColor="#009900" ForeColor="White" ValidationGroup="a" />
                         </td>
                     </tr>
                 </table>

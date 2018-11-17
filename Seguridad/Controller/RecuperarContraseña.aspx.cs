@@ -44,4 +44,9 @@ public partial class View_RecuperarContraseña : System.Web.UI.Page
         this.RegisterStartupScript("mensaje", "<script type='text/javascript'>alert('Su Contraseña ha sido actualizada.');window.location=\"Loggin.aspx\"</script>");
 
     }
+
+    protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+    {
+        Response.Redirect("Loggin.aspx");
+    }
 }

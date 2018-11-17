@@ -25,7 +25,8 @@
     <table class="auto-style1" border="0" style="background-image: url('../Imagenes/facatativa.jpg'); background-color: #FFFFFF; background-repeat: repeat; background-attachment: inherit;">
         <tr>
             <td class="auto-style23">
-                                z</td>
+                                <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" Height="31px" ImageUrl="~/Plantilla/images/volver.jpg" OnClick="ImageButton1_Click" Width="30px" />
+                            </td>
             <td  class="auto-style13">
                 &nbsp;</td>
         </tr>
@@ -33,13 +34,13 @@
             <td class="auto-style12">
                 <br />
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
-            <td  class="auto-style22" style="color: #009900"><strong style="font-family: 'Bahnschrift SemiBold'">
-                <br />Nombre<asp:TextBox ID="TB_Nombre" runat="server" OnTextChanged="TB_Nombre_TextChanged"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TB_Nombre" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TB_Nombre" ErrorMessage="ingrese solo letras" ValidationExpression="[a-zA-ZñÑáéíóúÁÉÍÓÚ ,.]*"></asp:RegularExpressionValidator>
+            <td  class="auto-style22" style="color: #009900; background-color: #FFFFFF;"><strong style="font-family: 'Bahnschrift SemiBold'">
+                <br />Nombre<asp:TextBox ID="TB_Nombre" runat="server" OnTextChanged="TB_Nombre_TextChanged" ValidationGroup="t"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3545" runat="server" ControlToValidate="TB_Nombre" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="t"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TB_Nombre" ErrorMessage="ingrese solo letras" ValidationExpression="[a-zA-ZñÑáéíóúÁÉÍÓÚ ,.]*" ValidationGroup="t"></asp:RegularExpressionValidator>
                 <br />
-                <br />User Name<asp:TextBox ID="TB_Username" runat="server" OnTextChanged="TB_Username_TextChanged" AutoPostBack="True"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TB_Username" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                <br />User Name<asp:TextBox ID="TB_Username" runat="server" OnTextChanged="TB_Username_TextChanged" AutoPostBack="True" ValidationGroup="t"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator41254541" runat="server" ControlToValidate="TB_Username" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="t"></asp:RequiredFieldValidator>
                 <asp:Label ID="LB_u_n" runat="server" Text="user name ya existente" Visible="False"></asp:Label>
                 <br />
                 Tipo de&nbsp; usuario<asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
@@ -47,18 +48,18 @@
                     <asp:ListItem Value="3">usuario</asp:ListItem>
                     <asp:ListItem Value="2">vigilante</asp:ListItem>
                 </asp:DropDownList>
-                <br />Codigo identificacion universitaria<asp:TextBox ID="TB_Codigo" runat="server" TextMode="Number"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TB_Codigo" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TB_Codigo" ErrorMessage="no puede ser mayor a 10 digitos" ValidationExpression="^([0-9]{1,10})$"></asp:RegularExpressionValidator>
+                <br />Codigo identificacion universitaria<asp:TextBox ID="TB_Codigo" runat="server" TextMode="Number" ValidationGroup="t"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator21542145" runat="server" ControlToValidate="TB_Codigo" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="t"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TB_Codigo" ErrorMessage="no puede ser mayor a 10 digitos" ValidationExpression="^([0-9]{1,10})$" ValidationGroup="t"></asp:RegularExpressionValidator>
                 <br />
-                <br />Clave<asp:TextBox ID="TB_Clave" runat="server" TextMode="Password"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TB_Clave" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                <br />Clave<asp:TextBox ID="TB_Clave" runat="server" TextMode="Password" ValidationGroup="t"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator54245245" runat="server" ControlToValidate="TB_Clave" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="t"></asp:RequiredFieldValidator>
                 <br />
-                <br />Correo<asp:TextBox ID="TB_Correo" runat="server" TextMode="Email"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="TB_Correo" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                <br />Correo<asp:TextBox ID="TB_Correo" runat="server" TextMode="Email" ValidationGroup="t"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator742145" runat="server" ControlToValidate="TB_Correo" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="t"></asp:RequiredFieldValidator>
                 <br />
                 <br />
-                <asp:Button ID="B_CrearUsuario" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Crear usuario" OnClick="B_CrearUsuario_Click" />
+                <asp:Button ID="B_CrearUsuario" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Crear usuario" OnClick="B_CrearUsuario_Click" ValidationGroup="t" />
             </td>
         </tr>
     </table>

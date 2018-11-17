@@ -37,14 +37,15 @@
                         <span class="auto-style22"><strong>Usuario:&nbsp;
                         <asp:Label ID="L_Nombre" runat="server"></asp:Label>
                         </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td style="background-color: #FFFFFF">
+                        <asp:Label ID="LB_multa" runat="server" Text="apartar cupos bloqueados por multa pendiente" Visible="False"></asp:Label>
+                        </td>
                 </tr>
                 <tr>
                     <td class="auto-style13">
                         <br />
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                     <td class="auto-style14">
-                        <asp:Label ID="LB_multa" runat="server" Text="apartar cupos bloqueados por multa pendiente" Visible="False"></asp:Label>
                         <br />
                         <asp:Button ID="B_ApartarCupo" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Apartar Cupo" OnClick="B_ApartarCupo_Click" />
                         <br />

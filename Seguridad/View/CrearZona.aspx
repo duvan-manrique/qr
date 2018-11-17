@@ -44,19 +44,19 @@
                                     <tr>
                                         <td style="background-color: #FFFFFF">Nombre de la zona </td>
                                         <td class="auto-style13" style="background-color: #FFFFFF">
-                                            <asp:TextBox ID="TB_NombreZona" runat="server" Height="22px" Width="128px" OnTextChanged="TB_NombreZona_TextChanged"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TB_NombreZona" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                                            <asp:TextBox ID="TB_NombreZona" runat="server" Height="22px" Width="128px" OnTextChanged="TB_NombreZona_TextChanged" ValidationGroup="y"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1417524" runat="server" ControlToValidate="TB_NombreZona" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="y"></asp:RequiredFieldValidator>
                                             <strong style="font-family: 'Bahnschrift SemiBold'">
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TB_NombreZona" ErrorMessage="ingrese solo letras" ValidationExpression="[a-zA-ZñÑáéíóúÁÉÍÓÚ ,.]*"></asp:RegularExpressionValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TB_NombreZona" ErrorMessage="ingrese solo letras" ValidationExpression="[a-zA-ZñÑáéíóúÁÉÍÓÚ ,.]*" ValidationGroup="y"></asp:RegularExpressionValidator>
                 <asp:Label ID="LB_u_n" runat="server" Text="zona  ya existente" Visible="False"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td style="background-color: #FFFFFF">numero de campos</td>
                                         <td class="auto-style13" style="background-color: #FFFFFF">
-                                            <asp:TextBox ID="TB_NumerodeCampos" runat="server" TextMode="Number"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TB_NumerodeCampos" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TB_NumerodeCampos" ErrorMessage="no puede ser mas de 2 digitos" ValidationExpression="^([0-9]{1,2})$"></asp:RegularExpressionValidator>
+                                            <asp:TextBox ID="TB_NumerodeCampos" runat="server" TextMode="Number" ValidationGroup="y"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator24524524" runat="server" ControlToValidate="TB_NumerodeCampos" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="y"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="TB_NumerodeCampos" ErrorMessage="no puede ser mas de 2 digitos" ValidationExpression="^([0-9]{1,2})$" ValidationGroup="y"></asp:RegularExpressionValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -76,7 +76,7 @@
                                     <tr>
                                         <td>&nbsp;</td>
                                         <td>
-                                            <asp:Button ID="B_ApartarCupo1" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Crear" OnClick="B_ApartarCupo1_Click" />
+                                            <asp:Button ID="B_ApartarCupo1" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Crear" OnClick="B_ApartarCupo1_Click" ValidationGroup="y" />
                                         </td>
                                     </tr>
                                 </table>

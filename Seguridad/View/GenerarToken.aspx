@@ -53,7 +53,7 @@
             height: 392px;
         }
         .auto-style17 {
-            text-align: right;
+            text-align: left;
             height: 23px;
         }
         </style>
@@ -76,20 +76,22 @@
                 </tr>
       
                 <tr>
-                    <td colspan="2" class="auto-style17"></td>
+                    <td colspan="2" class="auto-style17">
+                                <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" Height="31px" ImageUrl="~/Plantilla/images/volver.jpg" OnClick="ImageButton1_Click" Width="30px" />
+                                </td>
                 </tr>
                 <tr>
                     <td class="auto-style9" style="background-color: #FFFFFF; background-image: url('../Imagenes/facatativa.jpg'); background-repeat: repeat; background-attachment: inherit;">
                         <table class="auto-style1">
                             <tr>
-                    <td class="auto-style13">
+                    <td class="auto-style13" style="background-color: #FFFFFF">
                         <asp:Label ID="L_User_Name0" runat="server" Text="Digite su User Name: "></asp:Label>
-                        <asp:TextBox ID="TB_User_Name" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="TB_User_Name" runat="server" ValidationGroup="u"></asp:TextBox>
                                 </td>
                                 <td class="auto-style12">
                                     &nbsp;</td>
-                                <td>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TB_User_Name" Display="Dynamic" ErrorMessage="no puede estar vacio"></asp:RequiredFieldValidator>
+                                <td style="background-color: #FFFFFF">
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3452452" runat="server" ControlToValidate="TB_User_Name" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="u"></asp:RequiredFieldValidator>
                                 </td>
                                 <td>
                                     &nbsp;</td>
@@ -98,7 +100,7 @@
                         <table class="auto-style1">
                             <tr>
                     <td class="auto-style14">
-                        <asp:Button ID="B_Recuperar" runat="server" OnClick="B_Recuperar_Click" Text="Recuperar" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
+                        <asp:Button ID="B_Recuperar" runat="server" OnClick="B_Recuperar_Click" Text="Recuperar" BackColor="#009900" BorderColor="#009900" ForeColor="White" ValidationGroup="u" />
                         <br />
                         <asp:Label ID="L_Mensaje" runat="server"></asp:Label>
                                 </td>

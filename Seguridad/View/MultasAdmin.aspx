@@ -34,7 +34,7 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style12" style="color: #008000"><span class="auto-style22"><strong>Usuario:&nbsp;
+                <td class="auto-style12" style="color: #008000; background-color: #FFFFFF;"><span class="auto-style22"><strong>Usuario:&nbsp;
                         <asp:Label ID="L_Nombre" runat="server"></asp:Label>
                     </strong></span>&nbsp;&nbsp;&nbsp;<br />
                 <span class="auto-style22"><strong>Usuario control:&nbsp; </strong></span>&nbsp;&nbsp;&nbsp;<asp:DropDownList ID="DDL_usuarios" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DDL_usuarios_SelectedIndexChanged" style="height: 25px">

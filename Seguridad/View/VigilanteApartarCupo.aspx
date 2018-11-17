@@ -41,10 +41,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="auto-style18"><span class="auto-style22"><strong>Usuario:&nbsp;
+                    <td colspan="2" class="auto-style18" style="background-color: #FFFFFF"><span class="auto-style22"><strong>Usuario:&nbsp;
                         <asp:Label ID="L_Nombre" runat="server"></asp:Label>
-                        </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; codigo identificativo del vehiculo<asp:TextBox ID="TB_codigoVe" runat="server"></asp:TextBox>
-                        marca<asp:TextBox ID="TB_marca" runat="server"></asp:TextBox>
+                        </strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; codigo identificativo del vehiculo<asp:TextBox ID="TB_codigoVe" runat="server" ValidationGroup="p"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4521745" runat="server" ControlToValidate="TB_codigoVe" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="p"></asp:RequiredFieldValidator>
+                        marca<asp:TextBox ID="TB_marca" runat="server" ValidationGroup="p"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5475" runat="server" ControlToValidate="TB_marca" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="p"></asp:RequiredFieldValidator>
                         tipo
                         <asp:DropDownList ID="DDL_Vehiculo" runat="server" ForeColor="#009900">
                             <asp:ListItem Value="0">tipo</asp:ListItem>
@@ -52,7 +54,7 @@
                             <asp:ListItem Value="2">carro</asp:ListItem>
                             <asp:ListItem Value="3">cicla</asp:ListItem>
                         </asp:DropDownList>
-                        <asp:Button ID="B_agregar" runat="server" OnClick="B_agregar_Click" Text="Agregar" BackColor="#009900" BorderColor="#009900" ForeColor="White" />
+                        <asp:Button ID="B_agregar" runat="server" OnClick="B_agregar_Click" Text="Agregar" BackColor="#009900" BorderColor="#009900" ForeColor="White" ValidationGroup="p" />
                     </td>
                 </tr>
                 <tr>
@@ -60,23 +62,26 @@
                         <br />
                                 <img alt="" class="auto-style11" src="../Imagenes/article.jpg" /></td>
                     <td class="auto-style8">
-                        <table class="auto-style1">
+                        <table class="auto-style1" style="background-color: #FFFFFF">
                             <tr>
                                 <td class="auto-style27">fecha de resevacion&nbsp;&nbsp; </td>
-                                <td><asp:TextBox ID="TB_Calendariocupo" runat="server" TextMode="Date" AutoPostBack="True" OnTextChanged="TB_Calendariocupo_TextChanged1"></asp:TextBox>
+                                <td><asp:TextBox ID="TB_Calendariocupo" runat="server" TextMode="Date" AutoPostBack="True" OnTextChanged="TB_Calendariocupo_TextChanged1" ValidationGroup="l"></asp:TextBox>
                 <asp:Label ID="LB_u_n" runat="server" Text="Fecha fuera de rango" Visible="False"></asp:Label>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator65785" runat="server" ControlToValidate="TB_Calendariocupo" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="l"></asp:RequiredFieldValidator>
                                     </td>
                             </tr>
                             <tr>
                                 <td class="auto-style27">hora de inicio&nbsp;&nbsp;&nbsp;</td>
                                 <td>
-                                    <asp:TextBox ID="TB_hora_inicio" runat="server" TextMode="Time" AutoPostBack="True" OnTextChanged="TB_hora_inicio_TextChanged"></asp:TextBox>
+                                    <asp:TextBox ID="TB_hora_inicio" runat="server" TextMode="Time" AutoPostBack="True" OnTextChanged="TB_hora_inicio_TextChanged" ValidationGroup="l"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7885785" runat="server" ControlToValidate="TB_hora_inicio" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="l"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="auto-style27">hora final</td>
                                 <td>
-                                    <asp:TextBox ID="TB_hora_fin" runat="server" TextMode="Time"></asp:TextBox>
+                                    <asp:TextBox ID="TB_hora_fin" runat="server" TextMode="Time" ValidationGroup="l"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator82452" runat="server" ControlToValidate="TB_hora_fin" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="l"></asp:RequiredFieldValidator>
                                     </td>
                             </tr>
                             <tr>
@@ -101,7 +106,8 @@
                             <tr>
                                 <td class="auto-style27">Descripcion</td>
                                 <td>
-                        <asp:TextBox ID="TB_Descripcion" runat="server" Height="44px" Width="181px"></asp:TextBox>
+                        <asp:TextBox ID="TB_Descripcion" runat="server" Height="44px" Width="181px" ValidationGroup="l"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9575541" runat="server" ControlToValidate="TB_Descripcion" Display="Dynamic" ErrorMessage="no puede estar vacio" ValidationGroup="l"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -122,7 +128,7 @@
                     </td>
                     <td>
                         <br />
-                        <asp:Button ID="B_Reservar" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Reservar" OnClick="B_Reservar_Click" />
+                        <asp:Button ID="B_Reservar" runat="server" BackColor="#009900" BorderColor="#009900" ForeColor="White" Text="Reservar" OnClick="B_Reservar_Click" ValidationGroup="l" />
                     </td>
                 </tr>
             </table>
