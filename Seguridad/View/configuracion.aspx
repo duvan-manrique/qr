@@ -224,7 +224,7 @@
                                 <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("hora_inicio", "{0:t}") %>' TextMode="Time"></asp:TextBox>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("hora_inicio", "{0:t}") %>'> </asp:Label>
+                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("hora_inicio", "{0:t}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="hora_fin">

@@ -67,144 +67,150 @@ public partial class View_AdminApartarCupo : System.Web.UI.Page
             if (Session["val_date"] == null && (TB_Calendariocupo.Text != ""))
             {
                 Reserva reserva = new Reserva();
-
-                reserva.Parq_id = Campos();
-                if (reserva.Parq_id != -1)
+                if (validar() == false)
                 {
-                    reserva.F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
-                    reserva.F_fin = DateTime.Parse(TB_Calendariocupo.Text);
-                    if (TimeSpan.Parse(TB_hora_inicio.Text) < TimeSpan.Parse(TB_hora_fin.Text))
+                    cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('sus datos no coinciden con los intervalos aseptados');</script>");
+                }
+                else
+                {
+                    reserva.Parq_id = Campos();
+                    if (reserva.Parq_id != -1)
                     {
-                        DAOUsuario dAO1 = new DAOUsuario();
-                        DataTable tabla1 = dAO1.obtenereservacionyo(int.Parse(Session["user_id_control"].ToString()));
-                        int prue = 0;
-                        DateTime F_inicio = reserva.F_inicio.AddHours(TimeSpan.Parse(TB_hora_inicio.Text).Hours);
-                        F_inicio.AddMinutes((TimeSpan.Parse(TB_hora_inicio.Text)).Minutes);
-                        F_inicio.AddMinutes(1);
-                        DateTime F_fin = reserva.F_fin.AddHours(TimeSpan.Parse(TB_hora_fin.Text).Hours);
-                        F_fin.AddMinutes((TimeSpan.Parse(TB_hora_fin.Text)).Minutes);
-                        for (int i = 0; i < tabla1.Rows.Count; i++)
+                        reserva.F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
+                        reserva.F_fin = DateTime.Parse(TB_Calendariocupo.Text);
+                        if (TimeSpan.Parse(TB_hora_inicio.Text) < TimeSpan.Parse(TB_hora_fin.Text))
                         {
-                            if (F_inicio == (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin == (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                            DAOUsuario dAO1 = new DAOUsuario();
+                            DataTable tabla1 = dAO1.obtenereservacionyo(int.Parse(Session["user_id_control"].ToString()));
+                            int prue = 0;
+                            DateTime F_inicio = reserva.F_inicio.AddHours(TimeSpan.Parse(TB_hora_inicio.Text).Hours);
+                            F_inicio.AddMinutes((TimeSpan.Parse(TB_hora_inicio.Text)).Minutes);
+                            F_inicio.AddMinutes(1);
+                            DateTime F_fin = reserva.F_fin.AddHours(TimeSpan.Parse(TB_hora_fin.Text).Hours);
+                            F_fin.AddMinutes((TimeSpan.Parse(TB_hora_fin.Text)).Minutes);
+                            for (int i = 0; i < tabla1.Rows.Count; i++)
                             {
-                                prue++;
-                            }
-                            if (F_inicio >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin == (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
-                            {
-                                prue++;
-                            }
-                            if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin == (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
-                            {
-                                prue++;
-                            }
-                            if (F_inicio == (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
-                            {
-                                prue++;
-                            }
-                            if (F_inicio == (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
-                            {
-                                prue++;
-                            }
-                            if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
-                            {
-                                prue++;
-                            }
-                            if (F_inicio >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
-                            {
-                                prue++;
-                            }
-                            if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())))
-                            {
-                                prue++;
-                            }
+                                if (F_inicio == (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin == (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                                {
+                                    prue++;
+                                }
+                                if (F_inicio >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin == (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                                {
+                                    prue++;
+                                }
+                                if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin == (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                                {
+                                    prue++;
+                                }
+                                if (F_inicio == (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                                {
+                                    prue++;
+                                }
+                                if (F_inicio == (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                                {
+                                    prue++;
+                                }
+                                if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                                {
+                                    prue++;
+                                }
+                                if (F_inicio >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                                {
+                                    prue++;
+                                }
+                                if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin <= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())))
+                                {
+                                    prue++;
+                                }
 
-                            if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
-                            {
-                                prue++;
-                            }
-
-
-
-
-                        }
-                        if (prue == 0)
-                        {
-                            reserva.F_inicio = reserva.F_inicio.AddHours(TimeSpan.Parse(TB_hora_inicio.Text).Hours);
-                            reserva.F_inicio.AddMinutes((TimeSpan.Parse(TB_hora_inicio.Text)).Minutes);
-                            reserva.F_inicio.AddMinutes(1);
-                            reserva.F_fin = reserva.F_fin.AddHours(TimeSpan.Parse(TB_hora_fin.Text).Hours);
-                            reserva.F_fin.AddMinutes((TimeSpan.Parse(TB_hora_fin.Text)).Minutes);
-                            reserva.Vehiculo_id = int.Parse(Session["vehiculo_id"].ToString());
-                            reserva.Descripcion = TB_Descripcion.Text;
-
-                            DAOUsuario dAOUsuario = new DAOUsuario();
+                                if (F_inicio <= (DateTime.Parse(tabla1.Rows[i]["fecha_inicio"].ToString())) && F_fin >= (DateTime.Parse(tabla1.Rows[i]["fecha_fin"].ToString())))
+                                {
+                                    prue++;
+                                }
 
 
-                            dAOUsuario.Insert_Reserva(reserva);
-                            String QR = dAOUsuario.obtenerqr().Rows[0]["contenido"].ToString();
-                            Reserva reserva1 = JsonConvert.DeserializeObject<Reserva>(QR);
-                            txtCode.Text = reserva1.Id.ToString();
-                            btnGenerate_Click();
-                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Su reserva ha sido hecha revise su correo');</script>");
-                            limpar();
+
+
+                            }
+                            if (prue == 0)
+                            {
+                                reserva.F_inicio = reserva.F_inicio.AddHours(TimeSpan.Parse(TB_hora_inicio.Text).Hours);
+                                reserva.F_inicio.AddMinutes((TimeSpan.Parse(TB_hora_inicio.Text)).Minutes);
+                                reserva.F_inicio.AddMinutes(1);
+                                reserva.F_fin = reserva.F_fin.AddHours(TimeSpan.Parse(TB_hora_fin.Text).Hours);
+                                reserva.F_fin.AddMinutes((TimeSpan.Parse(TB_hora_fin.Text)).Minutes);
+                                reserva.Vehiculo_id = int.Parse(Session["vehiculo_id"].ToString());
+                                reserva.Descripcion = TB_Descripcion.Text;
+
+                                DAOUsuario dAOUsuario = new DAOUsuario();
+
+
+                                dAOUsuario.Insert_Reserva(reserva);
+                                String QR = dAOUsuario.obtenerqr().Rows[0]["contenido"].ToString();
+                                Reserva reserva1 = JsonConvert.DeserializeObject<Reserva>(QR);
+                                txtCode.Text = reserva1.Id.ToString();
+                                btnGenerate_Click();
+                                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Su reserva ha sido hecha revise su correo');</script>");
+                                limpar();
+
+                            }
+                            else
+                            {
+                                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Su reserva esta cruzada con una ya creada pero puede ver en estos horarios');</script>");
+
+                                DAOUsuario dAO = new DAOUsuario();
+
+                                TimeSpan hora_inicial = TimeSpan.Parse(TB_hora_inicio.Text);
+                                TimeSpan hora_final = TimeSpan.Parse(TB_hora_fin.Text);
+                                TimeSpan diferencia = hora_final.Subtract(hora_inicial);
+                                string segundos = diferencia.TotalSeconds.ToString();
+
+                                DateTime fecha_aranque = DateTime.Parse(TB_Calendariocupo.Text);
+                                fecha_aranque = fecha_aranque.AddHours(hora_inicial.Hours);
+                                fecha_aranque = fecha_aranque.AddMinutes(hora_inicial.Minutes);
+                                DateTime fecha_seriesi = DateTime.Parse(TB_Calendariocupo.Text);// desde que hora
+                                fecha_seriesi = fecha_seriesi.AddHours(1);
+                                DateTime fecha_seriesf = DateTime.Parse(TB_Calendariocupo.Text);//asta que hora
+                                fecha_seriesf = fecha_seriesf.AddDays(1);
+                                //fecha_series.AddHours();//agregar desde que hora de tabla de configuracion
+                                //fecha_series.AddMinutes();
+                                DataTable series = obtenerseries(segundos, fecha_aranque, fecha_seriesi, fecha_seriesf);
+                                GV_series.DataSource = series;
+                                GV_series.DataBind();
+                            }
+
 
                         }
                         else
                         {
-                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('Su reserva esta cruzada con una ya creada pero puede ver en estos horarios');</script>");
-
-                            DAOUsuario dAO = new DAOUsuario();
-
-                            TimeSpan hora_inicial = TimeSpan.Parse(TB_hora_inicio.Text);
-                            TimeSpan hora_final = TimeSpan.Parse(TB_hora_fin.Text);
-                            TimeSpan diferencia = hora_final.Subtract(hora_inicial);
-                            string segundos = diferencia.TotalSeconds.ToString();
-
-                            DateTime fecha_aranque = DateTime.Parse(TB_Calendariocupo.Text);
-                            fecha_aranque = fecha_aranque.AddHours(hora_inicial.Hours);
-                            fecha_aranque = fecha_aranque.AddMinutes(hora_inicial.Minutes);
-                            DateTime fecha_seriesi = DateTime.Parse(TB_Calendariocupo.Text);// desde que hora
-                            fecha_seriesi = fecha_seriesi.AddHours(1);
-                            DateTime fecha_seriesf = DateTime.Parse(TB_Calendariocupo.Text);//asta que hora
-                            fecha_seriesf = fecha_seriesf.AddDays(1);
-                            //fecha_series.AddHours();//agregar desde que hora de tabla de configuracion
-                            //fecha_series.AddMinutes();
-                            DataTable series = obtenerseries(segundos, fecha_aranque, fecha_seriesi, fecha_seriesf);
-                            GV_series.DataSource = series;
-                            GV_series.DataBind();
+                            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('la hora inicial debe ser menos al final ');</script>");
                         }
-
-
                     }
                     else
                     {
-                        cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('la hora inicial debe ser menos al final ');</script>");
+                        //series
+
+                        cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('lamentablemente no hay cupo para este vehiculo pero puede ver en estos horarios');</script>");
+                        DAOUsuario dAO = new DAOUsuario();
+
+                        TimeSpan hora_inicial = TimeSpan.Parse(TB_hora_inicio.Text);
+                        TimeSpan hora_final = TimeSpan.Parse(TB_hora_fin.Text);
+                        TimeSpan diferencia = hora_final.Subtract(hora_inicial);
+                        string segundos = diferencia.TotalSeconds.ToString();
+
+                        DateTime fecha_aranque = DateTime.Parse(TB_Calendariocupo.Text);
+                        fecha_aranque = fecha_aranque.AddHours(hora_inicial.Hours);
+                        fecha_aranque = fecha_aranque.AddMinutes(hora_inicial.Minutes);
+                        DateTime fecha_seriesi = DateTime.Parse(TB_Calendariocupo.Text);// desde que hora
+                        fecha_seriesi = fecha_seriesi.AddHours(1);
+                        DateTime fecha_seriesf = DateTime.Parse(TB_Calendariocupo.Text);//asta que hora
+                        fecha_seriesf = fecha_seriesf.AddDays(1);
+                        //fecha_series.AddHours();//agregar desde que hora de tabla de configuracion
+                        //fecha_series.AddMinutes();
+                        DataTable series = obtenerseries(segundos, fecha_aranque, fecha_seriesi, fecha_seriesf);
+                        GV_series.DataSource = series;
+                        GV_series.DataBind();
                     }
-                }
-                else
-                {
-                    //series
-
-                    cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('lamentablemente no hay cupo para este vehiculo pero puede ver en estos horarios');</script>");
-                    DAOUsuario dAO = new DAOUsuario();
-
-                    TimeSpan hora_inicial = TimeSpan.Parse(TB_hora_inicio.Text);
-                    TimeSpan hora_final = TimeSpan.Parse(TB_hora_fin.Text);
-                    TimeSpan diferencia = hora_final.Subtract(hora_inicial);
-                    string segundos = diferencia.TotalSeconds.ToString();
-
-                    DateTime fecha_aranque = DateTime.Parse(TB_Calendariocupo.Text);
-                    fecha_aranque = fecha_aranque.AddHours(hora_inicial.Hours);
-                    fecha_aranque = fecha_aranque.AddMinutes(hora_inicial.Minutes);
-                    DateTime fecha_seriesi = DateTime.Parse(TB_Calendariocupo.Text);// desde que hora
-                    fecha_seriesi = fecha_seriesi.AddHours(1);
-                    DateTime fecha_seriesf = DateTime.Parse(TB_Calendariocupo.Text);//asta que hora
-                    fecha_seriesf = fecha_seriesf.AddDays(1);
-                    //fecha_series.AddHours();//agregar desde que hora de tabla de configuracion
-                    //fecha_series.AddMinutes();
-                    DataTable series = obtenerseries(segundos, fecha_aranque, fecha_seriesi, fecha_seriesf);
-                    GV_series.DataSource = series;
-                    GV_series.DataBind();
                 }
             }
             else
@@ -218,6 +224,118 @@ public partial class View_AdminApartarCupo : System.Web.UI.Page
 
 
     }
+
+    private bool validar()
+    {
+        string mensaje = "";
+        ClientScriptManager cm = this.ClientScript;
+        if (TimeSpan.Parse(TB_hora_inicio.Text) < TimeSpan.Parse(TB_hora_fin.Text))
+        { }
+        else
+        {
+            return false;
+        }
+        DAOUsuario dAOUsuario = new DAOUsuario();
+
+        DateTime F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
+        TimeSpan hi = TimeSpan.Parse(TB_hora_inicio.Text);
+        TimeSpan hf = TimeSpan.Parse(TB_hora_fin.Text);
+
+        DataTable f_block = dAOUsuario.obtenerfechas_horas_bloqueadasTodos();
+        DataTable f_horario = dAOUsuario.obtenerfechas_horasTodos();
+        int val = 0;
+        for (int i = 0; i < f_block.Rows.Count; i++)
+        {
+            if (DateTime.Parse(f_block.Rows[i]["fecha"].ToString()) == F_inicio)
+            {
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('esta fecha no esta disponible');</script>");
+                return false;
+
+            }
+        }
+        int esta = 0;
+        for (int i = 0; i < f_horario.Rows.Count; i++)
+        {
+            if (DateTime.Parse(f_horario.Rows[i]["fecha"].ToString()) == F_inicio)
+            {
+                TimeSpan h1a = (TimeSpan.Parse(((DateTime.Parse(f_horario.Rows[i]["hora_inicio"].ToString())).TimeOfDay).ToString()));
+                TimeSpan hfa = (TimeSpan.Parse(((DateTime.Parse(f_horario.Rows[i]["hora_fin"].ToString())).TimeOfDay).ToString()));
+
+                if (hi >= (TimeSpan.Parse(((DateTime.Parse(f_horario.Rows[i]["hora_inicio"].ToString())).TimeOfDay).ToString())) && hf <= (TimeSpan.Parse((((DateTime.Parse(f_horario.Rows[i]["hora_fin"].ToString())).TimeOfDay).ToString()))))
+                {
+                    TimeSpan dif = hf.Subtract(hi);
+                    if (dif.TotalSeconds <= (double.Parse(f_horario.Rows[i]["limite_diario"].ToString())))
+                    {
+                        //valida horas en la semana
+                        DataTable tabla1 = dAOUsuario.obtenereservacionyo(int.Parse(Session["user_id"].ToString()));
+                        TimeSpan semana = new TimeSpan();
+                        for (int j = 0; j < tabla1.Rows.Count; j++)
+                        {
+                            if (DateTime.Parse(tabla1.Rows[j]["fecha_inicio"].ToString()).Date == F_inicio.Date)//aaaaaaaaaaaaaaaaaaaaaaa
+                            {
+                                semana = semana.Add((TimeSpan.Parse((((DateTime.Parse(tabla1.Rows[j]["fecha_fin"].ToString())).TimeOfDay).ToString()))).Subtract((TimeSpan.Parse(((DateTime.Parse(tabla1.Rows[j]["fecha_inicio"].ToString())).TimeOfDay).ToString()))));
+                            }
+
+                        }
+                        if (semana.TotalSeconds < (double.Parse(f_horario.Rows[i]["limite_diario"].ToString())))
+                        {
+                            if (dif.TotalSeconds <= ((double.Parse(f_horario.Rows[i]["limite_diario"].ToString())) - (semana.TotalSeconds)))
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                mensaje = "limite de horas solo le queda: " + dif.TotalSeconds + " segundos para reservar";
+                                val++;
+                            }
+                        }
+                        else
+                        {
+                            mensaje = "limite de horas alcanzado";
+                            val++;
+                        }
+                    }
+                    else
+                    {
+                        mensaje = "el rango de hora supera el limite diario de: " + double.Parse(f_horario.Rows[i]["limite_diario"].ToString()) + "segundos";
+                        val++;
+                    }
+                }
+                else
+                {
+                    mensaje = "el rango de hora selecionado esta fuera del horario de atencion que es de: " + (TimeSpan.Parse(((DateTime.Parse(f_horario.Rows[i]["hora_inicio"].ToString())).TimeOfDay).ToString())) + "asta: " + (TimeSpan.Parse((((DateTime.Parse(f_horario.Rows[i]["hora_fin"].ToString())).TimeOfDay).ToString())));
+
+                    val++;
+                }
+            }
+            else
+            {
+                esta++;
+            }
+        }
+        if (esta == f_horario.Rows.Count)
+        {
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('este fecha no tiene horario de servicio');</script>");
+            return false;
+        }
+        else
+        {
+            if (val > 0)
+            {
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('" + mensaje + "');</script>");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+
+
+
+    }
+
 
     private DataTable obtenerseries(string segundos, DateTime fecha_aranque, DateTime fecha_seriesi, DateTime fecha_seriesf)
     {

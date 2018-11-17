@@ -73,7 +73,7 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
                 Reserva reserva = new Reserva();
                 if (validar()==false)
                 {
-
+                    cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('sus datos no coinciden con los intervalos aseptados');</script>");
                 }
                 else { 
                 reserva.Parq_id = Campos();
@@ -229,15 +229,112 @@ public partial class View_UsuarioApartarCupo : System.Web.UI.Page
 
     private bool validar()
     {
-        DAOUsuario dAOUsuario = new DAOUsuario();
+        string mensaje="";
+        ClientScriptManager cm = this.ClientScript;
+        if (TimeSpan.Parse(TB_hora_inicio.Text) < TimeSpan.Parse(TB_hora_fin.Text))
+        { }
+        else
+        {
+            return false;
+        }
+            DAOUsuario dAOUsuario = new DAOUsuario();
 
         DateTime F_inicio = DateTime.Parse(TB_Calendariocupo.Text);
         TimeSpan hi = TimeSpan.Parse(TB_hora_inicio.Text);
         TimeSpan hf = TimeSpan.Parse(TB_hora_fin.Text);
 
+        DataTable f_block=dAOUsuario.obtenerfechas_horas_bloqueadasTodos();
+        DataTable f_horario=dAOUsuario.obtenerfechas_horasTodos();
+        int val = 0;
+        for (int i=0;i<f_block.Rows.Count;i++)
+        {
+            if (DateTime.Parse(f_block.Rows[i]["fecha"].ToString())==F_inicio)
+            {
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('esta fecha no esta disponible');</script>");
+                return false;
+
+            }
+        }
+        int esta = 0;
+        for (int i = 0; i < f_horario.Rows.Count; i++)
+        {
+            if (DateTime.Parse(f_horario.Rows[i]["fecha"].ToString()) == F_inicio)
+            {
+                TimeSpan h1a = (TimeSpan.Parse(((DateTime.Parse(f_horario.Rows[i]["hora_inicio"].ToString())).TimeOfDay).ToString()));
+                TimeSpan hfa = (TimeSpan.Parse(((DateTime.Parse(f_horario.Rows[i]["hora_fin"].ToString())).TimeOfDay).ToString()));
+
+                if (hi>=(TimeSpan.Parse(((DateTime.Parse( f_horario.Rows[i]["hora_inicio"].ToString())).TimeOfDay).ToString())) && hf <= (TimeSpan.Parse((((DateTime.Parse(f_horario.Rows[i]["hora_fin"].ToString())).TimeOfDay).ToString()))))
+                {
+                    TimeSpan dif = hf.Subtract(hi);
+                    if (dif.TotalSeconds<=(double.Parse(f_horario.Rows[i]["limite_diario"].ToString())))
+                    {
+                        //valida horas en la semana
+                        DataTable tabla1 = dAOUsuario.obtenereservacionyo(int.Parse(Session["user_id"].ToString()));
+                        TimeSpan semana = new TimeSpan();
+                        for (int j=0;j<tabla1.Rows.Count;j++)
+                        {
+                            if (DateTime.Parse(tabla1.Rows[j]["fecha_inicio"].ToString()).Date == F_inicio.Date)//aaaaaaaaaaaaaaaaaaaaaaa
+                            {
+                                semana = semana.Add((TimeSpan.Parse((((DateTime.Parse(tabla1.Rows[j]["fecha_fin"].ToString())).TimeOfDay).ToString()))).Subtract((TimeSpan.Parse(((DateTime.Parse( tabla1.Rows[j]["fecha_inicio"].ToString())).TimeOfDay).ToString()))));
+                            }
+                            
+                        }
+                        if (semana.TotalSeconds<(double.Parse(f_horario.Rows[i]["limite_diario"].ToString())))
+                        {
+                            if (dif.TotalSeconds<=((double.Parse(f_horario.Rows[i]["limite_diario"].ToString()))-(semana.TotalSeconds)))
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                mensaje = "limite de horas solo le queda: "+dif.TotalSeconds+" segundos para reservar";
+                                val++;
+                            }
+                        }
+                        else
+                        {
+                            mensaje = "limite de horas alcanzado";
+                            val++;
+                        }
+                    }
+                    else
+                    {
+                        mensaje = "el rango de hora supera el limite diario de: "+ double.Parse(f_horario.Rows[i]["limite_diario"].ToString())+"segundos";
+                        val++;
+                    }
+                }
+                else
+                {
+                    mensaje = "el rango de hora selecionado esta fuera del horario de atencion que es de: " + (TimeSpan.Parse(((DateTime.Parse(f_horario.Rows[i]["hora_inicio"].ToString())).TimeOfDay).ToString())) + "asta: "+ (TimeSpan.Parse((((DateTime.Parse(f_horario.Rows[i]["hora_fin"].ToString())).TimeOfDay).ToString())));
+             
+                    val++;
+                }
+            }
+            else
+            {
+                esta++;
+            }
+        }
+        if (esta==f_horario.Rows.Count)
+        {
+            cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('este fecha no tiene horario de servicio');</script>");
+            return false;
+        }
+        else
+        {
+            if (val>0)
+            {
+                cm.RegisterClientScriptBlock(this.GetType(), "", "<script type='text/javascript'>alert('" + mensaje + "');</script>");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
 
-        return true;
+       
 
     }
 
